@@ -10,7 +10,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Acceptance of Terms</h2>
             <p>
-              By accessing and using Sannex Technologies' services, you accept and agree to be bound by these Terms of Service.
+              By accessing and using Sannex's services, you accept and agree to be bound by these Terms of Service.
               If you do not agree to these terms, please do not use our services.
             </p>
           </section>
@@ -18,7 +18,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">2. Services</h2>
             <p>
-              Sannex Technologies provides AI automation, fullstack web development, API integrations, and technical
+              Sannex provides AI automation, fullstack web development, API integrations, and technical
               consulting services. The specific scope, deliverables, and timelines for each project will be outlined
               in a separate agreement or statement of work.
             </p>
@@ -48,7 +48,7 @@ const TermsOfService = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-4">5. Intellectual Property</h2>
             <p>
               Upon full payment, clients will own the deliverables created specifically for their project.
-              Sannex Technologies retains ownership of pre-existing materials, frameworks, and general methodologies.
+              Sannex retains ownership of pre-existing materials, frameworks, and general methodologies.
               We reserve the right to showcase completed projects in our portfolio unless otherwise agreed.
             </p>
           </section>
@@ -72,7 +72,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">8. Limitation of Liability</h2>
             <p>
-              Sannex Technologies' liability is limited to the amount paid for the specific service in question.
+              Sannex's liability is limited to the amount paid for the specific service in question.
               We are not liable for indirect, incidental, or consequential damages.
             </p>
           </section>

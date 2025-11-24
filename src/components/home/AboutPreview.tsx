@@ -11,7 +11,7 @@ const AboutPreview = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section className="py-20 md:py-40 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -19,7 +19,7 @@ const AboutPreview = () => {
               Building Technology Solutions That Scale
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Sannex Technologies specializes in AI-powered automation, custom web applications, 
+              Sannex specializes in AI-powered automation, custom web applications, 
               and seamless integrations that help businesses operate more efficiently.
             </p>
             <p className="text-lg text-muted-foreground mb-8">

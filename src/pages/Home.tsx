@@ -2,22 +2,25 @@ import { mockHomepageSettings } from '@/data/mockData';
 import HeroSection from '@/components/home/HeroSection';
 import AboutPreview from '@/components/home/AboutPreview';
 import CTASection from '@/components/home/CTASection';
+import VideoBackground from '@/components/VideoBackground';
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
-      <HeroSection
-        title={mockHomepageSettings.heroTitle}
-        subtitle={mockHomepageSettings.heroSubtitle}
-        primaryCTA={mockHomepageSettings.heroPrimaryCTA}
-        primaryLink={mockHomepageSettings.heroPrimaryLink}
-        secondaryCTA={mockHomepageSettings.heroSecondaryCTA}
-        secondaryLink={mockHomepageSettings.heroSecondaryLink}
-      />
+    <div className="relative min-h-screen">
+      <VideoBackground />
       
-      <AboutPreview />
-      
-      <CTASection />
+      <div className="relative z-10">
+        <HeroSection
+          title={mockHomepageSettings.heroTitle}
+          subtitle={mockHomepageSettings.heroSubtitle}
+          primaryCTA={mockHomepageSettings.heroPrimaryCTA}
+          primaryLink={mockHomepageSettings.heroPrimaryLink}
+        />
+        
+        <AboutPreview />
+        
+        <CTASection />
+      </div>
     </div>
   );
 };
