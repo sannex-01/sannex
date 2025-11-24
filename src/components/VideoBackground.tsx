@@ -1,6 +1,6 @@
 const VideoBackground = () => {
   return (
-    <div className="fixed inset-0 z-0">
+    <div className="absolute inset-0 z-0">
       <video
         autoPlay
         loop
