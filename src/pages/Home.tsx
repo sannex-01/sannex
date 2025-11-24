@@ -8,8 +8,6 @@ import VideoBackground from '@/components/VideoBackground';
 const Home = () => {
   return (
     <div className="relative min-h-screen">
-      <VideoBackground />
-      
       <div className="relative z-10">
         <HeroSection
           title={mockHomepageSettings.heroTitle}
