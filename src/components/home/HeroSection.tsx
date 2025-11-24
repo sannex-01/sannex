@@ -17,18 +17,22 @@ const HeroSection = ({
   subtitle,
   primaryCTA,
   primaryLink,
-  secondaryCTA,
-  secondaryLink,
 }: HeroSectionProps) => {
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const words = title.split(' ');
 
   useEffect(() => {
+    let currentIndex = 0;
     const interval = setInterval(() => {
-      setHighlightedIndex((prev) => {
-        const nextIndex = prev + 1;
-        return nextIndex >= words.length ? 0 : nextIndex;
-      });
+      if (currentIndex < words.length) {
+        setHoveredIndex(currentIndex);
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+        setHasAnimated(true);
+        setHoveredIndex(null);
+      }
     }, 600);
 
     return () => clearInterval(interval);
@@ -36,19 +40,6 @@ const HeroSection = ({
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-50 dark:opacity-30"
-        >
-          <source src="https://cdn.pixabay.com/video/2024/03/31/206294_large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-background/40 to-background/50" />
-      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
@@ -67,8 +58,10 @@ const HeroSection = ({
             {words.map((word, index) => (
               <span key={index} className="inline-block mr-3">
                 <span
-                  className={`inline-block transition-all duration-300 ${
-                    index === highlightedIndex
+                  onMouseEnter={() => hasAnimated && setHoveredIndex(index)}
+                  onMouseLeave={() => hasAnimated && setHoveredIndex(null)}
+                  className={`inline-block transition-all duration-300 cursor-pointer ${
+                    index === hoveredIndex
                       ? 'bg-primary text-primary-foreground px-2 py-1 rounded-md scale-105'
                       : ''
                   }`}
@@ -93,12 +86,6 @@ const HeroSection = ({
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            
-            {secondaryCTA && secondaryLink && (
-              <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                <Link to={secondaryLink}>{secondaryCTA}</Link>
-              </Button>
-            )}
           </div>
         </div>
       </div>

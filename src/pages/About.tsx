@@ -36,7 +36,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About Sannex Technologies
+              About Sannex
             </h1>
             <p className="text-xl text-muted-foreground">
               Building intelligent systems that transform how businesses operate
@@ -48,7 +48,7 @@ const About = () => {
               <CardContent className="pt-6">
                 <h2 className="text-2xl font-bold mb-4 text-foreground">Our Story</h2>
                 <p className="text-muted-foreground mb-4">
-                  Sannex Technologies was founded with a clear mission: to make advanced technology 
+                  Sannex was founded with a clear mission: to make advanced technology 
                   accessible and practical for African businesses. Based in Lagos, Nigeria, we specialize 
                   in AI-powered automation, custom web development, and seamless system integrations.
                 </p>
