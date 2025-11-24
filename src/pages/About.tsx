@@ -24,20 +24,28 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen relative">
-      <VideoBackground />
-      
-      <div className="relative z-10 pt-24 pb-20">
+    <div className="min-h-screen">
+      <div className="relative min-h-screen">
+        <VideoBackground />
+        <div className="relative z-10 pt-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-16 animate-fade-in py-20 md:py-32">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                  Who We Are
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                  Building intelligent systems that transform how businesses operate
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16 animate-fade-in py-20 md:py-32">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Who We Are
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Building intelligent systems that transform how businesses operate
-              </p>
-            </div>
 
             <div className="prose prose-lg max-w-none mb-16 animate-fade-in">
               <Card>
