@@ -130,8 +130,8 @@ export const mockProjects: Project[] = [
 ];
 
 export const mockHomepageSettings: HomepageSettings = {
-  heroTitle: 'We build AI-powered systems and automation that help businesses move faster',
-  heroSubtitle: 'AI, Automation & Fullstack Engineering for Ambitious Teams',
+  heroTitle: 'Fast, smart, AI-powered solutions',
+  heroSubtitle: 'We build AI-driven tools, automation systems, and modern applications that simplify your workflow, reduce manual effort, and help your business move faster.',
   heroPrimaryCTA: 'Book a Strategy Call',
   heroPrimaryLink: '/contact',
   heroSecondaryCTA: 'View Projects',
