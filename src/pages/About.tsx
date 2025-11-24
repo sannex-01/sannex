@@ -27,16 +27,40 @@ const About = () => {
     <div className="min-h-screen">
       <div className="relative min-h-screen">
         <VideoBackground />
-        <div className="relative z-10 pt-24">
+        <div className="relative z-10 pt-24 pb-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-16 animate-fade-in py-20 md:py-32">
+              <div className="text-center mb-12 animate-fade-in py-12 md:py-20">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                   Who We Are
                 </h1>
                 <p className="text-xl text-muted-foreground">
                   Building intelligent systems that transform how businesses operate
                 </p>
+              </div>
+
+              <div className="prose prose-lg max-w-none mb-8 animate-fade-in">
+                <Card className="bg-black border-white/20">
+                  <CardContent className="pt-6">
+                    <h2 className="text-2xl font-bold mb-4 text-foreground">Our Story</h2>
+                    <p className="text-muted-foreground mb-4">
+                      Sannex was founded with a clear mission: to make advanced technology 
+                      accessible and practical for African businesses. Based in Lagos, Nigeria, we specialize 
+                      in AI-powered automation, custom web development, and seamless system integrations.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      We've worked with churches automating their operations, universities building 
+                      management systems, startups launching payment platforms, and enterprises 
+                      optimizing their workflows. Every project teaches us something new, and we bring 
+                      that knowledge to the next challenge.
+                    </p>
+                    <p className="text-muted-foreground">
+                      Our approach combines technical excellence with practical business thinking. 
+                      We don't just build software—we build solutions that scale, systems that last, 
+                      and partnerships that grow.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
@@ -46,30 +70,6 @@ const About = () => {
       <div className="pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-
-            <div className="prose prose-lg max-w-none mb-16 animate-fade-in">
-              <Card>
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-4 text-foreground">Our Story</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Sannex was founded with a clear mission: to make advanced technology 
-                    accessible and practical for African businesses. Based in Lagos, Nigeria, we specialize 
-                    in AI-powered automation, custom web development, and seamless system integrations.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    We've worked with churches automating their operations, universities building 
-                    management systems, startups launching payment platforms, and enterprises 
-                    optimizing their workflows. Every project teaches us something new, and we bring 
-                    that knowledge to the next challenge.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Our approach combines technical excellence with practical business thinking. 
-                    We don't just build software—we build solutions that scale, systems that last, 
-                    and partnerships that grow.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
 
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">
