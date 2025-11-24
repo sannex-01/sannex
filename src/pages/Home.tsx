@@ -18,9 +18,9 @@ const Home = () => {
           primaryLink={mockHomepageSettings.heroPrimaryLink}
         />
         
-        <AboutPreview />
-        
         <ServicesSection services={mockHomepageSettings.services} />
+        
+        <AboutPreview />
         
         <CTASection />
       </div>
