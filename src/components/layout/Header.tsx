@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import MusicPlayer from '@/components/MusicPlayer';
 
 const Header = () => {
@@ -20,9 +20,7 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Who We Are', path: '/about' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -60,18 +58,15 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
-            <button
-              onClick={() => scrollToSection('services')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Services
-            </button>
           </div>
 
           <div className="hidden md:flex items-center gap-2">
             <MusicPlayer />
             <Button asChild>
-              <Link to="/contact">Let's Talk</Link>
+              <Link to="/contact" className="flex items-center gap-2">
+                <MessageCircle className="h-4 w-4" />
+                Let's Talk
+              </Link>
             </Button>
           </div>
 
@@ -104,14 +99,9 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <button
-                onClick={() => scrollToSection('services')}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors text-left"
-              >
-                Services
-              </button>
               <Button asChild className="w-full">
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
                   Let's Talk
                 </Link>
               </Button>
