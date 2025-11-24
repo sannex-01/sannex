@@ -1,4 +1,4 @@
-import { Project, HomepageSettings } from '@/types/project';
+import { Project, HomepageSettings, Testimonial } from '@/types/project';
 
 export const mockProjects: Project[] = [
   {
@@ -175,3 +175,54 @@ export const mockHomepageSettings: HomepageSettings = {
     }
   ]
 };
+
+export const mockTestimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: 'Michael Adebayo',
+    role: 'CTO',
+    company: 'TechStart Africa',
+    content: 'Sannex transformed our operations with an AI-powered automation system that saved us 30 hours per week. Their expertise in AI and automation is unmatched.',
+    rating: 5
+  },
+  {
+    id: 2,
+    name: 'Sarah Johnson',
+    role: 'Operations Director',
+    company: 'Global Ventures Ltd',
+    content: 'The custom web application they built exceeded our expectations. Clean code, beautiful design, and delivered on time. Highly recommend!',
+    rating: 5
+  },
+  {
+    id: 3,
+    name: 'Dr. Ibrahim Yusuf',
+    role: 'Academic Lead',
+    company: 'University of Lagos',
+    content: 'Outstanding training program! The team helped us upskill our staff in modern web development and AI integration. Very practical and well-structured.',
+    rating: 5
+  },
+  {
+    id: 4,
+    name: 'Jennifer Williams',
+    role: 'Product Manager',
+    company: 'FinTech Solutions',
+    content: 'They integrated Stripe payments and automated our billing workflow seamlessly. Great communication and technical skills throughout the project.',
+    rating: 5
+  },
+  {
+    id: 5,
+    name: 'Adeola Okafor',
+    role: 'Founder & CEO',
+    company: 'EduConnect',
+    content: 'Sannex built our entire learning platform from scratch. The React frontend and Django backend work flawlessly together. True professionals!',
+    rating: 5
+  },
+  {
+    id: 6,
+    name: 'David Martinez',
+    role: 'IT Manager',
+    company: 'RetailPro',
+    content: 'The automation workflows they created with n8n and APIs have revolutionized how we handle customer data. Impressive problem-solving skills.',
+    rating: 5
+  }
+];

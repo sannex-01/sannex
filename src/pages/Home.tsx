@@ -1,8 +1,9 @@
-import { mockHomepageSettings, mockProjects } from '@/data/mockData';
+import { mockHomepageSettings, mockProjects, mockTestimonials } from '@/data/mockData';
 import HeroSection from '@/components/home/HeroSection';
 import ServicesSection from '@/components/home/ServicesSection';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import AboutPreview from '@/components/home/AboutPreview';
+import Testimonials from '@/components/home/Testimonials';
 import CTASection from '@/components/home/CTASection';
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
       <ServicesSection services={mockHomepageSettings.services} />
       
       <FeaturedProjects projects={mockProjects} />
+      
+      <Testimonials testimonials={mockTestimonials} />
       
       <AboutPreview />
       
