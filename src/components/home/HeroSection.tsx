@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award } from 'lucide-react';
+import { ArrowRight, Award, CheckCircle } from 'lucide-react';
 
 interface HeroSectionProps {
   title: string;
@@ -56,6 +56,10 @@ const HeroSection = ({
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light border border-primary/20">
               <Award className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-foreground">Upwork Top Rated</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light border border-primary/20">
+              <CheckCircle className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-foreground">50+ Successful Contracts</span>
             </div>
           </div>
 
