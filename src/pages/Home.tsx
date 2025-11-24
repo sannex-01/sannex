@@ -1,6 +1,7 @@
 import { mockHomepageSettings } from '@/data/mockData';
 import HeroSection from '@/components/home/HeroSection';
 import AboutPreview from '@/components/home/AboutPreview';
+import ServicesSection from '@/components/home/ServicesSection';
 import CTASection from '@/components/home/CTASection';
 import VideoBackground from '@/components/VideoBackground';
 
@@ -18,6 +19,8 @@ const Home = () => {
         />
         
         <AboutPreview />
+        
+        <ServicesSection services={mockHomepageSettings.services} />
         
         <CTASection />
       </div>
