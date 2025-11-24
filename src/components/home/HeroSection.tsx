@@ -25,8 +25,11 @@ const HeroSection = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHighlightedIndex((prev) => (prev + 1) % words.length);
-    }, 400);
+      setHighlightedIndex((prev) => {
+        const nextIndex = prev + 1;
+        return nextIndex >= words.length ? 0 : nextIndex;
+      });
+    }, 600);
 
     return () => clearInterval(interval);
   }, [words.length]);
