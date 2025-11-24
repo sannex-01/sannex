@@ -51,7 +51,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Rubik", "system-ui", "sans-serif"],
       },
       boxShadow: {
         card: "var(--shadow-card)",

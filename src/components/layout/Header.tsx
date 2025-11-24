@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import MusicPlayer from '@/components/MusicPlayer';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,7 +69,7 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <ThemeToggle />
+            <MusicPlayer />
             <Button asChild>
               <Link to="/contact">Let's Talk</Link>
             </Button>
@@ -77,7 +77,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            <MusicPlayer />
             <button
               className="p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

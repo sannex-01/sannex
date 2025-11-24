@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award } from 'lucide-react';
@@ -19,9 +20,32 @@ const HeroSection = ({
   secondaryCTA,
   secondaryLink,
 }: HeroSectionProps) => {
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const words = title.split(' ');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightedIndex((prev) => (prev + 1) % words.length);
+    }, 400);
+
+    return () => clearInterval(interval);
+  }, [words.length]);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-light via-background to-background opacity-50" />
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20 dark:opacity-10"
+        >
+          <source src="https://cdn.pixabay.com/video/2024/03/31/206294_large.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95" />
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
@@ -36,7 +60,21 @@ const HeroSection = ({
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-            {title}
+            {words.map((word, index) => (
+              <span
+                key={index}
+                className={`inline-block transition-all duration-300 ${
+                  index === highlightedIndex
+                    ? 'bg-primary text-primary-foreground px-2 py-1 rounded-md scale-105'
+                    : ''
+                }`}
+                style={{
+                  transitionDelay: `${index * 50}ms`,
+                }}
+              >
+                {word}{' '}
+              </span>
+            ))}
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
