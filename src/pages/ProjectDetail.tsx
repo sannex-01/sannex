@@ -112,7 +112,7 @@ const ProjectDetail = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <Button asChild size="lg">
-              <Link to="/contact">Start Your Project</Link>
+              <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">Start Your Project</a>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link to="/projects">View More Projects</Link>
