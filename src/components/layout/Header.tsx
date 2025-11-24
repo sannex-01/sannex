@@ -63,10 +63,10 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-2">
             <MusicPlayer />
             <Button asChild>
-              <Link to="/contact" className="flex items-center gap-2">
+              <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <MessageCircle className="h-4 w-4" />
                 Let's Talk
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -100,10 +100,10 @@ const Header = () => {
                 </Link>
               ))}
               <Button asChild className="w-full">
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
+                <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                   <MessageCircle className="h-4 w-4" />
                   Let's Talk
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

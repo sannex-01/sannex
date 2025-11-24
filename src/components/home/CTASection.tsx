@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import VideoBackground from '@/components/VideoBackground';
 
@@ -62,10 +61,10 @@ const CTASection = () => {
             variant="secondary"
             className="group"
           >
-            <Link to="/contact">
+            <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">
               Contact Sannex
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </a>
           </Button>
         </div>
       </div>

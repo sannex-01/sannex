@@ -137,12 +137,9 @@ const About = () => {
                 Whether you need AI automation, a custom web application, or technical consulting, 
                 we're here to help you build something great.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Button asChild size="lg">
-                  <Link to="/contact">Get in Touch</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/projects">View Our Work</Link>
+                  <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">Get in Touch</a>
                 </Button>
               </div>
             </div>
