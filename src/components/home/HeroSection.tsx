@@ -32,7 +32,7 @@ const HeroSection = ({
   }, [words.length]);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -40,11 +40,11 @@ const HeroSection = ({
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20 dark:opacity-10"
+          className="w-full h-full object-cover opacity-40 dark:opacity-20"
         >
           <source src="https://cdn.pixabay.com/video/2024/03/31/206294_large.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/70 via-background/60 to-background/70" />
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -61,18 +61,19 @@ const HeroSection = ({
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
             {words.map((word, index) => (
-              <span
-                key={index}
-                className={`inline-block transition-all duration-300 ${
-                  index === highlightedIndex
-                    ? 'bg-primary text-primary-foreground px-2 py-1 rounded-md scale-105'
-                    : ''
-                }`}
-                style={{
-                  transitionDelay: `${index * 50}ms`,
-                }}
-              >
-                {word}{' '}
+              <span key={index} className="inline-block mr-3">
+                <span
+                  className={`inline-block transition-all duration-300 ${
+                    index === highlightedIndex
+                      ? 'bg-primary text-primary-foreground px-2 py-1 rounded-md scale-105'
+                      : ''
+                  }`}
+                  style={{
+                    transitionDelay: `${index * 50}ms`,
+                  }}
+                >
+                  {word}
+                </span>
               </span>
             ))}
           </h1>
