@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Ilé",
+    "whoWeAre": "Ẹni Tí A Jẹ́",
+    "letsTalk": "Jẹ́ Ká Sọ̀rọ̀"
+  },
+  "hero": {
+    "title": "Ní ìrọ̀rùn ní gbogbo ìbáṣepọ̀",
+    "subtitle": "A ń kọ́ àwọn ohun èlò AI, ètò adaṣe, àti àwọn ohun èlò ìgbàlódé tí ń mú iṣẹ́ rẹ rọrùn, dín àkóso ọwọ́ kù, tí ó sì ran iṣòwò rẹ lọ́wọ́ láti lọ síwájú yára.",
+    "primaryCTA": "Ṣètò Ìpè Ìlànà",
+    "badge1": "Upwork Tó Ga Jùlọ",
+    "badge2": "50+ Àwọn Àdéhùn Àṣeyọrí"
+  },
+  "services": {
+    "heading": "Ohun Tí A Ń Ṣe",
+    "subtitle": "Àwọn ojútùú ìmọ̀-ẹ̀rọ tó pé tí a ṣe fún àwọn ìnílò iṣòwò rẹ",
+    "service1": {
+      "title": "Àwọn Ètò AI àti Adaṣe",
+      "description": "Àwọn ètò oníọgbọ́n tí ń ṣe àwọn iṣẹ́ tí ó ń tún padà laifọwọ́yi tí ó sì ń fún ọ ní ìmọ̀ láti inú dátà rẹ."
+    },
+    "service2": {
+      "title": "Àwọn Ohun Èlò Wẹ́ẹ̀bù Aláṣepọ̀",
+      "description": "Àwọn ohun èlò wẹ́ẹ̀bù tó lè fẹ̀ tí a kọ́ pẹ̀lú React, Django, FastAPI, àti àwọn ìmọ̀-ẹ̀rọ ìgbàlódé."
+    },
+    "service3": {
+      "title": "Àwọn Ìdàpọ̀ API",
+      "description": "Àwọn ìsopọ̀ aláìléwu láàrin àwọn ohun èlò àti àwọn iṣẹ́ rẹ fún ìlòsíwájú iṣẹ́ṣiṣe."
+    },
+    "service4": {
+      "title": "Àwọn Ojútùú Ìsanwó",
+      "description": "Ìṣàkóso ìsanwó aláàbò pẹ̀lú àtìlẹ́yìn fún àwọn ọ̀nà Áfríkà àti àgbáyé."
+    },
+    "service5": {
+      "title": "Ìfikún Ẹgbẹ́",
+      "description": "Àwọn olùgbékalẹ̀ àkọ́sọ láti fẹ̀ ẹgbẹ́ rẹ kí o sì yára mu ìfíránṣẹ́ iṣẹ́-ọwọ́ ṣe."
+    },
+    "service6": {
+      "title": "Ìkọ́ni àti Ìmọ̀ràn",
+      "description": "Ìkọ́ni ìmọ̀-ẹ̀rọ àti ìmọ̀ràn ìlànà fún AI, adaṣe, àti ìdàgbàsókè wẹ́ẹ̀bù."
+    }
+  },
+  "about": {
+    "heading": "Kíkọ́ Àwọn Ojútùú Ìmọ̀-Ẹ̀rọ Tí Ń Dàgbà",
+    "paragraph1": "Sannex ṣe àkọ́sọ nínú adaṣe tí AI ń ṣàtìlẹ́yìn, àwọn ohun èlò wẹ́ẹ̀bù aláṣepọ̀, àti àwọn ìsopọ̀ aláìléwu tí ń ran àwọn iṣòwò lọ́wọ́ láti ṣiṣẹ́ dáradára.",
+    "paragraph2": "Níbi tí a ti wà ní Lagos, Nàìjíríà, a ń ṣiṣẹ́ pẹ̀lú àwọn ṣọ́ọ̀ṣì, àwọn yunifásítì, àwọn ìbẹ̀rẹ̀, àti àwọn ilé-iṣẹ́ káàkiri Áfríkà àti àgbáyé, tí a ń fún ni àwọn ojútùú tí ó dapọ̀ gíga ìmọ̀-ẹ̀rọ pẹ̀lú iye iṣòwò tó wúlò.",
+    "highlight1": "Àkọ́sọ nínú àwọn ojútùú AI àti Adaṣe",
+    "highlight2": "Ìmọ̀ Fullstack pẹ̀lú React, Django, FastAPI",
+    "highlight3": "Ìrírí pẹ̀lú àwọn oníbàárà Áfríkà àti àgbáyé",
+    "highlight4": "Ìdásí lórí àwọn ojútùú ṣíṣe, tí ń dàgbà",
+    "learnMore": "Kọ́ Síi Nípa Wa",
+    "stat1": "Àwọn Olùgbékalẹ̀ Tí A Kọ́",
+    "stat2": "Àwọn Iṣẹ́-Ọwọ́ Tí A Fún",
+    "stat3": "Àkókò Ṣíṣe Tí A Ṣàṣeyọrí"
+  },
+  "cta": {
+    "heading": "Njẹ́ o ní iṣẹ́-ọwọ́ kan lọ́kàn?",
+    "subtitle": "Jẹ́ ká sọ̀rọ̀ nípa bí a ṣe lè ran ọ lọ́wọ́ láti kọ́ àwọn ojútùú AI, ṣe adaṣe àwọn iṣẹ́, tàbí dàgbàsókè àwọn ohun èlò aláṣepọ̀ tí ń mú iṣòwò rẹ lọ síwájú.",
+    "button": "Pè Sannex"
+  },
+  "footer": {
+    "description": "A ń kọ́ àwọn ohun èlò AI, ètò adaṣe, àti àwọn ohun èlò ìgbàlódé tí ń mú iṣẹ́ rẹ rọrùn, dín àkóso ọwọ́ kù, tí ó sì ran iṣòwò rẹ lọ́wọ́ láti lọ síwájú yára.",
+    "servicesHeading": "Àwọn Iṣẹ́",
+    "service1": "AI àti Adaṣe",
+    "service2": "Ìdàgbàsókè Wẹ́ẹ̀bù",
+    "service3": "Àwọn Ìdàpọ̀ API",
+    "service4": "Ìkọ́ni àti Ìmọ̀ràn",
+    "contactHeading": "Pè",
+    "location": "Lagos, Nàìjíríà",
+    "copyright": "Sannex Technologies. Gbogbo ẹ̀tọ́ tọkàntọ́.",
+    "privacyPolicy": "Ìlànà Ìkọ̀kọ̀",
+    "termsOfService": "Àwọn Òfin Iṣẹ́"
+  },
+  "languageModal": {
+    "title": "Èdè Tí O Fẹ́?",
+    "nigeria": "NÀÌJÍRÍÀ",
+    "africa": "ÁFRÍKÀ",
+    "global": "ÀGBÁYÉ",
+    "igbo": "IGBO",
+    "hausa": "HAUSA",
+    "yoruba": "YORÙBÁ",
+    "swahili": "SWAHILI",
+    "english": "GẸ̀Ẹ́SÌ",
+    "french": "FARANSÉ"
+  },
+  "musicPlayer": {
+    "play": "Ṣe orin",
+    "pause": "Dúró orin"
+  }
+}

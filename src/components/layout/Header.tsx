@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import MusicPlayer from '@/components/MusicPlayer';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -19,8 +22,8 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Who We Are', path: '/about' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.whoWeAre'), path: '/about' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -62,10 +65,11 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-2">
             <MusicPlayer />
+            <LanguageSwitcher />
             <Button asChild>
               <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <MessageCircle className="h-4 w-4" />
-                Let's Talk
+                {t('nav.letsTalk')}
               </a>
             </Button>
           </div>
@@ -99,10 +103,16 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+              <div className="pt-2 border-t border-border">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-sm text-muted-foreground">{t('languageModal.title')}</span>
+                  <LanguageSwitcher />
+                </div>
+              </div>
               <Button asChild className="w-full">
                 <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                   <MessageCircle className="h-4 w-4" />
-                  Let's Talk
+                  {t('nav.letsTalk')}
                 </a>
               </Button>
             </div>

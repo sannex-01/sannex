@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Home",
+    "whoWeAre": "Who We Are",
+    "letsTalk": "Let's Talk"
+  },
+  "hero": {
+    "title": "Experience simplicity in every interaction",
+    "subtitle": "We build AI-driven tools, automation systems, and modern applications that simplify your workflow, reduce manual effort, and help your business move faster.",
+    "primaryCTA": "Book a Strategy Call",
+    "badge1": "Upwork Top Rated",
+    "badge2": "50+ Successful Contracts"
+  },
+  "services": {
+    "heading": "What We Do",
+    "subtitle": "Comprehensive technology solutions tailored to your business needs",
+    "service1": {
+      "title": "AI & Automation Systems",
+      "description": "Intelligent systems that automate repetitive tasks and provide insights from your data."
+    },
+    "service2": {
+      "title": "Custom Web Applications",
+      "description": "Scalable web apps built with React, Django, FastAPI, and modern technologies."
+    },
+    "service3": {
+      "title": "API Integrations",
+      "description": "Seamless connections between your tools and services for improved workflow."
+    },
+    "service4": {
+      "title": "Payment Solutions",
+      "description": "Secure payment processing with support for African and international gateways."
+    },
+    "service5": {
+      "title": "Team Augmentation",
+      "description": "Expert developers to scale your team and accelerate project delivery."
+    },
+    "service6": {
+      "title": "Training & Consulting",
+      "description": "Technical training and strategic consulting for AI, automation, and web development."
+    }
+  },
+  "about": {
+    "heading": "Building Technology Solutions That Scale",
+    "paragraph1": "Sannex specializes in AI-powered automation, custom web applications, and seamless integrations that help businesses operate more efficiently.",
+    "paragraph2": "Based in Lagos, Nigeria, we work with churches, universities, startups, and enterprises across Africa and globally, delivering solutions that combine technical excellence with practical business value.",
+    "highlight1": "Specialized in AI & Automation solutions",
+    "highlight2": "Fullstack expertise with React, Django, FastAPI",
+    "highlight3": "Experience with African and global clients",
+    "highlight4": "Focus on practical, scalable solutions",
+    "learnMore": "Learn More About Us",
+    "stat1": "Developers Trained",
+    "stat2": "Projects Delivered",
+    "stat3": "Uptime Achieved"
+  },
+  "cta": {
+    "heading": "Have a project in mind?",
+    "subtitle": "Let's discuss how we can help you build AI-powered solutions, automate workflows, or develop custom applications that drive your business forward.",
+    "button": "Contact Sannex"
+  },
+  "footer": {
+    "description": "We build AI-driven tools, automation systems, and modern applications that simplify your workflow, reduce manual effort, and help your business move faster.",
+    "servicesHeading": "Services",
+    "service1": "AI & Automation",
+    "service2": "Web Development",
+    "service3": "API Integrations",
+    "service4": "Training & Consulting",
+    "contactHeading": "Contact",
+    "location": "Lagos, Nigeria",
+    "copyright": "Sannex Technologies. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "languageModal": {
+    "title": "Preferred Language?",
+    "nigeria": "NIGERIA",
+    "africa": "AFRICA",
+    "global": "GLOBAL",
+    "igbo": "IGBO",
+    "hausa": "HAUSA",
+    "yoruba": "YORÙBÁ",
+    "swahili": "SWAHILI",
+    "english": "ENGLISH",
+    "french": "FRENCH"
+  },
+  "musicPlayer": {
+    "play": "Play music",
+    "pause": "Pause music"
+  }
+}

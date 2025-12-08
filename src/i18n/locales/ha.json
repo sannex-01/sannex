@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Gida",
+    "whoWeAre": "Wane ne Mu",
+    "letsTalk": "Mu Yi Magana"
+  },
+  "hero": {
+    "title": "Samu sauƙi a kowane hulɗa",
+    "subtitle": "Muna gina kayan aikin AI, tsarin sarrafa aiki, da aikace-aikacen zamani waɗanda ke sauƙaƙe aikin ku, rage ƙoƙarin hannu, kuma suna taimaka wa kasuwancin ku ya ci gaba da sauri.",
+    "primaryCTA": "Yi Ajiyar Kiran Dabara",
+    "badge1": "Upwork Mafi Daraja",
+    "badge2": "50+ Kwangiloli Masu Nasara"
+  },
+  "services": {
+    "heading": "Abin Da Muke Yi",
+    "subtitle": "Cikakkun hanyoyin fasaha da aka keɓance ga bukatun kasuwancin ku",
+    "service1": {
+      "title": "Tsarin AI da Sarrafa Aiki",
+      "description": "Tsarin hankali da ke sarrafa ayyuka masu maimaitawa kuma yana ba da bayani daga bayananku."
+    },
+    "service2": {
+      "title": "Aikace-aikacen Yanar Gizo Na Musamman",
+      "description": "Aikace-aikacen yanar gizo masu faɗaɗa waɗanda aka gina da React, Django, FastAPI, da fasahohin zamani."
+    },
+    "service3": {
+      "title": "Haɗin API",
+      "description": "Haɗin kai mara matsala tsakanin kayan aikin ku da ayyuka don ingantaccen tsarin aiki."
+    },
+    "service4": {
+      "title": "Hanyoyin Biyan Kuɗi",
+      "description": "Sarrafa biyan kuɗi mai tsaro tare da tallafi ga ƙofofin Afirka da na duniya."
+    },
+    "service5": {
+      "title": "Ƙarin Ƙungiya",
+      "description": "Ƙwararrun masu haɓakawa don faɗaɗa ƙungiyar ku kuma ku hanzarta isar da aikin."
+    },
+    "service6": {
+      "title": "Horarwa da Shawarwari",
+      "description": "Horarwar fasaha da shawarwarin dabara don AI, sarrafa aiki, da ci gaban yanar gizo."
+    }
+  },
+  "about": {
+    "heading": "Gina Hanyoyin Fasaha Waɗanda Ke Ci Gaba",
+    "paragraph1": "Sannex yana ƙware a sarrafa aiki da AI ke tallafawa, aikace-aikacen yanar gizo na musamman, da haɗin kai mara matsala waɗanda ke taimaka wa kasuwanci su yi aiki yadda ya kamata.",
+    "paragraph2": "Da tushe a Lagos, Najeriya, muna aiki da majami'u, jami'o'i, masu farawa, da kamfanoni a duk faɗin Afirka da duniya, muna ba da hanyoyin da ke haɗa cancantar fasaha da ƙimar kasuwanci mai amfani.",
+    "highlight1": "Ƙwarewa a hanyoyin AI da Sarrafa Aiki",
+    "highlight2": "Ƙwarewar Fullstack tare da React, Django, FastAPI",
+    "highlight3": "Gogewa tare da abokan ciniki na Afirka da duniya",
+    "highlight4": "Mayar da hankali kan hanyoyin da suka dace, masu ci gaba",
+    "learnMore": "Ƙarin Koyo Game da Mu",
+    "stat1": "Masu Haɓakawa Da Aka Horar",
+    "stat2": "Ayyuka Da Aka Bayar",
+    "stat3": "Lokacin Aiki Da Aka Samu"
+  },
+  "cta": {
+    "heading": "Kuna da aikin a zuciya?",
+    "subtitle": "Bari mu tattauna yadda za mu iya taimaka muku gina hanyoyin AI, sarrafa ayyukan, ko haɓaka aikace-aikace na musamman waɗanda ke inganta kasuwancin ku.",
+    "button": "Tuntuɓi Sannex"
+  },
+  "footer": {
+    "description": "Muna gina kayan aikin AI, tsarin sarrafa aiki, da aikace-aikacen zamani waɗanda ke sauƙaƙe aikin ku, rage ƙoƙarin hannu, kuma suna taimaka wa kasuwancin ku ya ci gaba da sauri.",
+    "servicesHeading": "Ayyuka",
+    "service1": "AI da Sarrafa Aiki",
+    "service2": "Ci gaban Yanar Gizo",
+    "service3": "Haɗin API",
+    "service4": "Horarwa da Shawarwari",
+    "contactHeading": "Tuntuɓi",
+    "location": "Lagos, Najeriya",
+    "copyright": "Sannex Technologies. Duk haƙƙoƙi an kiyaye su.",
+    "privacyPolicy": "Manufar Sirri",
+    "termsOfService": "Sharuɗɗan Sabis"
+  },
+  "languageModal": {
+    "title": "Harshen Da Kuka Zaɓa?",
+    "nigeria": "NAJERIYA",
+    "africa": "AFIRKA",
+    "global": "DUNIYA",
+    "igbo": "IGBO",
+    "hausa": "HAUSA",
+    "yoruba": "YORÙBÁ",
+    "swahili": "SWAHILI",
+    "english": "TURANCI",
+    "french": "FARANSANCI"
+  },
+  "musicPlayer": {
+    "play": "Kunna kiɗa",
+    "pause": "Tsai da kiɗa"
+  }
+}

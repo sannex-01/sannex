@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
+import LanguageSelectionModal from "./components/LanguageSelectionModal";
+import "./i18n/config";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <LanguageSelectionModal />
         <BrowserRouter>
           <div className="flex flex-col min-h-screen">
             <Header />

@@ -1,4 +1,5 @@
 import { Service } from '@/types/project';
+import { useTranslation } from 'react-i18next';
 import { Bot, Globe, Plug, CreditCard, Users, GraduationCap, LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -16,21 +17,30 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const ServicesSection = ({ services }: ServicesSectionProps) => {
+  const { t } = useTranslation();
+  
+  // Map services to use translation keys
+  const translatedServices = services.map((service, index) => ({
+    ...service,
+    title: t(`services.service${index + 1}.title`),
+    description: t(`services.service${index + 1}.description`),
+  }));
+
   return (
     <section id="services" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What We Do
+            {t('services.heading')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive technology solutions tailored to your business needs
+            {t('services.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => {
-            const Icon = iconMap[service.icon] || Bot;
+          {translatedServices.map((service, index) => {
+            const Icon = iconMap[services[index].icon] || Bot;
             return (
               <Card
                 key={service.id}

@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Nyumbani",
+    "whoWeAre": "Sisi Ni Nani",
+    "letsTalk": "Hebu Tuzungumze"
+  },
+  "hero": {
+    "title": "Pata urahisi katika kila mwingiliano",
+    "subtitle": "Tunajenga zana za AI, mifumo ya automation, na programu za kisasa zinazofanya kazi yako kuwa rahisi, kupunguza juhudi za mikono, na kusaidia biashara yako kusonga mbele haraka.",
+    "primaryCTA": "Weka Simu ya Mkakati",
+    "badge1": "Upwork Bora Zaidi",
+    "badge2": "50+ Mikataba ya Mafanikio"
+  },
+  "services": {
+    "heading": "Tunachofanya",
+    "subtitle": "Suluhisho kamili za teknolojia zilizobinafsishwa kwa mahitaji ya biashara yako",
+    "service1": {
+      "title": "Mifumo ya AI na Automation",
+      "description": "Mifumo mahiri inayofanya kazi za kujirudia kiotomatiki na kutoa maarifa kutoka kwa data yako."
+    },
+    "service2": {
+      "title": "Programu za Wavuti za Kibinafsi",
+      "description": "Programu za wavuti zinazoweza kupanuka zilizojengwa na React, Django, FastAPI, na teknolojia za kisasa."
+    },
+    "service3": {
+      "title": "Ushirikiano wa API",
+      "description": "Miunganisho bila mshono kati ya zana na huduma zako kwa utendaji bora wa kazi."
+    },
+    "service4": {
+      "title": "Suluhisho za Malipo",
+      "description": "Usindikaji salama wa malipo na msaada wa milango ya Afrika na kimataifa."
+    },
+    "service5": {
+      "title": "Kuongeza Timu",
+      "description": "Wasanidi programu wataalam kuongeza timu yako na kuharakisha utoaji wa miradi."
+    },
+    "service6": {
+      "title": "Mafunzo na Ushauri",
+      "description": "Mafunzo ya kiufundi na ushauri wa kimkakati kwa AI, automation, na maendeleo ya wavuti."
+    }
+  },
+  "about": {
+    "heading": "Kujenga Suluhisho za Teknolojia Zinazokua",
+    "paragraph1": "Sannex inashughulika na automation inayotumia AI, programu za wavuti za kibinafsi, na ushirikiano bila mshono unaomsaidia biashara kufanya kazi kwa ufanisi.",
+    "paragraph2": "Tukiwa na makao makuu Lagos, Nigeria, tunafanya kazi na makanisa, vyuo vikuu, biashara mpya, na mashirika katika Afrika na ulimwenguni, tukitoa suluhisho zinazounganisha ubora wa kiufundi na thamani ya biashara ya vitendo.",
+    "highlight1": "Uzoefu katika suluhisho za AI na Automation",
+    "highlight2": "Ujuzi wa Fullstack na React, Django, FastAPI",
+    "highlight3": "Uzoefu na wateja wa Afrika na kimataifa",
+    "highlight4": "Kuzingatia suluhisho za vitendo, zinazokua",
+    "learnMore": "Jifunze Zaidi Kuhusu Sisi",
+    "stat1": "Wasanidi Programu Waliofunzwa",
+    "stat2": "Miradi Iliyotolewa",
+    "stat3": "Wakati wa Ufanyaji Uliopatikana"
+  },
+  "cta": {
+    "heading": "Una mradi akilini?",
+    "subtitle": "Hebu tuzungumze jinsi tunavyoweza kukusaidia kujenga suluhisho zinazotumia AI, kufanya kazi kiotomatiki, au kuendeleza programu za kibinafsi zinazoongoza biashara yako mbele.",
+    "button": "Wasiliana na Sannex"
+  },
+  "footer": {
+    "description": "Tunajenga zana za AI, mifumo ya automation, na programu za kisasa zinazofanya kazi yako kuwa rahisi, kupunguza juhudi za mikono, na kusaidia biashara yako kusonga mbele haraka.",
+    "servicesHeading": "Huduma",
+    "service1": "AI na Automation",
+    "service2": "Maendeleo ya Wavuti",
+    "service3": "Ushirikiano wa API",
+    "service4": "Mafunzo na Ushauri",
+    "contactHeading": "Wasiliana",
+    "location": "Lagos, Nigeria",
+    "copyright": "Sannex Technologies. Haki zote zimehifadhiwa.",
+    "privacyPolicy": "Sera ya Faragha",
+    "termsOfService": "Masharti ya Huduma"
+  },
+  "languageModal": {
+    "title": "Lugha Unayopendelea?",
+    "nigeria": "NIGERIA",
+    "africa": "AFRIKA",
+    "global": "KIMATAIFA",
+    "igbo": "IGBO",
+    "hausa": "HAUSA",
+    "yoruba": "YORÙBÁ",
+    "swahili": "SWAHILI",
+    "english": "KIINGEREZA",
+    "french": "KIFARANSA"
+  },
+  "musicPlayer": {
+    "play": "Cheza muziki",
+    "pause": "Simamisha muziki"
+  }
+}
