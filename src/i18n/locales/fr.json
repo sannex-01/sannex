@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "whoWeAre": "Qui Nous Sommes",
+    "letsTalk": "Discutons"
+  },
+  "hero": {
+    "title": "Découvrez la simplicité dans chaque interaction",
+    "subtitle": "Nous créons des outils basés sur l'IA, des systèmes d'automatisation et des applications modernes qui simplifient votre flux de travail, réduisent les efforts manuels et aident votre entreprise à avancer plus rapidement.",
+    "primaryCTA": "Réserver un Appel Stratégique",
+    "badge1": "Top Rated sur Upwork",
+    "badge2": "Plus de 50 Contrats Réussis"
+  },
+  "services": {
+    "heading": "Ce Que Nous Faisons",
+    "subtitle": "Solutions technologiques complètes adaptées aux besoins de votre entreprise",
+    "service1": {
+      "title": "Systèmes d'IA et d'Automatisation",
+      "description": "Systèmes intelligents qui automatisent les tâches répétitives et fournissent des informations à partir de vos données."
+    },
+    "service2": {
+      "title": "Applications Web Personnalisées",
+      "description": "Applications web évolutives créées avec React, Django, FastAPI et des technologies modernes."
+    },
+    "service3": {
+      "title": "Intégrations API",
+      "description": "Connexions transparentes entre vos outils et services pour un flux de travail amélioré."
+    },
+    "service4": {
+      "title": "Solutions de Paiement",
+      "description": "Traitement de paiement sécurisé avec support pour les passerelles africaines et internationales."
+    },
+    "service5": {
+      "title": "Renforcement d'Équipe",
+      "description": "Développeurs experts pour faire évoluer votre équipe et accélérer la livraison de projets."
+    },
+    "service6": {
+      "title": "Formation et Conseil",
+      "description": "Formation technique et conseil stratégique pour l'IA, l'automatisation et le développement web."
+    }
+  },
+  "about": {
+    "heading": "Créer des Solutions Technologiques Évolutives",
+    "paragraph1": "Sannex se spécialise dans l'automatisation alimentée par l'IA, les applications web personnalisées et les intégrations transparentes qui aident les entreprises à fonctionner plus efficacement.",
+    "paragraph2": "Basés à Lagos, au Nigeria, nous travaillons avec des églises, des universités, des startups et des entreprises à travers l'Afrique et dans le monde, en fournissant des solutions qui combinent excellence technique et valeur commerciale pratique.",
+    "highlight1": "Spécialisés dans les solutions d'IA et d'Automatisation",
+    "highlight2": "Expertise Fullstack avec React, Django, FastAPI",
+    "highlight3": "Expérience avec des clients africains et mondiaux",
+    "highlight4": "Focus sur des solutions pratiques et évolutives",
+    "learnMore": "En Savoir Plus Sur Nous",
+    "stat1": "Développeurs Formés",
+    "stat2": "Projets Livrés",
+    "stat3": "Disponibilité Atteinte"
+  },
+  "cta": {
+    "heading": "Vous avez un projet en tête?",
+    "subtitle": "Discutons de la façon dont nous pouvons vous aider à créer des solutions alimentées par l'IA, automatiser les flux de travail ou développer des applications personnalisées qui font avancer votre entreprise.",
+    "button": "Contacter Sannex"
+  },
+  "footer": {
+    "description": "Nous créons des outils basés sur l'IA, des systèmes d'automatisation et des applications modernes qui simplifient votre flux de travail, réduisent les efforts manuels et aident votre entreprise à avancer plus rapidement.",
+    "servicesHeading": "Services",
+    "service1": "IA et Automatisation",
+    "service2": "Développement Web",
+    "service3": "Intégrations API",
+    "service4": "Formation et Conseil",
+    "contactHeading": "Contact",
+    "location": "Lagos, Nigeria",
+    "copyright": "Sannex Technologies. Tous droits réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation"
+  },
+  "languageModal": {
+    "title": "Langue Préférée?",
+    "nigeria": "NIGERIA",
+    "africa": "AFRIQUE",
+    "global": "MONDIAL",
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "Anglais",
+    "french": "Français"
+  },
+  "musicPlayer": {
+    "play": "Lire la musique",
+    "pause": "Mettre en pause"
+  },
+  "aboutPage": {
+    "title": "Qui Nous Sommes",
+    "subtitle": "Créer des systèmes intelligents qui transforment le fonctionnement des entreprises",
+    "ourStory": "Notre Histoire",
+    "storyP1": "Sannex a été fondée avec une mission claire : rendre la technologie avancée accessible et pratique pour les entreprises africaines. Basés à Lagos, au Nigeria, nous sommes spécialisés dans l'automatisation alimentée par l'IA, le développement web personnalisé et les intégrations de systèmes transparentes.",
+    "storyP2": "Nous avons travaillé avec des églises pour automatiser leurs opérations, des universités pour créer des systèmes de gestion, des startups pour lancer des plateformes de paiement et des entreprises pour optimiser leurs flux de travail. Chaque projet nous enseigne quelque chose de nouveau, et nous apportons ces connaissances au prochain défi.",
+    "storyP3": "Notre approche combine excellence technique et réflexion commerciale pratique. Nous ne construisons pas seulement des logiciels—nous construisons des solutions évolutives, des systèmes durables et des partenariats qui grandissent.",
+    "ourValues": "Nos Valeurs",
+    "value1Title": "Axé sur la Mission",
+    "value1Desc": "Nous créons des technologies qui résolvent de vrais problèmes et créent une valeur mesurable pour nos clients.",
+    "value2Title": "L'Innovation d'Abord",
+    "value2Desc": "Nous restons à la pointe des tendances technologiques, apportant l'IA et l'automatisation de pointe à chaque projet.",
+    "value3Title": "Partenariat Client",
+    "value3Desc": "Nous travaillons comme une extension de votre équipe, en veillant à ce que les solutions correspondent à vos objectifs commerciaux.",
+    "ourExpertise": "Notre Expertise",
+    "technologies": "Technologies",
+    "specializations": "Spécialisations",
+    "readyTitle": "Prêt à travailler ensemble?",
+    "readySubtitle": "Que vous ayez besoin d'automatisation IA, d'une application web personnalisée ou de conseil technique, nous sommes là pour vous aider à créer quelque chose de formidable.",
+    "getInTouch": "Contactez-Nous"
+  }
+}

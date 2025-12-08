@@ -1,25 +1,28 @@
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Target, Lightbulb, Users } from 'lucide-react';
 import VideoBackground from '@/components/VideoBackground';
 
 const About = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'en';
+  
   const values = [
     {
       icon: Target,
-      title: 'Mission-Driven',
-      description: 'We build technology that solves real problems and creates measurable value for our clients.',
+      title: t('aboutPage.value1Title'),
+      description: t('aboutPage.value1Desc'),
     },
     {
       icon: Lightbulb,
-      title: 'Innovation First',
-      description: 'We stay ahead of technology trends, bringing cutting-edge AI and automation to every project.',
+      title: t('aboutPage.value2Title'),
+      description: t('aboutPage.value2Desc'),
     },
     {
       icon: Users,
-      title: 'Client Partnership',
-      description: 'We work as an extension of your team, ensuring solutions align with your business goals.',
+      title: t('aboutPage.value3Title'),
+      description: t('aboutPage.value3Desc'),
     },
   ];
 
@@ -32,32 +35,25 @@ const About = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12 animate-fade-in py-12 md:py-20">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                  Who We Are
+                  {t('aboutPage.title')}
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                  Building intelligent systems that transform how businesses operate
+                  {t('aboutPage.subtitle')}
                 </p>
               </div>
 
               <div className="prose prose-lg max-w-none mb-8 animate-fade-in">
                 <Card className="bg-black border-white/20">
                   <CardContent className="pt-6">
-                    <h2 className="text-2xl font-bold mb-4 text-foreground">Our Story</h2>
+                    <h2 className="text-2xl font-bold mb-4 text-foreground">{t('aboutPage.ourStory')}</h2>
                     <p className="text-muted-foreground mb-4">
-                      Sannex was founded with a clear mission: to make advanced technology 
-                      accessible and practical for African businesses. Based in Lagos, Nigeria, we specialize 
-                      in AI-powered automation, custom web development, and seamless system integrations.
+                      {t('aboutPage.storyP1')}
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      We've worked with churches automating their operations, universities building 
-                      management systems, startups launching payment platforms, and enterprises 
-                      optimizing their workflows. Every project teaches us something new, and we bring 
-                      that knowledge to the next challenge.
+                      {t('aboutPage.storyP2')}
                     </p>
                     <p className="text-muted-foreground">
-                      Our approach combines technical excellence with practical business thinking. 
-                      We don't just build software—we build solutions that scale, systems that last, 
-                      and partnerships that grow.
+                      {t('aboutPage.storyP3')}
                     </p>
                   </CardContent>
                 </Card>
@@ -73,7 +69,7 @@ const About = () => {
 
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">
-                Our Values
+                {t('aboutPage.ourValues')}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {values.map((value, index) => {
@@ -103,11 +99,11 @@ const About = () => {
               <Card>
                 <CardContent className="pt-6">
                   <h2 className="text-2xl font-bold mb-6 text-foreground">
-                    Our Expertise
+                    {t('aboutPage.ourExpertise')}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h3 className="font-semibold mb-3 text-foreground">Technologies</h3>
+                      <h3 className="font-semibold mb-3 text-foreground">{t('aboutPage.technologies')}</h3>
                       <ul className="space-y-2 text-muted-foreground">
                         <li>• React, TypeScript, Next.js</li>
                         <li>• Django, FastAPI, Node.js</li>
@@ -116,7 +112,7 @@ const About = () => {
                       </ul>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-3 text-foreground">Specializations</h3>
+                      <h3 className="font-semibold mb-3 text-foreground">{t('aboutPage.specializations')}</h3>
                       <ul className="space-y-2 text-muted-foreground">
                         <li>• AI & Machine Learning</li>
                         <li>• Workflow Automation (n8n)</li>
@@ -131,15 +127,14 @@ const About = () => {
 
             <div className="text-center animate-fade-in">
               <h2 className="text-3xl font-bold mb-6 text-foreground">
-                Ready to work together?
+                {t('aboutPage.readyTitle')}
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Whether you need AI automation, a custom web application, or technical consulting, 
-                we're here to help you build something great.
+                {t('aboutPage.readySubtitle')}
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg">
-                  <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">Get in Touch</a>
+                  <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">{t('aboutPage.getInTouch')}</a>
                 </Button>
               </div>
             </div>

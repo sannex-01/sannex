@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import VideoBackground from '@/components/VideoBackground';
 
 const CTASection = () => {
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const title = "Have a project in mind?";
+  const title = t('cta.heading');
   const words = title.split(' ');
 
   useEffect(() => {
@@ -52,8 +54,7 @@ const CTASection = () => {
             ))}
           </h2>
           <p className="text-lg mb-8 text-primary-foreground/90">
-            Let's discuss how we can help you build AI-powered solutions, automate workflows, 
-            or develop custom applications that drive your business forward.
+            {t('cta.subtitle')}
           </p>
           <Button
             asChild
@@ -62,7 +63,7 @@ const CTASection = () => {
             className="group"
           >
             <a href="https://calendly.com/sannex/book-free-consultation" target="_blank" rel="noopener noreferrer">
-              Contact Sannex
+              {t('cta.button')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
           </Button>

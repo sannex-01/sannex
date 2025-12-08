@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Ụlọ",
+    "whoWeAre": "Ndị Anyị Bụ",
+    "letsTalk": "Ka Anyị Kparịta Ụka"
+  },
+  "hero": {
+    "title": "Nweta mfe na mmekọrịta ọ bụla",
+    "subtitle": "Anyị na-ewu ngwa AI, usoro automation, na ngwa ọgbara ọhụrụ na-eme ka ọrụ gị dị mfe, belata mgbalị aka, ma nyere azụmahịa gị aka ịga n'ihu ngwa ngwa.",
+    "primaryCTA": "Debanye Aha Mkparịta Ụka Atụmatụ",
+    "badge1": "Upwork Kacha Mma",
+    "badge2": "50+ Nkwekọrịta Na-aga Nke Ọma"
+  },
+  "services": {
+    "heading": "Ihe Anyị Na-eme",
+    "subtitle": "Ngwọta teknụzụ zuru ezu nke dabara na mkpa azụmahịa gị",
+    "service1": {
+      "title": "Usoro AI & Automation",
+      "description": "Usoro nwere ọgụgụ isi na-eme ka ọrụ ugboro ugboro na-akpaghị aka ma nye nghọta site na data gị."
+    },
+    "service2": {
+      "title": "Ngwa Webụ Ahaziri Ahazi",
+      "description": "Ngwa webụ nwere ike ịgbasa nke e wuru na React, Django, FastAPI, na teknụzụ ọgbara ọhụrụ."
+    },
+    "service3": {
+      "title": "Njikọ API",
+      "description": "Njikọ na-enweghị nsogbu n'etiti ngwaọrụ na ọrụ gị maka usoro ọrụ ka mma."
+    },
+    "service4": {
+      "title": "Ngwọta Ịkwụ Ụgwọ",
+      "description": "Nhazi ịkwụ ụgwọ echekwara nke nwere nkwado maka ọnụ ụzọ ámá Africa na mba ụwa."
+    },
+    "service5": {
+      "title": "Mmụba Otu",
+      "description": "Ndị nrụpụta ọkachamara iji bulite otu gị ma mee ka nnyefe oru ngo dị ngwa ngwa."
+    },
+    "service6": {
+      "title": "Ọzụzụ na Ndụmọdụ",
+      "description": "Ọzụzụ teknụzụ na ndụmọdụ atụmatụ maka AI, automation, na mmepe webụ."
+    }
+  },
+  "about": {
+    "heading": "Iwu Ngwọta Teknụzụ Na-aga N'ihu",
+    "paragraph1": "Sannex bụ ọkachamara na automation nke AI na-akwado, ngwa webụ ahaziri ahazi, na njikọ na-enweghị nsogbu na-enyere azụmahịa aka ịrụ ọrụ nke ọma.",
+    "paragraph2": "N'ịbụ ndị nọ na Lagos, Nigeria, anyị na-arụ ọrụ na ụka, mahadum, mmalite, na ụlọ ọrụ gafee Africa na ụwa niile, na-enye ngwọta na-ejikọta nka teknụzụ na uru azụmahịa bara uru.",
+    "highlight1": "Ọkachamara na ngwọta AI & Automation",
+    "highlight2": "Ọkachamara Fullstack na React, Django, FastAPI",
+    "highlight3": "Ahụmahụ na ndị ahịa Africa na ụwa",
+    "highlight4": "Lekwasị anya na ngwọta bara uru, nke na-aga n'ihu",
+    "learnMore": "Mụtakwuo Banyere Anyị",
+    "stat1": "Ndị Nrụpụta E Zụrụ",
+    "stat2": "Ọrụ E Nyefere",
+    "stat3": "Oge Nrụ Ọrụ E Nwetara"
+  },
+  "cta": {
+    "heading": "Ị nwere oru ngo n'uche?",
+    "subtitle": "Ka anyị kparịta ụka banyere otu anyị nwere ike inyere gị aka ịmepụta ngwọta AI, ịmegharị usoro ọrụ, ma ọ bụ ịmepụta ngwa ahaziri iche na-ebuli azụmahịa gị.",
+    "button": "Kpọtụrụ Sannex"
+  },
+  "footer": {
+    "description": "Anyị na-ewu ngwa AI, usoro automation, na ngwa ọgbara ọhụrụ na-eme ka ọrụ gị dị mfe, belata mgbalị aka, ma nyere azụmahịa gị aka ịga n'ihu ngwa ngwa.",
+    "servicesHeading": "Ọrụ",
+    "service1": "AI & Automation",
+    "service2": "Mmepe Webụ",
+    "service3": "Njikọ API",
+    "service4": "Ọzụzụ na Ndụmọdụ",
+    "contactHeading": "Kpọtụrụ",
+    "location": "Lagos, Nigeria",
+    "copyright": "Sannex Technologies. Ikike niile echekwara.",
+    "privacyPolicy": "Iwu Nzuzo",
+    "termsOfService": "Usoro Ọrụ"
+  },
+  "languageModal": {
+    "title": "Asụsụ Ị Họọrọ?",
+    "nigeria": "NIGERIA",
+    "africa": "AFRICA",
+    "global": "ỤWA NIILE",
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "Bekee",
+    "french": "French"
+  },
+  "musicPlayer": {
+    "play": "Kpọọ egwu",
+    "pause": "Kwụsịtụ egwu"
+  },
+  "aboutPage": {
+    "title": "Ndị Anyị Bụ",
+    "subtitle": "Iwu usoro nwere ọgụgụ isi na-agbanwe otú azụmahịa si arụ ọrụ",
+    "ourStory": "Akụkọ Anyị",
+    "storyP1": "E hiwere Sannex na ebumnuche doro anya: ime ka teknụzụ dị elu dị mfe na bara uru maka azụmahịa Africa. N'ịbụ ndị nọ na Lagos, Nigeria, anyị bụ ọkachamara na automation nke AI na-akwado, mmepe webụ ahaziri iche, na njikọ usoro na-enweghị nsogbu.",
+    "storyP2": "Anyị arụọla ọrụ na ụka na-eme ka ọrụ ha na-akpaghị aka, mahadum na-ewu usoro njikwa, mmalite na-ewepụta ikpo okwu ịkwụ ụgwọ, na ụlọ ọrụ na-eme ka usoro ọrụ ha dị mma. Ọrụ ọ bụla na-akụziri anyị ihe ọhụrụ, anyị na-eweta ọmụma ahụ na ihe ịma aka ọzọ.",
+    "storyP3": "Ụzọ anyị na-ejikọta nka teknụzụ dị elu na echiche azụmahịa bara uru. Anyị anaghị naanị ewu software—anyị na-ewu ngwọta na-aga n'ihu, usoro na-adịgide, na mmekọrịta na-eto eto.",
+    "ourValues": "Ụkpụrụ Anyị",
+    "value1Title": "Ebumnuche-Gbakwasara",
+    "value1Desc": "Anyị na-ewu teknụzụ na-edozi ezigbo nsogbu ma na-emepụta uru a na-ahụ anya nye ndị ahịa anyị.",
+    "value2Title": "Ihe Ọhụrụ Bụ Isi",
+    "value2Desc": "Anyị na-anọgide n'ihu usoro teknụzụ, na-eweta AI na automation kachasị ọhụrụ na oru ngo ọ bụla.",
+    "value3Title": "Mmekọrịta Ndị Ahịa",
+    "value3Desc": "Anyị na-arụ ọrụ dị ka ndokwu nke otu gị, na-ahụ na ngwọta dabara na ebumnuche azụmahịa gị.",
+    "ourExpertise": "Ọmụma Anyị",
+    "technologies": "Teknụzụ",
+    "specializations": "Ọkachamara",
+    "readyTitle": "Ị dị njikere ịrụkọ ọrụ?",
+    "readySubtitle": "Ma ị chọrọ automation AI, ngwa webụ ahaziri iche, ma ọ bụ ndụmọdụ teknụzụ, anyị nọ ebe a iji nyere gị aka wuo ihe dị ukwuu.",
+    "getInTouch": "Kpọtụrụ Anyị"
+  }
+}

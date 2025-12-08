@@ -1,13 +1,17 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle2 } from 'lucide-react';
 
 const AboutPreview = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'en';
+  
   const highlights = [
-    'Specialized in AI & Automation solutions',
-    'Fullstack expertise with React, Django, FastAPI',
-    'Experience with African and global clients',
-    'Focus on practical, scalable solutions',
+    t('about.highlight1'),
+    t('about.highlight2'),
+    t('about.highlight3'),
+    t('about.highlight4'),
   ];
 
   return (
@@ -16,16 +20,13 @@ const AboutPreview = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Building Technology Solutions That Scale
+              {t('about.heading')}
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Sannex specializes in AI-powered automation, custom web applications, 
-              and seamless integrations that help businesses operate more efficiently.
+              {t('about.paragraph1')}
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Based in Lagos, Nigeria, we work with churches, universities, startups, and 
-              enterprises across Africa and globally, delivering solutions that combine 
-              technical excellence with practical business value.
+              {t('about.paragraph2')}
             </p>
             <div className="space-y-4 mb-8">
               {highlights.map((highlight, index) => (
@@ -36,7 +37,7 @@ const AboutPreview = () => {
               ))}
             </div>
             <Button asChild size="lg">
-              <Link to="/about">Learn More About Us</Link>
+              <Link to={`/${currentLang}/about`}>{t('about.learnMore')}</Link>
             </Button>
           </div>
 
@@ -45,15 +46,15 @@ const AboutPreview = () => {
               <div className="text-center space-y-6">
                 <div className="space-y-2">
                   <div className="text-5xl font-bold text-foreground">200+</div>
-                  <div className="text-muted-foreground">Developers Trained</div>
+                  <div className="text-muted-foreground">{t('about.stat1')}</div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-5xl font-bold text-foreground">50+</div>
-                  <div className="text-muted-foreground">Projects Delivered</div>
+                  <div className="text-muted-foreground">{t('about.stat2')}</div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-5xl font-bold text-foreground">99.9%</div>
-                  <div className="text-muted-foreground">Uptime Achieved</div>
+                  <div className="text-muted-foreground">{t('about.stat3')}</div>
                 </div>
               </div>
             </div>
