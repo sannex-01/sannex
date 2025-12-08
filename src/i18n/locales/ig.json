@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Kpọọ egwu",
     "pause": "Kwụsịtụ egwu"
+  },
+  "aboutPage": {
+    "title": "Ndị Anyị Bụ",
+    "subtitle": "Iwu usoro nwere ọgụgụ isi na-agbanwe otú azụmahịa si arụ ọrụ",
+    "ourStory": "Akụkọ Anyị",
+    "storyP1": "E hiwere Sannex na ebumnuche doro anya: ime ka teknụzụ dị elu dị mfe na bara uru maka azụmahịa Africa. N'ịbụ ndị nọ na Lagos, Nigeria, anyị bụ ọkachamara na automation nke AI na-akwado, mmepe webụ ahaziri iche, na njikọ usoro na-enweghị nsogbu.",
+    "storyP2": "Anyị arụọla ọrụ na ụka na-eme ka ọrụ ha na-akpaghị aka, mahadum na-ewu usoro njikwa, mmalite na-ewepụta ikpo okwu ịkwụ ụgwọ, na ụlọ ọrụ na-eme ka usoro ọrụ ha dị mma. Ọrụ ọ bụla na-akụziri anyị ihe ọhụrụ, anyị na-eweta ọmụma ahụ na ihe ịma aka ọzọ.",
+    "storyP3": "Ụzọ anyị na-ejikọta nka teknụzụ dị elu na echiche azụmahịa bara uru. Anyị anaghị naanị ewu software—anyị na-ewu ngwọta na-aga n'ihu, usoro na-adịgide, na mmekọrịta na-eto eto.",
+    "ourValues": "Ụkpụrụ Anyị",
+    "value1Title": "Ebumnuche-Gbakwasara",
+    "value1Desc": "Anyị na-ewu teknụzụ na-edozi ezigbo nsogbu ma na-emepụta uru a na-ahụ anya nye ndị ahịa anyị.",
+    "value2Title": "Ihe Ọhụrụ Bụ Isi",
+    "value2Desc": "Anyị na-anọgide n'ihu usoro teknụzụ, na-eweta AI na automation kachasị ọhụrụ na oru ngo ọ bụla.",
+    "value3Title": "Mmekọrịta Ndị Ahịa",
+    "value3Desc": "Anyị na-arụ ọrụ dị ka ndokwu nke otu gị, na-ahụ na ngwọta dabara na ebumnuche azụmahịa gị.",
+    "ourExpertise": "Ọmụma Anyị",
+    "technologies": "Teknụzụ",
+    "specializations": "Ọkachamara",
+    "readyTitle": "Ị dị njikere ịrụkọ ọrụ?",
+    "readySubtitle": "Ma ị chọrọ automation AI, ngwa webụ ahaziri iche, ma ọ bụ ndụmọdụ teknụzụ, anyị nọ ebe a iji nyere gị aka wuo ihe dị ukwuu.",
+    "getInTouch": "Kpọtụrụ Anyị"
   }
 }

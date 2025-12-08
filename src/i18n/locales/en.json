@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Play music",
     "pause": "Pause music"
+  },
+  "aboutPage": {
+    "title": "Who We Are",
+    "subtitle": "Building intelligent systems that transform how businesses operate",
+    "ourStory": "Our Story",
+    "storyP1": "Sannex was founded with a clear mission: to make advanced technology accessible and practical for African businesses. Based in Lagos, Nigeria, we specialize in AI-powered automation, custom web development, and seamless system integrations.",
+    "storyP2": "We've worked with churches automating their operations, universities building management systems, startups launching payment platforms, and enterprises optimizing their workflows. Every project teaches us something new, and we bring that knowledge to the next challenge.",
+    "storyP3": "Our approach combines technical excellence with practical business thinking. We don't just build software—we build solutions that scale, systems that last, and partnerships that grow.",
+    "ourValues": "Our Values",
+    "value1Title": "Mission-Driven",
+    "value1Desc": "We build technology that solves real problems and creates measurable value for our clients.",
+    "value2Title": "Innovation First",
+    "value2Desc": "We stay ahead of technology trends, bringing cutting-edge AI and automation to every project.",
+    "value3Title": "Client Partnership",
+    "value3Desc": "We work as an extension of your team, ensuring solutions align with your business goals.",
+    "ourExpertise": "Our Expertise",
+    "technologies": "Technologies",
+    "specializations": "Specializations",
+    "readyTitle": "Ready to work together?",
+    "readySubtitle": "Whether you need AI automation, a custom web application, or technical consulting, we're here to help you build something great.",
+    "getInTouch": "Get in Touch"
   }
 }

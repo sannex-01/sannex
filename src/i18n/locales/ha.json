@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Kunna kiɗa",
     "pause": "Tsai da kiɗa"
+  },
+  "aboutPage": {
+    "title": "Wane ne Mu",
+    "subtitle": "Gina tsarin hankali da ke canza yadda kasuwanci ke aiki",
+    "ourStory": "Tarihinmu",
+    "storyP1": "An kafa Sannex tare da manufa mai tsayi: don sauƙaƙa fasaha mai ciki da kuma amfani ga kasuwancin Afirka. Muna zaune a Lagos, Najeriya, muna ƙware a cikin sarrafa aiki da AI ke tallafawa, ci gaban yanar gizo na musamman, da haɗin tsarin da babu matsala.",
+    "storyP2": "Mun yi aiki da majami'u don sarrafa ayyukansu, jami'o'i don gina tsarin gudanarwa, masu farawa don ƙaddamar da dandamalin biyan kuɗi, da kamfanoni don inganta ayyukansu. Kowane aikin yana koya mana sabon abu, kuma muna kawo wannan ilimin zuwa ƙalubalen gaba.",
+    "storyP3": "Hanyar mu ta haɗa cancantar fasaha da tunanin kasuwanci mai amfani. Ba kawai muna gina software ba—muna gina hanyoyin da ke ci gaba, tsarin da ke dawwama, da haɗin gwiwar da ke girma.",
+    "ourValues": "Ƙimar Mu",
+    "value1Title": "Manufa-Mai Dabara",
+    "value1Desc": "Muna gina fasaha da ke magance matsaloli na gaske kuma yana haifar da ƙima mai auna ga abokan cinikinmu.",
+    "value2Title": "Ƙirƙira Da Farko",
+    "value2Desc": "Muna gaba da hanyoyin fasaha, muna kawo AI da sarrafa aiki mafi girma ga kowane aikin.",
+    "value3Title": "Haɗin Gwiwar Abokin Ciniki",
+    "value3Desc": "Muna aiki a matsayin ƙarin ƙungiyar ku, muna tabbatar da cewa mafita sun dace da manufofin kasuwancin ku.",
+    "ourExpertise": "Ƙwarewarmu",
+    "technologies": "Fasahohi",
+    "specializations": "Ƙwarewa",
+    "readyTitle": "Shirye don yin aiki tare?",
+    "readySubtitle": "Ko kuna buƙatar sarrafa aiki na AI, aikace-aikacen yanar gizo na musamman, ko shawarwarin fasaha, muna nan don taimaka muku gina babban abu.",
+    "getInTouch": "Tuntube Mu"
   }
 }

@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Ṣe orin",
     "pause": "Dúró orin"
+  },
+  "aboutPage": {
+    "title": "Ẹni Tí A Jẹ́",
+    "subtitle": "Kíkọ́ àwọn ètò oníọgbọ́n tí ń yí bí àwọn iṣòwò ṣe ń ṣiṣẹ́ padà",
+    "ourStory": "Ìtàn Wa",
+    "storyP1": "A dá Sannex sílẹ̀ pẹ̀lú ìpinnu tó ṣe kedere: láti mú ìmọ̀-ẹ̀rọ tó ga wọlé àti kí ó jẹ́ ìlò fún àwọn iṣòwò Áfríkà. Níbi tí a ti wà ní Lagos, Nàìjíríà, a ṣe àkọ́sọ nínú adaṣe tí AI ń ṣàtìlẹ́yìn, ìdàgbàsókè wẹ́ẹ̀bù aláṣepọ̀, àti àwọn ìsopọ̀ ètò aláìléwu.",
+    "storyP2": "A ti ṣiṣẹ́ pẹ̀lú àwọn ṣọ́ọ̀ṣì láti ṣe adaṣe iṣẹ́ wọn, àwọn yunifásítì láti kọ́ àwọn ètò ìṣàkóso, àwọn ìbẹ̀rẹ̀ láti ṣe ìfilọ́lẹ̀ àwọn ẹ̀rọ ìsanwó, àti àwọn ilé-iṣẹ́ láti mú iṣẹ́ṣiṣe wọn dára sí i. Gbogbo iṣẹ́-ọwọ́ ń kọ́ wa ní nǹkan tuntun, a sì mú ìmọ̀ yẹn wá sí ìdánwò tó kàn.",
+    "storyP3": "Ọ̀nà wa dapọ̀ gíga ìmọ̀-ẹ̀rọ pẹ̀lú èrò iṣòwò tó ṣe é ṣe. A kò kàn kọ́ sọ́ọ́fítìwéèrì—a kọ́ àwọn ojútùú tí ń dàgbà, àwọn ètò tí ń pẹ́, àti àwọn ìbáṣepọ̀ tí ń dàgbà.",
+    "ourValues": "Àwọn Iye Wa",
+    "value1Title": "Àfojúsùn-Títọ́kasí",
+    "value1Desc": "A ń kọ́ ìmọ̀-ẹ̀rọ tó ń yanjú àwọn ìṣòro gidi tí ó sì ń ṣẹ̀dá iye tó ṣe é kà fún àwọn oníbàárà wa.",
+    "value2Title": "Ìdàgbàsókè Àkọ́kọ́",
+    "value2Desc": "A wà níwájú àwọn ìtọ́kasí ìmọ̀-ẹ̀rọ, ń mú AI àti adaṣe tó ga jù lọ wá sí gbogbo iṣẹ́-ọwọ́.",
+    "value3Title": "Ìbáṣepọ̀ Oníbàárà",
+    "value3Desc": "A ń ṣiṣẹ́ gẹ́gẹ́ bí ìfikún ẹgbẹ́ rẹ, ń rí dájú pé àwọn ojútùú bá àwọn àfojúsùn iṣòwò rẹ mu.",
+    "ourExpertise": "Ìmọ̀ Wa",
+    "technologies": "Àwọn Ìmọ̀-Ẹ̀rọ",
+    "specializations": "Àwọn Àkọ́sọ",
+    "readyTitle": "Ṣetán láti ṣiṣẹ́ papọ̀?",
+    "readySubtitle": "Ìbá ṣe pé o nílò adaṣe AI, ohun èlò wẹ́ẹ̀bù aláṣepọ̀, tàbí ìmọ̀ràn ìmọ̀-ẹ̀rọ, a wà níbí láti ran ọ lọ́wọ́ láti kọ́ ohun nlá kan.",
+    "getInTouch": "Kan Sí Wa"
   }
 }

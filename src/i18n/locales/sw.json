@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Cheza muziki",
     "pause": "Simamisha muziki"
+  },
+  "aboutPage": {
+    "title": "Sisi Ni Nani",
+    "subtitle": "Kujenga mifumo mahiri inayobadilisha jinsi biashara zinavyofanya kazi",
+    "ourStory": "Hadithi Yetu",
+    "storyP1": "Sannex ilianzishwa na dhamira wazi: kufanya teknolojia ya hali ya juu kupatikana na vitendo kwa biashara za Kiafrika. Tukiwa na makao makuu Lagos, Nigeria, tunashughulika na automation inayotumia AI, maendeleo ya wavuti ya kibinafsi, na ushirikiano wa mifumo bila mshono.",
+    "storyP2": "Tumefanya kazi na makanisa kufanya kazi zao kiotomatiki, vyuo vikuu kujenga mifumo ya usimamizi, biashara mpya kuzindua majukwaa ya malipo, na mashirika kuboresha mtiririko wa kazi zao. Kila mradi unatufundisha kitu kipya, na tunakuleta ujuzi huo kwa changamoto inayofuata.",
+    "storyP3": "Mbinu yetu inachanganya ubora wa kiufundi na mawazo ya biashara ya vitendo. Hatujengi tu programu—tunajenga suluhisho zinazokua, mifumo inayodumu, na ushirikiano unaokua.",
+    "ourValues": "Maadili Yetu",
+    "value1Title": "Kuongozwa na Dhamira",
+    "value1Desc": "Tunajenga teknolojia inayotatua matatizo halisi na kuunda thamani inayoweza kupimwa kwa wateja wetu.",
+    "value2Title": "Ubunifu Kwanza",
+    "value2Desc": "Tunabaki mbele ya mwenendo wa teknolojia, tukileta AI na automation ya kisasa kwa kila mradi.",
+    "value3Title": "Ushirikiano wa Mteja",
+    "value3Desc": "Tunafanya kazi kama nyongeza ya timu yako, tukihakikisha suluhisho zinalingana na malengo ya biashara yako.",
+    "ourExpertise": "Ujuzi Wetu",
+    "technologies": "Teknolojia",
+    "specializations": "Utaalamu",
+    "readyTitle": "Tayari kufanya kazi pamoja?",
+    "readySubtitle": "Iwe unahitaji automation ya AI, programu ya wavuti ya kibinafsi, au ushauri wa kiufundi, tuko hapa kukusaidia kujenga kitu kizuri.",
+    "getInTouch": "Wasiliana Nasi"
   }
 }

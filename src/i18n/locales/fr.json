@@ -85,5 +85,26 @@
   "musicPlayer": {
     "play": "Lire la musique",
     "pause": "Mettre en pause"
+  },
+  "aboutPage": {
+    "title": "Qui Nous Sommes",
+    "subtitle": "Créer des systèmes intelligents qui transforment le fonctionnement des entreprises",
+    "ourStory": "Notre Histoire",
+    "storyP1": "Sannex a été fondée avec une mission claire : rendre la technologie avancée accessible et pratique pour les entreprises africaines. Basés à Lagos, au Nigeria, nous sommes spécialisés dans l'automatisation alimentée par l'IA, le développement web personnalisé et les intégrations de systèmes transparentes.",
+    "storyP2": "Nous avons travaillé avec des églises pour automatiser leurs opérations, des universités pour créer des systèmes de gestion, des startups pour lancer des plateformes de paiement et des entreprises pour optimiser leurs flux de travail. Chaque projet nous enseigne quelque chose de nouveau, et nous apportons ces connaissances au prochain défi.",
+    "storyP3": "Notre approche combine excellence technique et réflexion commerciale pratique. Nous ne construisons pas seulement des logiciels—nous construisons des solutions évolutives, des systèmes durables et des partenariats qui grandissent.",
+    "ourValues": "Nos Valeurs",
+    "value1Title": "Axé sur la Mission",
+    "value1Desc": "Nous créons des technologies qui résolvent de vrais problèmes et créent une valeur mesurable pour nos clients.",
+    "value2Title": "L'Innovation d'Abord",
+    "value2Desc": "Nous restons à la pointe des tendances technologiques, apportant l'IA et l'automatisation de pointe à chaque projet.",
+    "value3Title": "Partenariat Client",
+    "value3Desc": "Nous travaillons comme une extension de votre équipe, en veillant à ce que les solutions correspondent à vos objectifs commerciaux.",
+    "ourExpertise": "Notre Expertise",
+    "technologies": "Technologies",
+    "specializations": "Spécialisations",
+    "readyTitle": "Prêt à travailler ensemble?",
+    "readySubtitle": "Que vous ayez besoin d'automatisation IA, d'une application web personnalisée ou de conseil technique, nous sommes là pour vous aider à créer quelque chose de formidable.",
+    "getInTouch": "Contactez-Nous"
   }
 }
