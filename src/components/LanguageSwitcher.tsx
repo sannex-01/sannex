@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -9,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
-import { updateURLWithLanguage } from '@/utils/geolocation';
 
 interface LanguageOption {
   code: string;
@@ -24,6 +24,7 @@ interface LanguageGroup {
 
 const LanguageSwitcher = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const languageGroups: LanguageGroup[] = [
     {
@@ -52,7 +53,7 @@ const LanguageSwitcher = () => {
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
     localStorage.setItem('preferredLanguage', languageCode);
-    updateURLWithLanguage(languageCode);
+    navigate(`/${languageCode}`, { replace: true });
   };
 
   return (

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
@@ -25,12 +26,15 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
   const { lang } = useParams<{ lang: string }>();
   const { i18n } = useTranslation();
   
-  // Sync URL language with i18n
-  if (lang && ['en', 'fr', 'ig', 'ha', 'yo', 'sw'].includes(lang)) {
-    if (i18n.language !== lang) {
-      i18n.changeLanguage(lang);
+  // Sync URL language with i18n using useEffect to avoid render issues
+  useEffect(() => {
+    if (lang && ['en', 'fr', 'ig', 'ha', 'yo', 'sw'].includes(lang)) {
+      if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+        localStorage.setItem('preferredLanguage', lang);
+      }
     }
-  }
+  }, [lang, i18n]);
   
   return <>{children}</>;
 };
@@ -41,7 +45,7 @@ const AppRoutes = () => {
       <Header />
       <main className="flex-1">
         <Routes>
-          {/* Root redirect to language-prefixed route */}
+          {/* Root redirect - will be handled by LanguageSelectionModal */}
           <Route path="/" element={<Navigate to="/en" replace />} />
           
           {/* Language-prefixed routes */}
@@ -55,7 +59,6 @@ const AppRoutes = () => {
           
           {/* Fallback routes without language prefix - redirect to English */}
           <Route path="/projects" element={<Navigate to="/en/projects" replace />} />
-          <Route path="/projects/:slug" element={<Navigate to="/en/projects/:slug" replace />} />
           <Route path="/about" element={<Navigate to="/en/about" replace />} />
           <Route path="/contact" element={<Navigate to="/en/contact" replace />} />
           <Route path="/privacy-policy" element={<Navigate to="/en/privacy-policy" replace />} />

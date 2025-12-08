@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { detectLanguageFromGeolocation, getLanguageFromURL, updateURLWithLanguage } from '@/utils/geolocation';
+import { detectLanguageFromGeolocation, getLanguageFromURL } from '@/utils/geolocation';
 
 const LANGUAGE_KEY = 'preferredLanguage';
 
@@ -25,6 +26,7 @@ interface LanguageSection {
 const LanguageSelectionModal = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initializeLanguage = async () => {
@@ -40,7 +42,7 @@ const LanguageSelectionModal = () => {
       const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
       if (savedLanguage) {
         i18n.changeLanguage(savedLanguage);
-        updateURLWithLanguage(savedLanguage);
+        navigate(`/${savedLanguage}`, { replace: true });
         return;
       }
 
@@ -49,7 +51,7 @@ const LanguageSelectionModal = () => {
         const detectedLanguage = await detectLanguageFromGeolocation();
         i18n.changeLanguage(detectedLanguage);
         localStorage.setItem(LANGUAGE_KEY, detectedLanguage);
-        updateURLWithLanguage(detectedLanguage);
+        navigate(`/${detectedLanguage}`, { replace: true });
         
         // Show modal for user to confirm or change
         setIsOpen(true);
@@ -60,7 +62,7 @@ const LanguageSelectionModal = () => {
     };
 
     initializeLanguage();
-  }, [i18n]);
+  }, [i18n, navigate]);
 
   const languageSections: LanguageSection[] = [
     {
@@ -89,7 +91,7 @@ const LanguageSelectionModal = () => {
   const handleLanguageSelect = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
     localStorage.setItem(LANGUAGE_KEY, languageCode);
-    updateURLWithLanguage(languageCode);
+    navigate(`/${languageCode}`, { replace: true });
     setIsOpen(false);
   };
 
