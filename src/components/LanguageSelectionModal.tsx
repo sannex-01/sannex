@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { detectLanguageFromGeolocation, getLanguageFromURL, updateURLWithLanguage } from '@/utils/geolocation';
 
 const LANGUAGE_KEY = 'preferredLanguage';
 
@@ -26,11 +27,40 @@ const LanguageSelectionModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasSelectedLanguage = localStorage.getItem(LANGUAGE_KEY);
-    if (!hasSelectedLanguage) {
-      setIsOpen(true);
-    }
-  }, []);
+    const initializeLanguage = async () => {
+      // Check if language is already in URL
+      const urlLanguage = getLanguageFromURL();
+      if (urlLanguage) {
+        i18n.changeLanguage(urlLanguage);
+        localStorage.setItem(LANGUAGE_KEY, urlLanguage);
+        return;
+      }
+
+      // Check if user has already selected a language
+      const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+      if (savedLanguage) {
+        i18n.changeLanguage(savedLanguage);
+        updateURLWithLanguage(savedLanguage);
+        return;
+      }
+
+      // Try geolocation-based detection
+      try {
+        const detectedLanguage = await detectLanguageFromGeolocation();
+        i18n.changeLanguage(detectedLanguage);
+        localStorage.setItem(LANGUAGE_KEY, detectedLanguage);
+        updateURLWithLanguage(detectedLanguage);
+        
+        // Show modal for user to confirm or change
+        setIsOpen(true);
+      } catch (error) {
+        // If geolocation fails, show modal
+        setIsOpen(true);
+      }
+    };
+
+    initializeLanguage();
+  }, [i18n]);
 
   const languageSections: LanguageSection[] = [
     {
@@ -59,6 +89,7 @@ const LanguageSelectionModal = () => {
   const handleLanguageSelect = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
     localStorage.setItem(LANGUAGE_KEY, languageCode);
+    updateURLWithLanguage(languageCode);
     setIsOpen(false);
   };
 

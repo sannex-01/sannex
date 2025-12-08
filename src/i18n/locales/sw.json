@@ -75,12 +75,12 @@
     "nigeria": "NIGERIA",
     "africa": "AFRIKA",
     "global": "KIMATAIFA",
-    "igbo": "IGBO",
-    "hausa": "HAUSA",
-    "yoruba": "YORÙBÁ",
-    "swahili": "SWAHILI",
-    "english": "KIINGEREZA",
-    "french": "KIFARANSA"
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "Kiingereza",
+    "french": "Kifaransa"
   },
   "musicPlayer": {
     "play": "Cheza muziki",

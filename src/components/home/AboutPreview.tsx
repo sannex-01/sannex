@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { CheckCircle2 } from 'lucide-react';
 
 const AboutPreview = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'en';
   
   const highlights = [
     t('about.highlight1'),
@@ -36,7 +37,7 @@ const AboutPreview = () => {
               ))}
             </div>
             <Button asChild size="lg">
-              <Link to="/about">{t('about.learnMore')}</Link>
+              <Link to={`/${currentLang}/about`}>{t('about.learnMore')}</Link>
             </Button>
           </div>
 

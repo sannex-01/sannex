@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
+import { updateURLWithLanguage } from '@/utils/geolocation';
 
 interface LanguageOption {
   code: string;
@@ -51,6 +52,7 @@ const LanguageSwitcher = () => {
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
     localStorage.setItem('preferredLanguage', languageCode);
+    updateURLWithLanguage(languageCode);
   };
 
   return (

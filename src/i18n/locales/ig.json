@@ -75,12 +75,12 @@
     "nigeria": "NIGERIA",
     "africa": "AFRICA",
     "global": "ỤWA NIILE",
-    "igbo": "IGBO",
-    "hausa": "HAUSA",
-    "yoruba": "YORÙBÁ",
-    "swahili": "SWAHILI",
-    "english": "BEKEE",
-    "french": "FRENCH"
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "Bekee",
+    "french": "French"
   },
   "musicPlayer": {
     "play": "Kpọọ egwu",

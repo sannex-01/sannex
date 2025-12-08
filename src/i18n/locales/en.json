@@ -75,12 +75,12 @@
     "nigeria": "NIGERIA",
     "africa": "AFRICA",
     "global": "GLOBAL",
-    "igbo": "IGBO",
-    "hausa": "HAUSA",
-    "yoruba": "YORÙBÁ",
-    "swahili": "SWAHILI",
-    "english": "ENGLISH",
-    "french": "FRENCH"
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "English",
+    "french": "French"
   },
   "musicPlayer": {
     "play": "Play music",

@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const currentLang = i18n.language || 'en';
 
   return (
     <footer className="bg-secondary border-t border-border">
@@ -54,10 +55,10 @@ const Footer = () => {
               © {currentYear} {t('footer.copyright')}
             </p>
             <div className="flex gap-6">
-              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to={`/${currentLang}/privacy-policy`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 {t('footer.privacyPolicy')}
               </Link>
-              <Link to="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to={`/${currentLang}/terms-of-service`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 {t('footer.termsOfService')}
               </Link>
             </div>

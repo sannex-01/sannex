@@ -29,8 +29,8 @@ const MusicPlayer = () => {
       }
     };
 
-    // Try to autoplay after a short delay to ensure page is loaded
-    const timer = setTimeout(attemptAutoplay, 1000);
+    // Try to autoplay after 2 seconds of page loaded
+    const timer = setTimeout(attemptAutoplay, 2000);
 
     return () => {
       clearTimeout(timer);

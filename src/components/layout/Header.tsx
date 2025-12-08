@@ -7,7 +7,7 @@ import MusicPlayer from '@/components/MusicPlayer';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -21,9 +21,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Get current language from i18n
+  const currentLang = i18n.language || 'en';
+
   const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.whoWeAre'), path: '/about' },
+    { name: t('nav.home'), path: `/${currentLang}` },
+    { name: t('nav.whoWeAre'), path: `/${currentLang}/about` },
   ];
 
   const scrollToSection = (sectionId: string) => {

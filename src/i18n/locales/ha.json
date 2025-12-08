@@ -75,12 +75,12 @@
     "nigeria": "NAJERIYA",
     "africa": "AFIRKA",
     "global": "DUNIYA",
-    "igbo": "IGBO",
-    "hausa": "HAUSA",
-    "yoruba": "YORÙBÁ",
-    "swahili": "SWAHILI",
-    "english": "TURANCI",
-    "french": "FARANSANCI"
+    "igbo": "Igbo",
+    "hausa": "Hausa",
+    "yoruba": "Yorùbá",
+    "swahili": "Swahili",
+    "english": "Turanci",
+    "french": "Faransanci"
   },
   "musicPlayer": {
     "play": "Kunna kiɗa",
