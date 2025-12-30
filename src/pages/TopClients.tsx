@@ -19,7 +19,8 @@ const TopClients = () => {
   // Constants
   const SUMMARY_VIEW = 8;
   const MAX_AUTO_ADVANCE_VIEW = 7;
-  const AUTO_ADVANCE_DURATION = 30000; // 30 seconds
+  const AUTO_ADVANCE_DURATION = 15000; // 15 seconds
+  const TOTAL_VIEWS = 7; // Total number of views with progress bars (1-7)
   
   const [currentView, setCurrentView] = useState(0);
   const [identifier, setIdentifier] = useState('');
@@ -149,6 +150,15 @@ const TopClients = () => {
 
   const togglePause = () => {
     setIsPaused(!isPaused);
+    
+    // Pause/resume music when pause button is clicked
+    if (audioRef.current) {
+      if (!isPaused) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(err => console.log('Audio play error:', err));
+      }
+    }
   };
 
   const handleScreenClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -239,18 +249,42 @@ const TopClients = () => {
 
   if (!clientData) return null;
 
-  // Progress bar component for views 1-7
+  // Progress bar component for views 1-7 (WhatsApp-style with multiple bars)
   const ProgressBar = () => {
-    if (currentView === 0 || currentView === 8) return null;
+    if (currentView === 0 || currentView === SUMMARY_VIEW) return null;
+    
+    const handleBarClick = (viewIndex: number) => {
+      setCurrentView(viewIndex);
+      setProgress(0);
+    };
     
     return (
       <div className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
-          <div className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-white transition-all duration-100"
-              style={{ width: `${progress}%` }}
-            />
+          <div className="flex-1 flex gap-1">
+            {Array.from({ length: TOTAL_VIEWS }, (_, i) => {
+              const viewIndex = i + 1;
+              const isActive = viewIndex === currentView;
+              const isCompleted = viewIndex < currentView;
+              
+              return (
+                <button
+                  key={viewIndex}
+                  onClick={() => handleBarClick(viewIndex)}
+                  className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden cursor-pointer hover:bg-white/40 transition-colors"
+                  aria-label={`Go to view ${viewIndex}`}
+                >
+                  <div 
+                    className={`h-full transition-all duration-100 ${
+                      isCompleted ? 'bg-white w-full' : isActive ? 'bg-white' : 'bg-transparent'
+                    }`}
+                    style={{ 
+                      width: isActive ? `${progress}%` : isCompleted ? '100%' : '0%' 
+                    }}
+                  />
+                </button>
+              );
+            })}
           </div>
           <button
             onClick={togglePause}

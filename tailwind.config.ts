@@ -52,7 +52,7 @@ export default {
       },
       fontFamily: {
         sans: ["Rubik", "system-ui", "sans-serif"],
-        cursive: ["Pacifico", "cursive"],
+        cursive: ["Great Vibes", "cursive"],
         handwriting: ["Caveat", "cursive"],
       },
       boxShadow: {
@@ -127,6 +127,34 @@ export default {
             transform: "scale(1)",
           },
         },
+        "snowfall": {
+          "0%": {
+            transform: "translateY(-10vh) translateX(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateY(100vh) translateX(10px)",
+            opacity: "0.3",
+          },
+        },
+        "snowfall-slow": {
+          "0%": {
+            transform: "translateY(-10vh) translateX(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateY(100vh) translateX(-15px)",
+            opacity: "0.4",
+          },
+        },
+        "blink": {
+          "0%, 100%": {
+            opacity: "1",
+          },
+          "50%": {
+            opacity: "0.3",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -135,6 +163,9 @@ export default {
         "slide-up": "slide-up 0.5s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
         "bounce-in": "bounce-in 0.6s ease-out",
+        "snowfall": "snowfall 8s linear infinite",
+        "snowfall-slow": "snowfall-slow 12s linear infinite",
+        "blink": "blink 3s ease-in-out infinite",
       },
     },
   },

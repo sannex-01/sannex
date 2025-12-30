@@ -18,6 +18,7 @@ import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
 import NotFound from "./pages/NotFound";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
+import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -92,6 +93,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <SnowEffect />
         <BrowserRouter>
           <LanguageSelectionModal />
           <AppRoutes />
