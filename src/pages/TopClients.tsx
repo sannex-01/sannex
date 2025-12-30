@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import ScratchCard from '@/components/ScratchCard';
+import WordByWord from '@/components/WordByWord';
 import { fetchTopClientData, findClientByIdentifier } from '@/utils/topClientData';
 import { TopClientData, FeedbackFormData } from '@/types/topClient';
 import { ChevronRight, Heart, TrendingUp, Calendar, Gift, Send, Play, Pause } from 'lucide-react';
@@ -72,7 +73,8 @@ const TopClients = () => {
 
   // Auto-advance and progress tracking
   useEffect(() => {
-    if (currentView > 0 && currentView < SUMMARY_VIEW && !isPaused) {
+    // Don't auto-advance on View 7 (feedback form) - wait for user submission
+    if (currentView > 0 && currentView < MAX_AUTO_ADVANCE_VIEW && !isPaused) {
       // Reset progress
       setProgress(0);
       
@@ -91,13 +93,10 @@ const TopClients = () => {
         }
       }, 100);
 
-      // Auto-advance after duration
+      // Auto-advance after duration (but not on View 7)
       autoAdvanceTimeoutRef.current = setTimeout(() => {
-        if (currentView < MAX_AUTO_ADVANCE_VIEW) {
+        if (currentView < MAX_AUTO_ADVANCE_VIEW - 1) {
           setCurrentView(currentView + 1);
-        } else if (currentView === MAX_AUTO_ADVANCE_VIEW) {
-          // Move to summary view
-          setCurrentView(SUMMARY_VIEW);
         }
       }, AUTO_ADVANCE_DURATION);
     }
@@ -315,6 +314,11 @@ const TopClients = () => {
 
   // View 1: Thank You
   if (currentView === 1) {
+    const joinDate = new Date(clientData.join_date);
+    const joinYear = isNaN(joinDate.getTime()) ? 0 : joinDate.getFullYear();
+    const currentYear = parseInt(year || '2025');
+    const actionText = joinYear === currentYear ? 'joining us' : 'continuing with us';
+    
     return (
       <>
         <ProgressBar />
@@ -325,16 +329,13 @@ const TopClients = () => {
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <Heart className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
             <h1 className="text-5xl md:text-7xl font-cursive leading-tight animate-slide-up-2">
-              Thank You,
-              <span className="block text-primary font-handwriting mt-4 animate-slide-up-3">{clientData.client_name}!</span>
+              <WordByWord text="Thank You," delay={80} />
+              <span className="block text-primary font-handwriting mt-4 animate-slide-up-3">
+                <WordByWord text={`${clientData.client_name}!`} delay={80} />
+              </span>
             </h1>
             <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
-              For {(() => {
-                const joinDate = new Date(clientData.join_date);
-                const joinYear = isNaN(joinDate.getTime()) ? 0 : joinDate.getFullYear();
-                const currentYear = parseInt(year || '2025');
-                return joinYear === currentYear ? 'joining us' : 'continuing with us';
-              })()} this year
+              <WordByWord text={`For ${actionText} this year`} delay={60} />
             </p>
           </div>
         </div>
@@ -354,13 +355,13 @@ const TopClients = () => {
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <Calendar className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
             <h1 className="text-4xl md:text-6xl font-cursive leading-tight animate-slide-up-2">
-              Your Journey Started
+              <WordByWord text="Your Journey Started" delay={80} />
             </h1>
             <p className="text-5xl md:text-7xl font-bold text-primary font-handwriting animate-slide-up-3">
-              {formatDate(clientData.join_date)}
+              <WordByWord text={formatDate(clientData.join_date)} delay={100} />
             </p>
             <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
-              That's when you put your trust in SANNEX
+              <WordByWord text="That's when you put your trust in SANNEX" delay={60} />
             </p>
           </div>
         </div>
@@ -380,12 +381,14 @@ const TopClients = () => {
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <TrendingUp className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
             <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-2">
-              Your Impact on SANNEX
+              <WordByWord text="Your Impact on SANNEX" delay={80} />
             </h1>
             
             <div className="space-y-6 bg-card p-8 rounded-2xl shadow-xl animate-slide-up-3">
               <div>
-                <p className="text-xl text-muted-foreground mb-2">Total Investment</p>
+                <p className="text-xl text-muted-foreground mb-2">
+                  <WordByWord text="Total Investment" delay={80} />
+                </p>
                 <p className="text-5xl md:text-6xl font-bold text-primary font-handwriting">
                   {formatCurrency(Math.round(animatedAmount))}
                 </p>
@@ -393,14 +396,14 @@ const TopClients = () => {
               
               <div className="pt-6">
                 <p className="text-xl text-muted-foreground mb-4">
-                  You contributed
+                  <WordByWord text="You contributed" delay={80} />
                 </p>
                 <div className="space-y-4">
                   <p className="text-6xl md:text-7xl font-bold text-primary font-handwriting">
                     {animatedPercentage.toFixed(1)}%
                   </p>
                   <p className="text-xl text-muted-foreground">
-                    to SANNEX's growth in {year}
+                    <WordByWord text={`to SANNEX's growth in ${year}`} delay={60} />
                   </p>
                   <Progress value={animatedPercentage} className="h-4" />
                 </div>
@@ -428,10 +431,10 @@ const TopClients = () => {
             
             <div className="bg-card p-8 rounded-2xl shadow-xl text-left space-y-4 animate-slide-up-2">
               <h2 className="text-3xl md:text-4xl font-bold text-primary font-handwriting">
-                {clientData.project_name}
+                <WordByWord text={clientData.project_name} delay={80} />
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                {clientData.project_description}
+                <WordByWord text={clientData.project_description} delay={50} />
               </p>
               <div className="pt-4">
                 <span className={`inline-block px-6 py-3 rounded-full text-lg font-semibold ${
@@ -726,16 +729,6 @@ const TopClients = () => {
               <span className="block text-primary font-handwriting text-4xl mt-4">We can't wait to build more with you in 2026! 🚀</span>
             </p>
           </Card>
-
-          <div className="text-center">
-            <Button 
-              onClick={() => navigate('/en')} 
-              size="lg" 
-              className="text-xl px-8 py-6"
-            >
-              Return to Homepage
-            </Button>
-          </div>
         </div>
       </div>
     );
