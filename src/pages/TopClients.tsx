@@ -11,6 +11,7 @@ import { fetchTopClientData, findClientByIdentifier } from '@/utils/topClientDat
 import { TopClientData, FeedbackFormData } from '@/types/topClient';
 import { ChevronRight, Heart, TrendingUp, Calendar, Gift, Send, Play, Pause } from 'lucide-react';
 import { toast } from 'sonner';
+import { useCountUp } from '@/hooks/useCountUp';
 
 const TopClients = () => {
   const { year } = useParams<{ year: string }>();
@@ -38,6 +39,16 @@ const TopClients = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Counter animations for View 3 - must be at top level
+  const animatedAmount = useCountUp({ 
+    end: clientData?.total_amount_spent || 0, 
+    duration: 2000 
+  });
+  const animatedPercentage = useCountUp({ 
+    end: clientData?.percentage_contribution || 0, 
+    duration: 2000 
+  });
 
   useEffect(() => {
     if (year) {
@@ -308,16 +319,16 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <Heart className="w-24 h-24 mx-auto text-primary animate-pulse" />
-            <h1 className="text-5xl md:text-7xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Heart className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
+            <h1 className="text-5xl md:text-7xl font-cursive leading-tight animate-slide-up-2">
               Thank You,
-              <span className="block text-primary font-handwriting mt-4">{clientData.client_name}!</span>
+              <span className="block text-primary font-handwriting mt-4 animate-slide-up-3">{clientData.client_name}!</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed">
+            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
               For {(() => {
                 const joinDate = new Date(clientData.join_date);
                 const joinYear = isNaN(joinDate.getTime()) ? 0 : joinDate.getFullYear();
@@ -337,18 +348,18 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <Calendar className="w-24 h-24 mx-auto text-primary" />
-            <h1 className="text-4xl md:text-6xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Calendar className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
+            <h1 className="text-4xl md:text-6xl font-cursive leading-tight animate-slide-up-2">
               Your Journey Started
             </h1>
-            <p className="text-5xl md:text-7xl font-bold text-primary font-handwriting">
+            <p className="text-5xl md:text-7xl font-bold text-primary font-handwriting animate-slide-up-3">
               {formatDate(clientData.join_date)}
             </p>
-            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed">
+            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
               That's when you put your trust in SANNEX
             </p>
           </div>
@@ -363,20 +374,20 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <TrendingUp className="w-24 h-24 mx-auto text-primary" />
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <TrendingUp className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
+            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-2">
               Your Impact on SANNEX
             </h1>
             
-            <div className="space-y-6 bg-card p-8 rounded-2xl shadow-xl">
+            <div className="space-y-6 bg-card p-8 rounded-2xl shadow-xl animate-slide-up-3">
               <div>
                 <p className="text-xl text-muted-foreground mb-2">Total Investment</p>
                 <p className="text-5xl md:text-6xl font-bold text-primary font-handwriting">
-                  {formatCurrency(clientData.total_amount_spent)}
+                  {formatCurrency(Math.round(animatedAmount))}
                 </p>
               </div>
               
@@ -386,12 +397,12 @@ const TopClients = () => {
                 </p>
                 <div className="space-y-4">
                   <p className="text-6xl md:text-7xl font-bold text-primary font-handwriting">
-                    {clientData.percentage_contribution}%
+                    {animatedPercentage.toFixed(1)}%
                   </p>
                   <p className="text-xl text-muted-foreground">
                     to SANNEX's growth in {year}
                   </p>
-                  <Progress value={clientData.percentage_contribution} className="h-4" />
+                  <Progress value={animatedPercentage} className="h-4" />
                 </div>
               </div>
             </div>
@@ -407,15 +418,15 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-1">
               What We Built Together
             </h1>
             
-            <div className="bg-card p-8 rounded-2xl shadow-xl text-left space-y-4">
+            <div className="bg-card p-8 rounded-2xl shadow-xl text-left space-y-4 animate-slide-up-2">
               <h2 className="text-3xl md:text-4xl font-bold text-primary font-handwriting">
                 {clientData.project_name}
               </h2>
@@ -444,20 +455,20 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-1">
               Looking Ahead
             </h1>
             
             {clientData.project_status === 'completed' ? (
-              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6">
-                <p className="text-2xl md:text-3xl leading-relaxed">
+              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
+                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3">
                   We'd love to see you <span className="text-primary font-handwriting font-bold">use and grow</span> your project!
                 </p>
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed animate-slide-up-4">
                   Need help taking it to the next level?
                 </p>
                 <div className="space-y-4 pt-4">
@@ -483,11 +494,11 @@ const TopClients = () => {
                 </div>
               </div>
             ) : (
-              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6">
-                <p className="text-2xl md:text-3xl leading-relaxed">
+              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
+                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3">
                   We're <span className="text-primary font-handwriting font-bold">excited</span> to continue building with you!
                 </p>
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed animate-slide-up-4">
                   Let's move to the next phase of your project by
                 </p>
                 <p className="text-4xl md:text-5xl font-bold text-primary font-handwriting">
@@ -510,16 +521,16 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          <div className="w-full max-w-2xl text-center space-y-8 animate-fade-in pointer-events-none">
-            <Gift className="w-24 h-24 mx-auto text-primary animate-pulse" />
-            <h1 className="text-4xl md:text-6xl font-cursive leading-tight">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Gift className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
+            <h1 className="text-4xl md:text-6xl font-cursive leading-tight animate-slide-up-2">
               Special Announcement! 🎉
             </h1>
             
-            <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6">
+            <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-3">
               <p className="text-2xl md:text-3xl leading-relaxed">
                 On <span className="text-primary font-handwriting font-bold">December 21st, 2025</span>
               </p>
@@ -574,17 +585,17 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5"
         >
-          <div className="w-full max-w-2xl space-y-8 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-cursive text-center leading-tight">
+          <div className="w-full max-w-2xl space-y-8">
+            <h1 className="text-4xl md:text-5xl font-cursive text-center leading-tight animate-slide-up-1">
               We Value Your Feedback
             </h1>
-            <p className="text-xl md:text-2xl text-center text-muted-foreground">
+            <p className="text-xl md:text-2xl text-center text-muted-foreground animate-slide-up-2">
               Help us serve you better in 2026
             </p>
 
-            <Card className="p-8">
+            <Card className="p-8 animate-slide-up-3">
               <form onSubmit={handleSubmitFeedback} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="question1" className="text-xl">

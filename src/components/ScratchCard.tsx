@@ -48,7 +48,8 @@ const ScratchCard = ({ code, width = 300, height = 150, onComplete }: ScratchCar
   }, [width, height]);
 
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-    if (!isScratching || isRevealed) return;
+    if (!isScratching) return;
+    if (isRevealed) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
