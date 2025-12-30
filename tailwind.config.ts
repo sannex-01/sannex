@@ -52,6 +52,8 @@ export default {
       },
       fontFamily: {
         sans: ["Rubik", "system-ui", "sans-serif"],
+        cursive: ["Pacifico", "cursive"],
+        handwriting: ["Caveat", "cursive"],
       },
       boxShadow: {
         card: "var(--shadow-card)",
