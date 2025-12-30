@@ -15,6 +15,12 @@ import { toast } from 'sonner';
 const TopClients = () => {
   const { year } = useParams<{ year: string }>();
   const navigate = useNavigate();
+  
+  // Constants
+  const SUMMARY_VIEW = 8;
+  const MAX_AUTO_ADVANCE_VIEW = 7;
+  const AUTO_ADVANCE_DURATION = 30000; // 30 seconds
+  
   const [currentView, setCurrentView] = useState(0);
   const [identifier, setIdentifier] = useState('');
   const [clientData, setClientData] = useState<TopClientData | null>(null);
@@ -54,17 +60,16 @@ const TopClients = () => {
 
   // Auto-advance and progress tracking
   useEffect(() => {
-    if (currentView > 0 && currentView < 8 && !isPaused) {
+    if (currentView > 0 && currentView < SUMMARY_VIEW && !isPaused) {
       // Reset progress
       setProgress(0);
       
       // Start progress animation
       const startTime = Date.now();
-      const duration = 30000; // 30 seconds
       
       progressIntervalRef.current = setInterval(() => {
         const elapsed = Date.now() - startTime;
-        const newProgress = Math.min((elapsed / duration) * 100, 100);
+        const newProgress = Math.min((elapsed / AUTO_ADVANCE_DURATION) * 100, 100);
         setProgress(newProgress);
         
         if (newProgress >= 100) {
@@ -74,15 +79,15 @@ const TopClients = () => {
         }
       }, 100);
 
-      // Auto-advance after 30 seconds
+      // Auto-advance after duration
       autoAdvanceTimeoutRef.current = setTimeout(() => {
-        if (currentView < 7) {
+        if (currentView < MAX_AUTO_ADVANCE_VIEW) {
           setCurrentView(currentView + 1);
-        } else if (currentView === 7) {
+        } else if (currentView === MAX_AUTO_ADVANCE_VIEW) {
           // Move to summary view
-          setCurrentView(8);
+          setCurrentView(SUMMARY_VIEW);
         }
-      }, duration);
+      }, AUTO_ADVANCE_DURATION);
     }
 
     return () => {
@@ -111,7 +116,7 @@ const TopClients = () => {
       
       // Start music when entering slideshow
       if (audioRef.current) {
-        audioRef.current.play().catch(err => console.log('Audio play prevented:', err));
+        audioRef.current.play().catch(err => console.log('Background music autoplay blocked by browser policy:', err));
       }
     } else {
       toast.error('We couldn\'t find your information. Please check and try again.');
@@ -127,11 +132,11 @@ const TopClients = () => {
     toast.success('Thank you for your feedback! We truly appreciate it.');
     
     // Move to summary view
-    setCurrentView(8);
+    setCurrentView(SUMMARY_VIEW);
   };
 
   const nextView = () => {
-    if (currentView < 8) {
+    if (currentView < SUMMARY_VIEW) {
       setCurrentView(currentView + 1);
     }
   };
