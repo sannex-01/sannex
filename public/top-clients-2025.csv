@@ -1,0 +1,6 @@
+email,phone,client_name,join_date,total_amount_spent,percentage_contribution,project_name,project_description,project_status,surprise_date,gift_code
+john.doe@example.com,+2348012345678,John Doe,2024-03-15,5000000,12.5,E-Commerce Platform,Custom e-commerce solution with payment integration and inventory management,completed,2026-03-15,SANNEX2025GIFT01
+jane.smith@example.com,+2347098765432,Jane Smith,2023-06-20,8500000,21.3,Mobile Banking App,Full-stack mobile banking application with biometric authentication,ongoing,2026-04-20,SANNEX2025GIFT02
+mike.wilson@example.com,+2348123456789,Mike Wilson,2024-01-10,3200000,8.0,Restaurant Management System,Point of sale and inventory tracking system for restaurant chain,completed,2026-02-10,SANNEX2025GIFT03
+sarah.jones@example.com,+2349087654321,Sarah Jones,2023-09-05,12000000,30.0,Healthcare Portal,Patient management and telemedicine platform,ongoing,2026-05-05,SANNEX2025GIFT04
+david.brown@example.com,+2348098765432,David Brown,2024-07-12,4500000,11.2,Real Estate Website,Property listing platform with virtual tours and agent management,completed,2026-03-12,SANNEX2025GIFT05

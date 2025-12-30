@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -15,8 +15,10 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import TopClients from "./pages/TopClients";
 import NotFound from "./pages/NotFound";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
+import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -40,6 +42,18 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 const AppRoutes = () => {
+  const location = useLocation();
+  const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
+
+  if (isTopClientsPage) {
+    return (
+      <Routes>
+        <Route path="/top-clients/:year" element={<TopClients />} />
+        <Route path="/:lang/top-clients/:year" element={<LanguageRouteWrapper><TopClients /></LanguageRouteWrapper>} />
+      </Routes>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -79,6 +93,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <SnowEffect />
         <BrowserRouter>
           <LanguageSelectionModal />
           <AppRoutes />

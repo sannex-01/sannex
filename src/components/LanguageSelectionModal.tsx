@@ -30,6 +30,11 @@ const LanguageSelectionModal = () => {
 
   useEffect(() => {
     const initializeLanguage = async () => {
+      // Skip language detection for top-clients pages
+      if (window.location.pathname.includes('/top-clients/')) {
+        return;
+      }
+
       // Check if language is already in URL
       const urlLanguage = getLanguageFromURL();
       if (urlLanguage) {
