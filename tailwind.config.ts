@@ -55,6 +55,9 @@ export default {
         cursive: ["Great Vibes", "cursive"],
         handwriting: ["Caveat", "cursive"],
       },
+      letterSpacing: {
+        'cursive': '0.05em',
+      },
       boxShadow: {
         card: "var(--shadow-card)",
         "card-hover": "var(--shadow-card-hover)",

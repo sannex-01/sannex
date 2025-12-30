@@ -31,9 +31,10 @@ const WordByWord = ({ text, delay = 50, className = '' }: WordByWordProps) => {
       {words.map((word, index) => (
         <span
           key={index}
-          className={`inline-block ${index < visibleWords ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
+          className={`inline ${index < visibleWords ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
         >
-          {word}{index < words.length - 1 ? ' ' : ''}
+          {word}
+          {index < words.length - 1 ? ' ' : ''}
         </span>
       ))}
     </span>

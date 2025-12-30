@@ -4,12 +4,14 @@ interface UseCountUpOptions {
   end: number;
   duration?: number;
   start?: number;
+  trigger?: any; // When this changes, restart the animation
 }
 
-export const useCountUp = ({ end, duration = 2000, start = 0 }: UseCountUpOptions) => {
+export const useCountUp = ({ end, duration = 2000, start = 0, trigger }: UseCountUpOptions) => {
   const [count, setCount] = useState(start);
 
   useEffect(() => {
+    setCount(start); // Reset to start when trigger changes
     let startTime: number | null = null;
     let animationFrame: number;
 
@@ -38,7 +40,7 @@ export const useCountUp = ({ end, duration = 2000, start = 0 }: UseCountUpOption
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, [end, duration, start]);
+  }, [end, duration, start, trigger]);
 
   return count;
 };

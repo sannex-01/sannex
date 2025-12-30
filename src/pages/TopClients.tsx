@@ -13,6 +13,7 @@ import { TopClientData, FeedbackFormData } from '@/types/topClient';
 import { ChevronRight, Heart, TrendingUp, Calendar, Gift, Send, Play, Pause } from 'lucide-react';
 import { toast } from 'sonner';
 import { useCountUp } from '@/hooks/useCountUp';
+import { submitFeedback, ensureFeedbackTable } from '@/lib/supabase';
 
 const TopClients = () => {
   const { year } = useParams<{ year: string }>();
@@ -44,11 +45,13 @@ const TopClients = () => {
   // Counter animations for View 3 - must be at top level
   const animatedAmount = useCountUp({ 
     end: clientData?.total_amount_spent || 0, 
-    duration: 2000 
+    duration: 2000,
+    trigger: currentView === 3 // Only animate when on View 3
   });
   const animatedPercentage = useCountUp({ 
-    end: clientData?.percentage_contribution || 0, 
-    duration: 2000 
+    end: clientData?.percentage_contribution || 0,
+    duration: 2000,
+    trigger: currentView === 3 // Only animate when on View 3
   });
 
   useEffect(() => {
@@ -138,12 +141,39 @@ const TopClients = () => {
 
   const handleSubmitFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send to an API
-    await new Promise(resolve => setTimeout(resolve, 500));
-    toast.success('Thank you for your feedback! We truly appreciate it.');
     
-    // Move to summary view
-    setCurrentView(SUMMARY_VIEW);
+    if (!clientData) return;
+    
+    setIsLoading(true);
+    
+    try {
+      // Ensure table exists (on first try, it will log creation instructions)
+      await ensureFeedbackTable();
+      
+      // Submit feedback to Supabase
+      const result = await submitFeedback({
+        client_email: clientData.email || identifier.includes('@') ? identifier : undefined,
+        client_phone: clientData.phone || !identifier.includes('@') ? identifier : undefined,
+        client_name: clientData.client_name,
+        year: year || '2025',
+        question1: feedbackForm.question1,
+        question2: feedbackForm.question2,
+        general_feedback: feedbackForm.generalFeedback,
+      });
+      
+      if (result.success) {
+        toast.success('Thank you for your feedback! We truly appreciate it.');
+        // Move to summary view
+        setCurrentView(SUMMARY_VIEW);
+      } else {
+        toast.error(`Failed to submit feedback: ${result.error}. Please try again.`);
+      }
+    } catch (error: any) {
+      console.error('Error submitting feedback:', error);
+      toast.error('Failed to submit feedback. Please check your connection and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const nextView = () => {
@@ -216,7 +246,7 @@ const TopClients = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
         <Card className="w-full max-w-md p-8 space-y-6 shadow-xl animate-fade-in">
           <div className="text-center space-y-2">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-cursive">
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-cursive tracking-cursive">
               {year} Year Wrap
             </h1>
             <p className="text-xl text-muted-foreground">
@@ -325,7 +355,7 @@ const TopClients = () => {
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <Heart className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
-            <h1 className="text-5xl md:text-7xl font-cursive leading-tight animate-slide-up-2">
+            <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Thank You," delay={80} />
               <span className="block text-primary font-handwriting mt-4 animate-slide-up-3">
                 <WordByWord text={`${clientData.client_name}!`} delay={80} />
@@ -351,7 +381,7 @@ const TopClients = () => {
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <Calendar className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
-            <h1 className="text-4xl md:text-6xl font-cursive leading-tight animate-slide-up-2">
+            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Your Journey Started" delay={80} />
             </h1>
             <p className="text-5xl md:text-7xl font-bold text-primary font-handwriting animate-slide-up-3">
@@ -377,7 +407,7 @@ const TopClients = () => {
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <TrendingUp className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-2">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Your Impact on SANNEX" delay={80} />
             </h1>
             
@@ -422,7 +452,7 @@ const TopClients = () => {
           onClick={handleScreenClick}
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-1">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1">
               What We Built Together
             </h1>
             
@@ -459,7 +489,7 @@ const TopClients = () => {
           onClick={handleScreenClick}
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
-            <h1 className="text-4xl md:text-5xl font-cursive leading-tight animate-slide-up-1">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1">
               Looking Ahead
             </h1>
             
@@ -526,7 +556,7 @@ const TopClients = () => {
         >
           <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
             <Gift className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
-            <h1 className="text-4xl md:text-6xl font-cursive leading-tight animate-slide-up-2">
+            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               Special Announcement! 🎉
             </h1>
             
@@ -588,7 +618,7 @@ const TopClients = () => {
           className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5"
         >
           <div className="w-full max-w-2xl space-y-8">
-            <h1 className="text-4xl md:text-5xl font-cursive text-center leading-tight animate-slide-up-1">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive text-center leading-tight animate-slide-up-1">
               We Value Your Feedback
             </h1>
             <p className="text-xl md:text-2xl text-center text-muted-foreground animate-slide-up-2">
@@ -671,14 +701,14 @@ const TopClients = () => {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
         <div className="w-full max-w-4xl space-y-8 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-cursive text-center leading-tight text-primary">
+          <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive text-center leading-tight text-primary">
             Your 2025 Journey
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Summary Card 1: Client Info */}
             <Card className="p-6 space-y-4">
-              <h2 className="text-2xl font-cursive text-primary">About You</h2>
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">About You</h2>
               <div className="space-y-2">
                 <p className="text-lg"><span className="font-semibold">Name:</span> {clientData.client_name}</p>
                 <p className="text-lg"><span className="font-semibold">Joined:</span> {formatDate(clientData.join_date)}</p>
@@ -687,7 +717,7 @@ const TopClients = () => {
 
             {/* Summary Card 2: Contribution */}
             <Card className="p-6 space-y-4">
-              <h2 className="text-2xl font-cursive text-primary">Your Contribution</h2>
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Contribution</h2>
               <div className="space-y-2">
                 <p className="text-lg"><span className="font-semibold">Investment:</span> {formatCurrency(clientData.total_amount_spent)}</p>
                 <p className="text-lg"><span className="font-semibold">Impact:</span> <span className="text-primary font-handwriting text-2xl">{clientData.percentage_contribution}%</span> of our growth</p>
@@ -696,7 +726,7 @@ const TopClients = () => {
 
             {/* Summary Card 3: Project */}
             <Card className="p-6 space-y-4">
-              <h2 className="text-2xl font-cursive text-primary">Your Project</h2>
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Project</h2>
               <div className="space-y-2">
                 <p className="text-lg font-semibold">{clientData.project_name}</p>
                 <p className="text-muted-foreground">{clientData.project_description}</p>
@@ -712,7 +742,7 @@ const TopClients = () => {
 
             {/* Summary Card 4: Special Gift */}
             <Card className="p-6 space-y-4">
-              <h2 className="text-2xl font-cursive text-primary">Your Gift</h2>
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Gift</h2>
               <div className="space-y-2">
                 <p className="text-lg"><span className="font-semibold">Surprise Date:</span> {formatDate(clientData.surprise_date)}</p>
                 <p className="text-lg"><span className="font-semibold">Gift Code:</span> <span className="text-primary font-handwriting text-xl">{clientData.gift_code}</span></p>
