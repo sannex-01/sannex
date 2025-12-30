@@ -216,7 +216,7 @@ const TopClients = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
         <Card className="w-full max-w-md p-8 space-y-6 shadow-xl animate-fade-in">
           <div className="text-center space-y-2">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2">
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-cursive">
               {year} Year Wrap
             </h1>
             <p className="text-xl text-muted-foreground">
@@ -226,7 +226,7 @@ const TopClients = () => {
 
           <form onSubmit={handleSubmitIdentifier} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="identifier" className="text-lg">
+              <Label htmlFor="identifier" className="text-lg font-handwriting">
                 Enter your Email or Phone Number
               </Label>
               <Input
@@ -238,9 +238,6 @@ const TopClients = () => {
                 required
                 className="text-lg p-6"
               />
-              <p className="text-sm text-muted-foreground">
-                Include country code for phone numbers (e.g., +234)
-              </p>
             </div>
 
             <Button 
