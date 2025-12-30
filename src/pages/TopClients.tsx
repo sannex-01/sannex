@@ -85,6 +85,9 @@ const TopClients = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date';
+    }
     return date.toLocaleDateString('en-US', { 
       month: 'long', 
       day: 'numeric',
@@ -152,9 +155,12 @@ const TopClients = () => {
             <span className="block text-primary mt-4">{clientData.client_name}!</span>
           </h1>
           <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed">
-            For {new Date(clientData.join_date).getFullYear() === parseInt(year || '2025') 
-              ? 'joining us' 
-              : 'continuing with us'} this year
+            For {(() => {
+              const joinDate = new Date(clientData.join_date);
+              const joinYear = isNaN(joinDate.getTime()) ? 0 : joinDate.getFullYear();
+              const currentYear = parseInt(year || '2025');
+              return joinYear === currentYear ? 'joining us' : 'continuing with us';
+            })()} this year
           </p>
           <Button onClick={nextView} size="lg" className="text-xl px-8 py-6 mt-8">
             Continue
