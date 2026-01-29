@@ -1,7 +1,6 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
+// Netlify Function for Magic eSIM Account Deletion Requests
 // Rate limiting store (in-memory for this implementation)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const rateLimitStore = new Map();
 
 // Clean up expired rate limit entries periodically
 setInterval(() => {
@@ -13,25 +12,14 @@ setInterval(() => {
   }
 }, 60000); // Clean up every minute
 
-interface DeleteRequestBody {
-  email: string;
-  reason: string;
-}
-
-// CORS headers
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
 // Validate email format
-function isValidEmail(email: string): boolean {
+function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
 // Check rate limit (5 requests per hour per IP)
-function checkRateLimit(ip: string): { allowed: boolean; remainingMinutes?: number } {
+function checkRateLimit(ip) {
   const now = Date.now();
   const hourInMs = 3600000; // 1 hour in milliseconds
   
@@ -56,15 +44,10 @@ function checkRateLimit(ip: string): { allowed: boolean; remainingMinutes?: numb
 }
 
 // Send email via Brevo
-async function sendEmailViaBrevo(
-  email: string,
-  reason: string,
-  ip: string,
-  userAgent: string
-): Promise<void> {
-  const brevoApiKey = Deno.env.get("BREVO_API_KEY");
-  const senderEmail = Deno.env.get("BREVO_SENDER_EMAIL") || "noreply@sannex.ng";
-  const senderName = Deno.env.get("BREVO_SENDER_NAME") || "SANNEX Compliance";
+async function sendEmailViaBrevo(email, reason, ip, userAgent) {
+  const brevoApiKey = process.env.BREVO_API_KEY;
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "noreply@sannex.ng";
+  const senderName = process.env.BREVO_SENDER_NAME || "SANNEX Compliance";
   
   if (!brevoApiKey) {
     throw new Error("BREVO_API_KEY not configured");
@@ -112,99 +95,114 @@ User Agent: ${userAgent}
   }
 }
 
-serve(async (req) => {
+exports.handler = async (event, context) => {
   // Handle CORS preflight requests
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+      },
+      body: "",
+    };
   }
   
   try {
     // Get IP address and user agent
-    const ip = req.headers.get("x-forwarded-for") || 
-               req.headers.get("x-real-ip") || 
+    const ip = event.headers["x-forwarded-for"] || 
+               event.headers["x-real-ip"] || 
+               context.clientContext?.ip || 
                "unknown";
-    const userAgent = req.headers.get("user-agent") || "unknown";
+    const userAgent = event.headers["user-agent"] || "unknown";
     
     // Check rate limit
     const rateLimitCheck = checkRateLimit(ip);
     if (!rateLimitCheck.allowed) {
-      return new Response(
-        JSON.stringify({
+      return {
+        statusCode: 429,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           error: `Rate limit exceeded. Please try again in ${rateLimitCheck.remainingMinutes} minutes.`,
         }),
-        {
-          status: 429,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
+      };
     }
     
     // Parse request body
-    const body: DeleteRequestBody = await req.json();
+    const body = JSON.parse(event.body);
     
     // Validate required fields
     if (!body.email || !body.reason) {
-      return new Response(
-        JSON.stringify({
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           error: "Email and reason are required fields.",
         }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
+      };
     }
     
     // Validate email format
     if (!isValidEmail(body.email)) {
-      return new Response(
-        JSON.stringify({
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           error: "Please provide a valid email address.",
         }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
+      };
     }
     
     // Validate reason length
     if (body.reason.trim().length < 10) {
-      return new Response(
-        JSON.stringify({
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           error: "Please provide a more detailed reason (at least 10 characters).",
         }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
+      };
     }
     
     // Send email
     await sendEmailViaBrevo(body.email, body.reason, ip, userAgent);
     
     // Return success
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         success: true,
         message: "Thanks. Your account will be deactivated and your data will be deleted entirely from our database within 30 days.",
       }),
-      {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
-    );
+    };
   } catch (error) {
     console.error("Error processing request:", error);
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         error: "An error occurred while processing your request. Please try again later.",
       }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
-    );
+    };
   }
-});
+};
