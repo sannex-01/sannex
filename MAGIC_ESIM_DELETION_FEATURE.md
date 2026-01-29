@@ -23,8 +23,8 @@ The page allows users to submit account deletion requests without authentication
   - No authentication required
 
 ### Backend
-- **Type**: Supabase Edge Function (Deno)
-- **Location**: `supabase/functions/request-account-deletion/`
+- **Type**: Netlify Function (Node.js)
+- **Location**: `netlify/functions/request-account-deletion.js`
 - **Features**:
   - Email sending via Brevo (Sendinblue) API
   - Rate limiting: 5 requests per hour per IP address
@@ -35,54 +35,35 @@ The page allows users to submit account deletion requests without authentication
 ## Deployment
 
 ### 1. Prerequisites
-- Supabase CLI installed: `npm install -g supabase`
-- Active Supabase project
+- Netlify account
+- Repository connected to Netlify
 - Brevo (Sendinblue) account with API key
 
 ### 2. Configure Environment Variables
 
-Set the following secrets in your Supabase project:
+Set the following environment variables in your Netlify dashboard (Site settings > Environment variables):
 
 ```bash
-# Using Supabase CLI
-supabase secrets set BREVO_API_KEY=your-brevo-api-key
-supabase secrets set BREVO_SENDER_EMAIL=noreply@sannex.ng
-supabase secrets set BREVO_SENDER_NAME="SANNEX Compliance"
+BREVO_API_KEY=your-brevo-api-key
+BREVO_SENDER_EMAIL=noreply@sannex.ng
+BREVO_SENDER_NAME=SANNEX Compliance
 ```
 
-Or via Supabase Dashboard:
-1. Go to Project Settings > Functions > Secrets
-2. Add the three environment variables listed above
+### 3. Deploy to Netlify
 
-### 3. Deploy Edge Function
+Push your changes to your repository and Netlify will automatically build and deploy:
 
 ```bash
-# Login to Supabase
-supabase login
-
-# Link to your project
-supabase link --project-ref your-project-ref
-
-# Deploy the function
-supabase functions deploy request-account-deletion
+git add .
+git commit -m "Deploy Magic eSIM deletion feature with Netlify"
+git push
 ```
 
-### 4. Update Frontend Configuration
-
-Ensure your production `.env` file has the correct Supabase URL:
-
-```env
-VITE_SUPABASE_DATABASE_URL=https://your-project-ref.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-```
-
-### 5. Deploy Frontend
-
-Deploy the frontend application to your hosting platform (e.g., Vercel, Netlify, Lovable):
+Or deploy manually:
 
 ```bash
 npm run build
-# Then deploy the dist folder to your hosting platform
+netlify deploy --prod
 ```
 
 ## Testing
@@ -107,13 +88,13 @@ npm run build
 2. 6th request should be blocked with rate limit error
 3. Error message should indicate how long to wait
 
-### Test Edge Function Directly
+### Test Function Directly
 
-Using curl:
+Using curl (replace with your actual Netlify site URL):
 
 ```bash
 curl -X POST \
-  https://your-project-ref.supabase.co/functions/v1/request-account-deletion \
+  https://your-site.netlify.app/.netlify/functions/request-account-deletion \
   -H 'Content-Type: application/json' \
   -d '{
     "email": "test@example.com",
@@ -157,35 +138,33 @@ The email sent to compliance@sannex.ng includes:
 
 ### Updating Rate Limit
 
-To change the rate limit, edit `supabase/functions/request-account-deletion/index.ts`:
+To change the rate limit, edit `netlify/functions/request-account-deletion.js`:
 
-```typescript
+```javascript
 // Change this line:
 if (entry.count >= 5) { // Change 5 to your desired limit
 ```
 
 ### Updating Email Content
 
-Edit the email body in the `sendEmailViaBrevo` function in `supabase/functions/request-account-deletion/index.ts`.
+Edit the email body in the `sendEmailViaBrevo` function in `netlify/functions/request-account-deletion.js`.
 
 ### Monitoring
 
-Check Supabase function logs for:
+Check Netlify function logs for:
 - Failed email sends
 - Rate limit triggers
 - Validation errors
 
-```bash
-supabase functions logs request-account-deletion
-```
+Go to: Netlify Dashboard > Functions > request-account-deletion > Function log
 
 ## Troubleshooting
 
 ### "Configuration error" message
-- Check that `VITE_SUPABASE_DATABASE_URL` is set correctly in your environment
+- The configuration is now handled by Netlify, no need for environment variables in the frontend
 
 ### "Failed to send email" in logs
-- Verify `BREVO_API_KEY` is correct
+- Verify `BREVO_API_KEY` is correct in Netlify environment variables
 - Check Brevo API limits haven't been exceeded
 - Verify sender email is verified in Brevo
 
@@ -193,10 +172,10 @@ supabase functions logs request-account-deletion
 - Rate limits are per IP, shared networks may hit limits faster
 - Consider increasing the limit or implementing user-based limiting
 
-### Edge function not found (404)
-- Ensure function is deployed: `supabase functions list`
-- Check function name matches exactly: `request-account-deletion`
-- Verify project is linked: `supabase link --project-ref your-ref`
+### Function not found (404)
+- Ensure the function is deployed by checking the Netlify dashboard
+- Verify the function file is in the correct location: `netlify/functions/request-account-deletion.js`
+- Check that `netlify.toml` is configured correctly
 
 ## Compliance Notes
 
@@ -216,12 +195,19 @@ The compliance team at compliance@sannex.ng is responsible for:
 
 ## Files Modified
 
-- `src/pages/MagicEsimAccountDeletion.tsx` - New form component
-- `src/App.tsx` - Added route for the deletion page
-- `src/components/LanguageSelectionModal.tsx` - Excluded `/esimmagic` from redirects
-- `.env.example` - Added Brevo configuration
-- `supabase/functions/request-account-deletion/index.ts` - Edge function
-- `supabase/functions/request-account-deletion/README.md` - Function documentation
+- `src/pages/MagicEsimAccountDeletion.tsx` - Updated to use Netlify function instead of Supabase Edge Function
+- `netlify/functions/request-account-deletion.js` - New Netlify function (replaces Supabase Edge Function)
+- `netlify.toml` - Netlify configuration
+- `.env.example` - Updated to reflect Netlify configuration for account deletion
+- `package.json` - Kept Supabase dependency for Top Clients feedback feature
+
+## Files Removed
+
+- `supabase/functions/request-account-deletion/` directory (replaced by Netlify function)
+
+## Note
+
+The Top Clients feedback feature (`src/pages/TopClients.tsx` and `src/lib/supabase.ts`) continues to use Supabase for data storage. Only the Magic eSIM account deletion feature has been migrated to Netlify Functions.
 
 ## Support
 

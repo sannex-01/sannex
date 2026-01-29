@@ -42,16 +42,8 @@ const MagicEsimAccountDeletion = () => {
     setErrorMessage("");
 
     try {
-      // Get Supabase URL from environment
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_DATABASE_URL;
-      
-      if (!supabaseUrl) {
-        throw new Error("Configuration error. Please contact support.");
-      }
-
-      // Extract the base URL (remove the /rest/v1 part if present)
-      const baseUrl = supabaseUrl.replace(/\/rest\/v1$/, "");
-      const functionUrl = `${baseUrl}/functions/v1/request-account-deletion`;
+      // Use Netlify Function endpoint
+      const functionUrl = "/.netlify/functions/request-account-deletion";
 
       const response = await fetch(functionUrl, {
         method: "POST",
