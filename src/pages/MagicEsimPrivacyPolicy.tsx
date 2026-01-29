@@ -1,12 +1,9 @@
 const MagicEsimPrivacyPolicy = () => {
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  // Static date - update this when the policy content is actually modified
+  const lastUpdatedDate = "January 29, 2026";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 py-12 px-4 sm:px-6 lg:px-8" role="main">
       <div className="max-w-4xl mx-auto">
         <div className="bg-card shadow-lg rounded-lg p-8 md:p-12 border border-border">
           <div className="text-center mb-8">
@@ -114,8 +111,7 @@ const MagicEsimPrivacyPolicy = () => {
                 If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us at:
               </p>
               <p className="text-muted-foreground font-medium">
-                Email:{" "}
-                <a 
+                Email: <a 
                   href="mailto:compliance@sannex.ng" 
                   className="text-primary hover:underline"
                 >
@@ -127,7 +123,7 @@ const MagicEsimPrivacyPolicy = () => {
             {/* Last Updated */}
             <section className="mt-12 pt-6 border-t border-border">
               <p className="text-sm text-muted-foreground italic">
-                Last updated: {currentDate}
+                Last updated: {lastUpdatedDate}
               </p>
             </section>
           </div>
