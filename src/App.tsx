@@ -18,6 +18,7 @@ import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
+import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
 import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
@@ -60,6 +61,7 @@ const AppRoutes = () => {
     return (
       <Routes>
         <Route path="/esimmagic/user/request_delete" element={<MagicEsimAccountDeletion />} />
+        <Route path="/esimmagic/privacy-policy" element={<MagicEsimPrivacyPolicy />} />
         <Route path="*" element={<Navigate to="/esimmagic/user/request_delete" replace />} />
       </Routes>
     );
