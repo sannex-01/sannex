@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
 import NotFound from "./pages/NotFound";
+import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
 import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
@@ -44,12 +45,22 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   const location = useLocation();
   const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
+  const isMagicEsimPage = location.pathname.startsWith('/esimmagic');
 
   if (isTopClientsPage) {
     return (
       <Routes>
         <Route path="/top-clients/:year" element={<TopClients />} />
         <Route path="/:lang/top-clients/:year" element={<LanguageRouteWrapper><TopClients /></LanguageRouteWrapper>} />
+      </Routes>
+    );
+  }
+
+  if (isMagicEsimPage) {
+    return (
+      <Routes>
+        <Route path="/esimmagic/user/request_delete" element={<MagicEsimAccountDeletion />} />
+        <Route path="*" element={<Navigate to="/esimmagic/user/request_delete" replace />} />
       </Routes>
     );
   }
