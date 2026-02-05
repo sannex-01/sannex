@@ -40,10 +40,10 @@ const AutomationRewards = () => {
   const [heroLine3, setHeroLine3] = useState('');
   const [heroLine4, setHeroLine4] = useState('');
   const heroLines = [
-    '2025 Top Clients Only',
-    'One pick each.',
-    '20 automation systems. Limited slots.',
-    'First come, first claimed.'
+    '2025 Top Clients',
+    'One pick each',
+    '20 systems available',
+    'First come, first served'
   ];
 
   // Typewriter effect
@@ -202,7 +202,7 @@ const AutomationRewards = () => {
   };
 
   const renderHeroStage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
@@ -220,7 +220,7 @@ const AutomationRewards = () => {
             SANNEX
             <Sparkles className="inline-block w-16 h-16 text-yellow-400 ml-4" />
           </div>
-          <div className="text-2xl text-yellow-500 mt-2 tracking-widest">VIP DRAFT NIGHT</div>
+          <div className="text-2xl text-yellow-500 mt-2 tracking-widest">VIP REWARDS NIGHT</div>
         </div>
 
         {/* Typewriter text */}
@@ -243,7 +243,7 @@ const AutomationRewards = () => {
           </div>
           <div className="flex items-center gap-2">
             <Eye className="w-6 h-6 text-blue-400" />
-            <span className="text-xl">Viewing: {currentViewers}</span>
+            <span className="text-xl">Views: {currentViewers}</span>
           </div>
         </div>
 
@@ -270,7 +270,7 @@ const AutomationRewards = () => {
   );
 
   const renderKeyEntry = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black flex items-center justify-center p-6">
       <Card className="max-w-md w-full p-8 bg-gray-800/80 backdrop-blur-xl border-yellow-500/30">
         <div className="text-center mb-8">
           <Lock className="w-16 h-16 mx-auto text-yellow-400 mb-4" />
@@ -418,7 +418,7 @@ const AutomationRewards = () => {
                 </div>
                 <div className="text-yellow-400 text-2xl">→</div>
                 <div className="text-center flex-1">
-                  <div className="font-bold text-purple-400">Outcome</div>
+                  <div className="font-bold text-emerald-400">Outcome</div>
                   <div className="text-gray-400 mt-1">Result</div>
                 </div>
               </div>

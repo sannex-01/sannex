@@ -42,7 +42,7 @@ const RewardsBoard = () => {
   const progressPercentage = (claimedCount / totalSystems) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black py-12 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -54,7 +54,7 @@ const RewardsBoard = () => {
             <Sparkles className="w-12 h-12 text-yellow-400" />
           </div>
           <p className="text-xl text-gray-300 mb-8">
-            VIP Automation Systems - One Pick Only
+            VIP Automation Systems - One Pick
           </p>
 
           {/* Progress tracker */}
@@ -126,7 +126,7 @@ const RewardsBoard = () => {
                   <Badge 
                     key={tag} 
                     variant="secondary" 
-                    className="text-xs bg-purple-500/20 text-purple-300"
+                    className="text-xs bg-emerald-500/20 text-emerald-300"
                   >
                     {tag}
                   </Badge>
