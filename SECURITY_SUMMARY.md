@@ -1,4 +1,4 @@
-# SANNEX Automation Draft - Security Summary
+# SANNEX Automation Rewards - Security Summary
 
 ## Security Review Completed ✅
 
@@ -9,19 +9,19 @@
 ## Security Measures Implemented
 
 ### 1. Input Validation
-- ✅ All access codes are sanitized and normalized (trim + toUpperCase)
+- ✅ All gift codes are sanitized and normalized (trim + toUpperCase)
 - ✅ No user input is directly used in SQL queries (using Supabase query builder)
 - ✅ Type-safe TypeScript interfaces prevent type confusion attacks
 
 ### 2. Authentication & Authorization
-- ✅ VIP access codes must be pre-registered in database
+- ✅ VIP gift codes must be pre-registered in database
 - ✅ Codes can only be used once (marked as `used: true` after claim)
 - ✅ Rollback mechanism prevents partial claims if database update fails
 - ✅ 5-minute reservation timeout prevents indefinite holds
 
 ### 3. Data Protection
 - ✅ No sensitive data stored in client-side localStorage
-- ✅ Access codes transmitted over HTTPS only
+- ✅ Gift codes transmitted over HTTPS only
 - ✅ Supabase credentials stored in environment variables (not in code)
 - ✅ Row Level Security (RLS) recommended for Supabase tables
 
@@ -43,15 +43,15 @@
 1. **Enable HTTPS** - Enforce SSL/TLS for all connections
 2. **Set Up Supabase RLS** - Implement row-level security policies:
    ```sql
-   ALTER TABLE draft_claims ENABLE ROW LEVEL SECURITY;
-   ALTER TABLE draft_access_codes ENABLE ROW LEVEL SECURITY;
+   ALTER TABLE rewards_claims ENABLE ROW LEVEL SECURITY;
+   ALTER TABLE rewards_access_codes ENABLE ROW LEVEL SECURITY;
    
    -- Allow read access to claims for live feed
-   CREATE POLICY "Public read claims" ON draft_claims
+   CREATE POLICY "Public read claims" ON rewards_claims
      FOR SELECT USING (true);
    
    -- Allow inserts only with valid structure
-   CREATE POLICY "Insert claims" ON draft_claims
+   CREATE POLICY "Insert claims" ON rewards_claims
      FOR INSERT WITH CHECK (true);
    ```
 
@@ -77,7 +77,7 @@
 3. **Audit Logging** - Log all claim attempts for security monitoring
 4. **IP Tracking** - Record IP addresses for fraud detection
 5. **Email Verification** - Send confirmation emails after claims
-6. **Code Expiry** - Add `expires_at` timestamp to access codes
+6. **Code Expiry** - Add `expires_at` timestamp to gift codes
 
 ## Threat Model Analysis
 
@@ -91,7 +91,7 @@
 ### Residual Risks ⚠️
 - ⚠️ **Brute Force** - Without rate limiting, codes could be guessed
   - **Mitigation**: Implement rate limiting before production
-- ⚠️ **Code Sharing** - Users could share their access codes
+- ⚠️ **Code Sharing** - Users could share their gift codes
   - **Mitigation**: Codes are one-time use, first-come-first-served
 - ⚠️ **Reservation Squatting** - Users could hold reservations without claiming
   - **Mitigation**: 5-minute timeout implemented

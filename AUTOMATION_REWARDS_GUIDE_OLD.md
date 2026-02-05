@@ -2,7 +2,7 @@
 
 ## Overview
 
-The SANNEX Automation Rewards is a premium experience for 2025 top clients to select one automation system from a curated list of 20 systems. Each client receives a unique gift code via the CSV file stored in `public/top-clients-2025.csv`.
+The SANNEX Automation Rewards is a premium VIP experience that allows top clients to select one automation system from a curated list of 20 systems. The experience is designed like an NBA rewards / iPhone drop / vault claim with dramatic animations and urgency-building elements.
 
 ## Features Implemented
 
@@ -17,16 +17,15 @@ The SANNEX Automation Rewards is a premium experience for 2025 top clients to se
   - "First come, first claimed."
 - Live UI elements:
   - 🔥 Slots remaining counter (X/20)
-  - 🟢 "Rewards are live" indicator
+  - 🟢 "Rewards is live" indicator
   - 👀 Current viewers count
 
-### 2. Gift Code System
+### 2. Access Key System
 - Physical key-like code entry experience
 - Light beam scan animation effect
 - Success: "ACCESS GRANTED" with vault door animation
 - Failure: Custom error message
 - Personalized welcome: "Welcome, [Client Name]"
-- Codes loaded from CSV: SANNEX2025GIFT01 through SANNEX2025GIFT20
 
 ### 3. The Vault - System Cards
 - 20 automation systems displayed in responsive grid
@@ -86,32 +85,26 @@ The SANNEX Automation Rewards is a premium experience for 2025 top clients to se
 - **5-Minute Reservation**: System is held for 5 minutes during selection
 - **VIP Badge Animations**: Gold shimmer effect on claimed systems
 - **Easter Egg**: Fun message if trying to claim again: "😂 Omo, one pick only. Your slot is locked."
-- **CSV Integration**: Reads client data and gift codes from public/top-clients-2025.csv
+- **Demo Mode**: Works without Supabase using mock data for testing
 
 ## Access URLs
 
 - **Main Rewards Entry**: `/rewards` or `/rewards/2025`
 - **Public Rewards Board**: `/rewards/board`
 
-## CSV Data Structure
+## Demo Access Codes
 
-The system reads from `/public/top-clients-2025.csv` with the following columns:
+For testing without database setup:
 
-```csv
-email,phone,client_name,join_date,total_amount_spent,percentage_contribution,project_name,project_description,project_status,surprise_date,gift_code
-```
+| Code | Client Name |
+|------|-------------|
+| SAMUEL-2025 | Samuel A. |
+| TOYOSI-2025 | Toyosi O. |
+| FAITH-2025 | Faith M. |
+| JAMILU-2025 | Jamilu K. |
+| DEMO-2025 | Demo User |
 
-### Example Gift Codes
-
-All 20 top clients have gift codes in the format:
-- `SANNEX2025GIFT01` → Dwight Oni
-- `SANNEX2025GIFT02` → Ngozi
-- `SANNEX2025GIFT03` → Gideon Momoh
-- ... and so on through GIFT20
-
-## Database Setup (Supabase) - Optional
-
-If you want to use Supabase for persistence instead of CSV:
+## Database Setup (Supabase)
 
 ### Required Tables
 
@@ -125,11 +118,12 @@ CREATE TABLE rewards_access_codes (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Load from CSV (example)
+-- Insert sample codes
 INSERT INTO rewards_access_codes (code, client_name, email, used) VALUES
-  ('SANNEX2025GIFT01', 'Dwight Oni', 'dwight.tc@sannex.ng', FALSE),
-  ('SANNEX2025GIFT02', 'Ngozi', 'ngozi.tc@sannex.ng', FALSE);
-  -- ... continue for all 20 clients
+  ('SAMUEL-2025', 'Samuel A.', 'samuel@example.com', FALSE),
+  ('TOYOSI-2025', 'Toyosi O.', 'toyosi@example.com', FALSE),
+  ('FAITH-2025', 'Faith M.', 'faith@example.com', FALSE),
+  ('JAMILU-2025', 'Jamilu K.', 'jamilu@example.com', FALSE);
 ```
 
 #### 2. rewards_claims
@@ -137,7 +131,7 @@ INSERT INTO rewards_access_codes (code, client_name, email, used) VALUES
 CREATE TABLE rewards_claims (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   client_name TEXT NOT NULL,
-  gift_code TEXT NOT NULL,
+  access_code TEXT NOT NULL,
   system_id INTEGER NOT NULL,
   system_title TEXT NOT NULL,
   ticket_id TEXT NOT NULL,
@@ -193,8 +187,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 - **Frontend**: React 18 + TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Routing**: React Router v6
-- **Data Source**: CSV file (`/public/top-clients-2025.csv`)
-- **Backend (Optional)**: Supabase (PostgreSQL)
+- **Backend**: Supabase (PostgreSQL)
 - **Animations**: CSS transitions + React state
 - **Icons**: Lucide React
 - **Notifications**: Sonner (toast library)
@@ -208,7 +201,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
    ↓
 3. Click "Enter Rewards"
    ↓
-4. Enter Gift Code (from CSV)
+4. Enter Access Code
    ↓
 5. Code Validation ("ACCESS GRANTED")
    ↓
@@ -231,14 +224,12 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 
 ## Deployment Checklist
 
-- [x] CSV file in `/public/top-clients-2025.csv`
-- [x] Gift codes format: SANNEX2025GIFT01-20
-- [x] Client names match CSV
-- [ ] Optional: Set up Supabase project
-- [ ] Optional: Create database tables
-- [ ] Optional: Add Supabase environment variables
+- [ ] Set up Supabase project
+- [ ] Create database tables (rewards_access_codes, rewards_claims)
+- [ ] Generate and insert VIP gift codes
+- [ ] Add Supabase environment variables
 - [ ] Deploy to Netlify/Vercel
-- [ ] Test claim flow end-to-end with real codes
+- [ ] Test claim flow end-to-end
 - [ ] Verify live feed updates correctly
 - [ ] Test "already claimed" scenario
 - [ ] Share `/rewards` link with VIP clients
@@ -267,7 +258,13 @@ In `/src/pages/AutomationRewards.tsx`:
 ### Check Current Claims
 Visit `/rewards/board` to see real-time claim status.
 
-### Reset a Claim (if needed with Supabase)
+### Add More VIP Codes
+```sql
+INSERT INTO rewards_access_codes (code, client_name, email) 
+VALUES ('NEWCODE-2025', 'Client Name', 'email@example.com');
+```
+
+### Reset a Claim (if needed)
 ```sql
 -- Mark code as unused again
 UPDATE rewards_access_codes 
@@ -276,28 +273,41 @@ WHERE code = 'CODE-TO-RESET';
 
 -- Delete the claim record
 DELETE FROM rewards_claims 
-WHERE gift_code = 'CODE-TO-RESET';
+WHERE access_code = 'CODE-TO-RESET';
 ```
 
 ## Security Considerations
 
-1. **Gift Codes**: Use unique codes from CSV
+1. **Access Codes**: Generate unique, unpredictable codes
 2. **Rate Limiting**: Consider adding rate limiting to prevent brute force
 3. **Code Expiry**: Add `expires_at` column if needed
-4. **RLS Policies**: Enable Row Level Security on Supabase tables (if using)
+4. **RLS Policies**: Enable Row Level Security on Supabase tables
 5. **HTTPS**: Always use HTTPS in production
+
+## Future Enhancements
+
+- [ ] Email notification on claim
+- [ ] PDF certificate generation
+- [ ] WhatsApp integration for kickoff calls
+- [ ] Admin dashboard for monitoring
+- [ ] Analytics tracking
+- [ ] Social sharing of claims
+- [ ] Countdown timer for rewards end date
 
 ## Troubleshooting
 
 ### Issue: Rewards page redirects to home
-**Solution**: Check that `/rewards` route is correctly configured in App.tsx
+**Solution**: Check that `/rewards` route is correctly configured and not being caught by language redirects.
 
-### Issue: Gift codes don't work
-**Solution**: Verify CSV file is in `/public/top-clients-2025.csv` and has correct format
+### Issue: Supabase errors
+**Solution**: Verify environment variables are set correctly. Check Supabase dashboard for table existence and RLS policies.
+
+### Issue: Demo codes don't work
+**Solution**: Demo codes only work when Supabase is NOT configured. If you have Supabase set up, add codes to the database.
 
 ### Issue: Claims not appearing in live feed
-**Solution**: Check browser console for errors. Verify CSV is loading correctly.
+**Solution**: Check browser console for errors. Verify the `retrieveReservationHistory` function is being called and Supabase connection is working.
 
 ---
 
-**Built by SANNEX Tech LTD** | 🎯 Rewarding the 2025 Top Clients
+**Built by SANNEX Tech LTD** | 🎯 Elevating the 2025 VIP Client Experience
