@@ -5,9 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { automationSystems } from '@/data/automationSystems';
-import { AutomationSystem } from '@/types/automationDraft';
+import { AutomationSystem } from '@/types/automationRewards';
 import { 
-  authenticateDraftKey, 
+  authenticateGiftCode, 
   scanForExistingReservation, 
   retrieveReservationHistory,
   finalizeSystemReservation 
@@ -15,12 +15,12 @@ import {
 import { Lock, Sparkles, CheckCircle2, AlertCircle, Flame, Eye, Clock, Trophy } from 'lucide-react';
 import { toast } from 'sonner';
 
-type DraftStage = 'hero' | 'keyEntry' | 'vault' | 'preview' | 'countdown' | 'ticket';
+type RewardsStage = 'hero' | 'codeEntry' | 'vault' | 'preview' | 'countdown' | 'ticket';
 
-const AutomationDraft2025 = () => {
+const AutomationRewards2025 = () => {
   const navigate = useNavigate();
-  const [stage, setStage] = useState<DraftStage>('hero');
-  const [keyInput, setKeyInput] = useState('');
+  const [stage, setStage] = useState<RewardsStage>('hero');
+  const [codeInput, setKeyInput] = useState('');
   const [vipIdentity, setVipIdentity] = useState('');
   const [vaultOpen, setVaultOpen] = useState(false);
   const [selectedSystem, setSelectedSystem] = useState<AutomationSystem | null>(null);
@@ -92,13 +92,13 @@ const AutomationDraft2025 = () => {
   };
 
   const handleKeySubmission = async () => {
-    if (!keyInput.trim()) {
+    if (!codeInput.trim()) {
       toast.error('Please enter your access code');
       return;
     }
 
     // Check if already claimed
-    const existingCheck = await scanForExistingReservation(keyInput);
+    const existingCheck = await scanForExistingReservation(codeInput);
     if (existingCheck.hasReservation) {
       toast.error('😂 Omo, one pick only. Your slot is locked.');
       setVipIdentity(existingCheck.reservationDetails.client_name);
@@ -109,7 +109,7 @@ const AutomationDraft2025 = () => {
     }
 
     // Validate key
-    const authResult = await authenticateDraftKey(keyInput);
+    const authResult = await authenticateGiftCode(codeInput);
     if (!authResult.authenticated) {
       toast.error(authResult.reason || 'Invalid access code');
       return;
@@ -179,7 +179,7 @@ const AutomationDraft2025 = () => {
     
     const result = await finalizeSystemReservation({
       clientFullName: vipIdentity,
-      vipPasscode: keyInput,
+      giftCode: codeInput,
       automationId: selectedSystem.id,
       automationTitle: selectedSystem.title,
       certificateCode: generatedTicketId,
@@ -239,7 +239,7 @@ const AutomationDraft2025 = () => {
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-xl">Draft is live</span>
+            <span className="text-xl">Rewards are live</span>
           </div>
           <div className="flex items-center gap-2">
             <Eye className="w-6 h-6 text-blue-400" />
@@ -248,21 +248,21 @@ const AutomationDraft2025 = () => {
         </div>
 
         <Button 
-          onClick={() => setStage('keyEntry')} 
+          onClick={() => setStage('codeEntry')} 
           size="lg"
           className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold text-xl px-12 py-6 rounded-full shadow-2xl transform hover:scale-105 transition-all"
         >
-          Enter Draft <Lock className="ml-2 w-6 h-6" />
+          Enter Rewards <Lock className="ml-2 w-6 h-6" />
         </Button>
 
         <div className="mt-8">
           <Button
-            onClick={() => navigate('/draft/board')}
+            onClick={() => navigate('/rewards/board')}
             variant="ghost"
             className="text-yellow-400 hover:text-yellow-300"
           >
             <Trophy className="mr-2 w-5 h-5" />
-            View Draft Board
+            View Rewards Board
           </Button>
         </div>
       </div>
@@ -280,7 +280,7 @@ const AutomationDraft2025 = () => {
 
         <div className="space-y-4">
           <Input
-            value={keyInput}
+            value={codeInput}
             onChange={(e) => setKeyInput(e.target.value)}
             placeholder="ENTER-YOUR-CODE"
             className="text-center text-xl tracking-widest font-mono bg-gray-900 border-yellow-500/50 text-white uppercase"
@@ -546,7 +546,7 @@ const AutomationDraft2025 = () => {
       `}</style>
       
       {stage === 'hero' && renderHeroStage()}
-      {stage === 'keyEntry' && renderKeyEntry()}
+      {stage === 'codeEntry' && renderKeyEntry()}
       {stage === 'vault' && renderVault()}
       {stage === 'preview' && renderPreview()}
       {stage === 'countdown' && renderCountdown()}
@@ -555,4 +555,4 @@ const AutomationDraft2025 = () => {
   );
 };
 
-export default AutomationDraft2025;
+export default AutomationRewards2025;

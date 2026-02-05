@@ -16,8 +16,8 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
-import AutomationDraft from "./pages/AutomationDraft";
-import DraftBoard from "./pages/DraftBoard";
+import AutomationRewards from "./pages/AutomationRewards";
+import RewardsBoard from "./pages/RewardsBoard";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
@@ -48,17 +48,17 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   const location = useLocation();
   const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
-  const isDraftPage = location.pathname.startsWith('/draft');
+  const isRewardsPage = location.pathname.startsWith('/rewards');
   const isMagicEsimPage = location.pathname.startsWith('/esimmagic');
 
-  // Draft pages - no header/footer
-  if (isDraftPage) {
+  // Rewards pages - no header/footer
+  if (isRewardsPage) {
     return (
       <Routes>
-        <Route path="/draft" element={<AutomationDraft />} />
-        <Route path="/draft/2025" element={<AutomationDraft />} />
-        <Route path="/draft/board" element={<DraftBoard />} />
-        <Route path="*" element={<Navigate to="/draft" replace />} />
+        <Route path="/rewards" element={<AutomationRewards />} />
+        <Route path="/rewards/2025" element={<AutomationRewards />} />
+        <Route path="/rewards/board" element={<RewardsBoard />} />
+        <Route path="*" element={<Navigate to="/rewards" replace />} />
       </Routes>
     );
   }

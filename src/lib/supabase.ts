@@ -81,61 +81,56 @@ export const submitFeedback = async (feedback: FeedbackSubmission) => {
 };
 
 // ==========================================
-// SANNEX 2025 VIP Draft System
+// SANNEX 2025 Rewards System for Top Clients
 // ==========================================
 
 export interface SystemReservation {
   clientFullName: string;
-  vipPasscode: string;
+  giftCode: string;
   automationId: number;
   automationTitle: string;
   certificateCode: string;
 }
 
-export interface PasscodeEntry {
-  passcode: string;
-  clientFullName: string;
-  contactEmail?: string;
-  isConsumed: boolean;
+export interface GiftCodeEntry {
+  code: string;
+  client_name: string;
+  email?: string;
+  used: boolean;
 }
 
-// Draft key verification with custom business logic
-export const authenticateDraftKey = async (inputKey: string) => {
-  // Mock data for demo if Supabase not configured
+// Gift code verification with custom business logic
+export const authenticateGiftCode = async (inputCode: string) => {
+  // Load from CSV data if Supabase not configured
   if (!supabase) {
-    const demoKeys: Record<string, string> = {
-      'SAMUEL-2025': 'Samuel A.',
-      'TOYOSI-2025': 'Toyosi O.',
-      'FAITH-2025': 'Faith M.',
-      'JAMILU-2025': 'Jamilu K.',
-      'DEMO-2025': 'Demo User',
-    };
+    const { fetchTopClient2025Data, findClientByGiftCode } = await import('@/utils/rewardsData');
+    const clients = await fetchTopClient2025Data();
+    const client = findClientByGiftCode(clients, inputCode);
     
-    const sanitizedInput = inputKey.trim().toUpperCase();
-    if (demoKeys[sanitizedInput]) {
-      return { authenticated: true, clientIdentity: demoKeys[sanitizedInput] };
+    if (client) {
+      return { authenticated: true, clientIdentity: client.client_name };
     }
-    return { authenticated: false, reason: "That code doesn't belong to the 2025 list." };
+    return { authenticated: false, reason: "That code doesn't belong to the 2025 rewards list." };
   }
   
-  const sanitizedInput = inputKey.trim().toUpperCase();
+  const sanitizedInput = inputCode.trim().toUpperCase();
   
-  const { data: keyData } = await supabase
-    .from('draft_access_codes')
+  const { data: codeData } = await supabase
+    .from('rewards_access_codes')
     .select('code, client_name, used')
     .eq('code', sanitizedInput)
     .limit(1);
   
-  if (!keyData || keyData.length === 0) {
-    return { authenticated: false, reason: "That code doesn't belong to the 2025 list." };
+  if (!codeData || codeData.length === 0) {
+    return { authenticated: false, reason: "That code doesn't belong to the 2025 rewards list." };
   }
   
-  const keyInfo = keyData[0];
-  if (keyInfo.used) {
-    return { authenticated: false, reason: "This access key has already been claimed." };
+  const codeInfo = codeData[0];
+  if (codeInfo.used) {
+    return { authenticated: false, reason: "This gift code has already been redeemed." };
   }
   
-  return { authenticated: true, clientIdentity: keyInfo.client_name };
+  return { authenticated: true, clientIdentity: codeInfo.client_name };
 };
 
 // Retrieve all reservations for live activity feed
@@ -146,26 +141,26 @@ export const retrieveReservationHistory = async () => {
   }
   
   const { data: reservations } = await supabase
-    .from('draft_claims')
+    .from('rewards_claims')
     .select('system_id, system_title, client_name, claimed_at')
-    .order('claimed_at', { ascending: false })
+    .order('claimed_at', { ascending: false})
     .limit(50);
   
   return reservations || [];
 };
 
-// Check if passcode has active reservation
-export const scanForExistingReservation = async (inputKey: string) => {
+// Check if gift code has active reservation
+export const scanForExistingReservation = async (inputCode: string) => {
   if (!supabase) {
     return { hasReservation: false };
   }
   
-  const sanitizedInput = inputKey.trim().toUpperCase();
+  const sanitizedInput = inputCode.trim().toUpperCase();
   
   const { data: foundReservation } = await supabase
-    .from('draft_claims')
+    .from('rewards_claims')
     .select('*')
-    .eq('access_code', sanitizedInput)
+    .eq('gift_code', sanitizedInput)
     .limit(1);
   
   if (foundReservation && foundReservation.length > 0) {
@@ -188,28 +183,28 @@ export const finalizeSystemReservation = async (reservationData: SystemReservati
     };
   }
   
-  const keyToConsume = reservationData.vipPasscode.trim().toUpperCase();
+  const codeToConsume = reservationData.giftCode.trim().toUpperCase();
   const timestamp = new Date().toISOString();
   
-  // Transaction-like approach: consume key then record reservation
-  const keyConsumption = await supabase
-    .from('draft_access_codes')
+  // Transaction-like approach: consume code then record reservation
+  const codeConsumption = await supabase
+    .from('rewards_access_codes')
     .update({ used: true })
-    .eq('code', keyToConsume)
+    .eq('code', codeToConsume)
     .eq('used', false);
   
-  if (keyConsumption.error) {
+  if (codeConsumption.error) {
     return { 
       finalized: false, 
-      failureReason: 'Key validation failed - may already be in use' 
+      failureReason: 'Gift code validation failed - may already be in use' 
     };
   }
   
   const reservationEntry = await supabase
-    .from('draft_claims')
+    .from('rewards_claims')
     .insert({
       client_name: reservationData.clientFullName,
-      access_code: keyToConsume,
+      gift_code: codeToConsume,
       system_id: reservationData.automationId,
       system_title: reservationData.automationTitle,
       ticket_id: reservationData.certificateCode,
@@ -219,11 +214,11 @@ export const finalizeSystemReservation = async (reservationData: SystemReservati
     .single();
   
   if (reservationEntry.error) {
-    // Rollback: unreserve the key
+    // Rollback: unreserve the code
     await supabase
-      .from('draft_access_codes')
+      .from('rewards_access_codes')
       .update({ used: false })
-      .eq('code', keyToConsume);
+      .eq('code', codeToConsume);
     
     return { 
       finalized: false, 
@@ -235,150 +230,4 @@ export const finalizeSystemReservation = async (reservationData: SystemReservati
     finalized: true, 
     confirmation: reservationEntry.data 
   };
-};
-
-// SANNEX 2025 Draft - Claim Management
-export interface DraftSystemClaim {
-  client_name: string;
-  access_code: string;
-  system_id: number;
-  system_title: string;
-  ticket_id: string;
-}
-
-export interface VIPAccessKey {
-  code: string;
-  client_name: string;
-  email?: string;
-  used: boolean;
-}
-
-// SANNEX 2025 Draft - Claim Management
-export interface DraftSystemClaim {
-  client_name: string;
-  access_code: string;
-  system_id: number;
-  system_title: string;
-  ticket_id: string;
-}
-
-export interface VIPAccessKey {
-  code: string;
-  client_name: string;
-  email?: string;
-  used: boolean;
-}
-
-// Draft key verification with custom business logic
-export interface DraftClaimData {
-  client_name: string;
-  access_code: string;
-  system_id: number;
-  system_title: string;
-  ticket_id: string;
-}
-
-export interface AccessCodeData {
-  code: string;
-  client_name: string;
-  email?: string;
-  used: boolean;
-}
-
-// Verify if access code is valid
-export const verifyAccessCode = async (code: string): Promise<{ valid: boolean; clientName?: string; error?: string }> => {
-  try {
-    const { data, error } = await supabase
-      .from('draft_access_codes')
-      .select('*')
-      .eq('code', code.toUpperCase())
-      .eq('used', false)
-      .single();
-    
-    if (error || !data) {
-      return { valid: false, error: 'Invalid or already used access code' };
-    }
-    
-    return { valid: true, clientName: data.client_name };
-  } catch (error: any) {
-    console.error('Error verifying access code:', error);
-    return { valid: false, error: error.message };
-  }
-};
-
-// Get all draft claims
-export const getDraftClaims = async () => {
-  try {
-    const { data, error } = await supabase
-      .from('draft_claims')
-      .select('*')
-      .order('claimed_at', { ascending: false });
-    
-    if (error) {
-      throw error;
-    }
-    
-    return { success: true, data };
-  } catch (error: any) {
-    console.error('Error fetching claims:', error);
-    return { success: false, error: error.message, data: [] };
-  }
-};
-
-// Check if code has already claimed
-export const checkIfCodeClaimed = async (code: string) => {
-  try {
-    const { data, error } = await supabase
-      .from('draft_claims')
-      .select('*')
-      .eq('access_code', code.toUpperCase())
-      .single();
-    
-    if (error && error.code === 'PGRST116') {
-      // No claim found
-      return { claimed: false };
-    }
-    
-    if (error) {
-      throw error;
-    }
-    
-    return { claimed: true, claim: data };
-  } catch (error: any) {
-    console.error('Error checking claim:', error);
-    return { claimed: false, error: error.message };
-  }
-};
-
-// Submit a draft claim
-export const submitDraftClaim = async (claim: DraftClaimData) => {
-  try {
-    // First, mark the access code as used
-    const { error: codeError } = await supabase
-      .from('draft_access_codes')
-      .update({ used: true })
-      .eq('code', claim.access_code.toUpperCase());
-    
-    if (codeError) {
-      throw codeError;
-    }
-    
-    // Then, insert the claim
-    const { data, error } = await supabase
-      .from('draft_claims')
-      .insert([{
-        ...claim,
-        claimed_at: new Date().toISOString(),
-      }])
-      .select();
-    
-    if (error) {
-      throw error;
-    }
-    
-    return { success: true, data };
-  } catch (error: any) {
-    console.error('Error submitting claim:', error);
-    return { success: false, error: error.message };
-  }
 };

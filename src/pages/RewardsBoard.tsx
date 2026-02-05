@@ -4,12 +4,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { automationSystems } from '@/data/automationSystems';
-import { AutomationSystem } from '@/types/automationDraft';
+import { AutomationSystem } from '@/types/automationRewards';
 import { retrieveReservationHistory } from '@/lib/supabase';
 import { Trophy, CheckCircle2, Lock, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const DraftBoard = () => {
+const RewardsBoard = () => {
   const navigate = useNavigate();
   const [systemsState, setSystemsState] = useState(automationSystems);
   const [claimedCount, setClaimedCount] = useState(0);
@@ -49,7 +49,7 @@ const DraftBoard = () => {
           <div className="inline-flex items-center gap-3 mb-4">
             <Trophy className="w-12 h-12 text-yellow-400" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-              2025 Top Clients Draft Board
+              2025 Top Clients Rewards Board
             </h1>
             <Sparkles className="w-12 h-12 text-yellow-400" />
           </div>
@@ -156,12 +156,12 @@ const DraftBoard = () => {
               Enter the draft and claim your automation system. One pick only!
             </p>
             <Button
-              onClick={() => navigate('/draft')}
+              onClick={() => navigate('/rewards')}
               size="lg"
               className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold px-8 py-6 text-lg"
             >
               <Lock className="mr-2 w-5 h-5" />
-              Enter VIP Draft
+              Enter VIP Rewards
             </Button>
           </Card>
         </div>
@@ -214,4 +214,4 @@ const DraftBoard = () => {
   );
 };
 
-export default DraftBoard;
+export default RewardsBoard;

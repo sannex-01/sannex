@@ -11,19 +11,18 @@ export interface AutomationSystem {
   claimedAt?: string;
 }
 
-export interface DraftClaim {
+export interface RewardsClaim {
   id?: string;
   client_name: string;
-  access_code: string;
+  gift_code: string;
   system_id: number;
   system_title: string;
   claimed_at: string;
   ticket_id: string;
 }
 
-export interface AccessCode {
+export interface GiftCode {
   code: string;
   client_name: string;
-  email?: string;
   used: boolean;
 }
