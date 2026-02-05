@@ -1,3 +1,4 @@
+import Papa from 'papaparse';
 import { TopClientData } from '@/types/topClient';
 
 export async function fetchTopClient2025Data(): Promise<TopClientData[]> {
@@ -8,21 +9,27 @@ export async function fetchTopClient2025Data(): Promise<TopClientData[]> {
     }
     
     const csvText = await response.text();
-    const lines = csvText.trim().split('\n').filter(line => line.trim() !== '');
+    
+    // Use PapaParse to properly handle quoted fields with commas
+    const parseResult = Papa.parse<string[]>(csvText, {
+      header: false,
+      skipEmptyLines: true,
+    });
+    
+    if (parseResult.errors.length > 0) {
+      console.warn('CSV parsing errors:', parseResult.errors);
+    }
     
     // Skip header row
-    const dataLines = lines.slice(1);
+    const dataRows = parseResult.data.slice(1);
     
-    return dataLines.map(line => {
-      // Simple CSV parsing - assumes no commas in values
-      const values = line.split(',');
-      
+    return dataRows.map(values => {
       // Validate numeric values
       const totalAmount = parseFloat(values[4]?.trim() || '0');
       const percentage = parseFloat(values[5]?.trim() || '0');
       
       if (isNaN(totalAmount) || isNaN(percentage)) {
-        console.warn(`Invalid numeric values in CSV line: ${line}`);
+        console.warn(`Invalid numeric values in CSV row for client: ${values[2]}`);
       }
       
       return {
