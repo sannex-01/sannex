@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 
 type RewardsStage = 'hero' | 'codeEntry' | 'vault' | 'preview' | 'countdown' | 'ticket';
 
-const AutomationRewards2025 = () => {
+const AutomationRewards = () => {
   const navigate = useNavigate();
   const [stage, setStage] = useState<RewardsStage>('hero');
   const [codeInput, setKeyInput] = useState('');
@@ -555,4 +555,4 @@ const AutomationRewards2025 = () => {
   );
 };
 
-export default AutomationRewards2025;
+export default AutomationRewards;
