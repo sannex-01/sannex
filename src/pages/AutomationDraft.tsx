@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -11,12 +12,13 @@ import {
   retrieveReservationHistory,
   finalizeSystemReservation 
 } from '@/lib/supabase';
-import { Lock, Sparkles, CheckCircle2, AlertCircle, Flame, Eye, Clock } from 'lucide-react';
+import { Lock, Sparkles, CheckCircle2, AlertCircle, Flame, Eye, Clock, Trophy } from 'lucide-react';
 import { toast } from 'sonner';
 
 type DraftStage = 'hero' | 'keyEntry' | 'vault' | 'preview' | 'countdown' | 'ticket';
 
 const AutomationDraft2025 = () => {
+  const navigate = useNavigate();
   const [stage, setStage] = useState<DraftStage>('hero');
   const [keyInput, setKeyInput] = useState('');
   const [vipIdentity, setVipIdentity] = useState('');
@@ -252,6 +254,17 @@ const AutomationDraft2025 = () => {
         >
           Enter Draft <Lock className="ml-2 w-6 h-6" />
         </Button>
+
+        <div className="mt-8">
+          <Button
+            onClick={() => navigate('/draft/board')}
+            variant="ghost"
+            className="text-yellow-400 hover:text-yellow-300"
+          >
+            <Trophy className="mr-2 w-5 h-5" />
+            View Draft Board
+          </Button>
+        </div>
       </div>
     </div>
   );

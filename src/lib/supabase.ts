@@ -3,10 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_DATABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const hasSupabaseConfig = supabaseUrl && supabaseAnonKey;
+
+export const supabase = hasSupabaseConfig 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 // Function to ensure the feedback table exists
 export const ensureFeedbackTable = async () => {
+  if (!supabase) return false;
+  
   try {
     // Try to select from the table to check if it exists
     const { error } = await supabase
@@ -53,6 +59,10 @@ export interface FeedbackSubmission {
 }
 
 export const submitFeedback = async (feedback: FeedbackSubmission) => {
+  if (!supabase) {
+    return { success: false, error: 'Supabase not configured' };
+  }
+  
   try {
     const { data, error } = await supabase
       .from('top_client_feedback')
@@ -91,6 +101,23 @@ export interface PasscodeEntry {
 
 // Draft key verification with custom business logic
 export const authenticateDraftKey = async (inputKey: string) => {
+  // Mock data for demo if Supabase not configured
+  if (!supabase) {
+    const demoKeys: Record<string, string> = {
+      'SAMUEL-2025': 'Samuel A.',
+      'TOYOSI-2025': 'Toyosi O.',
+      'FAITH-2025': 'Faith M.',
+      'JAMILU-2025': 'Jamilu K.',
+      'DEMO-2025': 'Demo User',
+    };
+    
+    const sanitizedInput = inputKey.trim().toUpperCase();
+    if (demoKeys[sanitizedInput]) {
+      return { authenticated: true, clientIdentity: demoKeys[sanitizedInput] };
+    }
+    return { authenticated: false, reason: "That code doesn't belong to the 2025 list." };
+  }
+  
   const sanitizedInput = inputKey.trim().toUpperCase();
   
   const { data: keyData } = await supabase
@@ -113,6 +140,11 @@ export const authenticateDraftKey = async (inputKey: string) => {
 
 // Retrieve all reservations for live activity feed
 export const retrieveReservationHistory = async () => {
+  if (!supabase) {
+    // Return mock data for demo
+    return [];
+  }
+  
   const { data: reservations } = await supabase
     .from('draft_claims')
     .select('system_id, system_title, client_name, claimed_at')
@@ -124,6 +156,10 @@ export const retrieveReservationHistory = async () => {
 
 // Check if passcode has active reservation
 export const scanForExistingReservation = async (inputKey: string) => {
+  if (!supabase) {
+    return { hasReservation: false };
+  }
+  
   const sanitizedInput = inputKey.trim().toUpperCase();
   
   const { data: foundReservation } = await supabase
@@ -141,6 +177,17 @@ export const scanForExistingReservation = async (inputKey: string) => {
 
 // Process and finalize system reservation
 export const finalizeSystemReservation = async (reservationData: SystemReservation) => {
+  if (!supabase) {
+    // Mock success for demo
+    return { 
+      finalized: true, 
+      confirmation: {
+        ...reservationData,
+        claimed_at: new Date().toISOString()
+      }
+    };
+  }
+  
   const keyToConsume = reservationData.vipPasscode.trim().toUpperCase();
   const timestamp = new Date().toISOString();
   

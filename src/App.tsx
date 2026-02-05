@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
 import AutomationDraft from "./pages/AutomationDraft";
+import DraftBoard from "./pages/DraftBoard";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
@@ -47,9 +48,22 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   const location = useLocation();
   const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
-  const isDraftPage = location.pathname.startsWith('/draft') || location.pathname.includes('/draft');
+  const isDraftPage = location.pathname.startsWith('/draft');
   const isMagicEsimPage = location.pathname.startsWith('/esimmagic');
 
+  // Draft pages - no header/footer
+  if (isDraftPage) {
+    return (
+      <Routes>
+        <Route path="/draft" element={<AutomationDraft />} />
+        <Route path="/draft/2025" element={<AutomationDraft />} />
+        <Route path="/draft/board" element={<DraftBoard />} />
+        <Route path="*" element={<Navigate to="/draft" replace />} />
+      </Routes>
+    );
+  }
+
+  // Top clients pages - no header/footer
   if (isTopClientsPage) {
     return (
       <Routes>
@@ -59,15 +73,7 @@ const AppRoutes = () => {
     );
   }
 
-  if (isDraftPage) {
-    return (
-      <Routes>
-        <Route path="/draft" element={<AutomationDraft />} />
-        <Route path="/draft/2025" element={<AutomationDraft />} />
-      </Routes>
-    );
-  }
-
+  // Magic eSIM pages - no header/footer
   if (isMagicEsimPage) {
     return (
       <Routes>
