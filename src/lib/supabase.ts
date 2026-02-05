@@ -253,91 +253,23 @@ export interface VIPAccessKey {
   used: boolean;
 }
 
-// Validate VIP access key for draft entry
-export const validateVIPKey = async (keyInput: string) => {
-  const normalizedKey = keyInput.toUpperCase();
-  
-  const { data: keyRecord, error: lookupError } = await supabase
-    .from('draft_access_codes')
-    .select('*')
-    .eq('code', normalizedKey)
-    .eq('used', false)
-    .maybeSingle();
-  
-  if (lookupError || !keyRecord) {
-    return { 
-      isValid: false, 
-      message: "That code doesn't belong to the 2025 list." 
-    };
-  }
-  
-  return { 
-    isValid: true, 
-    vipName: keyRecord.client_name 
-  };
-};
+// SANNEX 2025 Draft - Claim Management
+export interface DraftSystemClaim {
+  client_name: string;
+  access_code: string;
+  system_id: number;
+  system_title: string;
+  ticket_id: string;
+}
 
-// Fetch all system claims for live feed
-export const fetchAllSystemClaims = async () => {
-  const { data: claimsList, error: fetchError } = await supabase
-    .from('draft_claims')
-    .select('*')
-    .order('claimed_at', { ascending: false });
-  
-  return fetchError 
-    ? { ok: false, message: fetchError.message, claims: [] }
-    : { ok: true, claims: claimsList || [] };
-};
+export interface VIPAccessKey {
+  code: string;
+  client_name: string;
+  email?: string;
+  used: boolean;
+}
 
-// Verify if VIP key already has a claim
-export const checkExistingClaim = async (keyInput: string) => {
-  const normalizedKey = keyInput.toUpperCase();
-  
-  const { data: existingRecord, error: queryError } = await supabase
-    .from('draft_claims')
-    .select('*')
-    .eq('access_code', normalizedKey)
-    .maybeSingle();
-  
-  if (queryError && queryError.code !== 'PGRST116') {
-    return { hasClaim: false, errorMsg: queryError.message };
-  }
-  
-  return existingRecord 
-    ? { hasClaim: true, claimData: existingRecord }
-    : { hasClaim: false };
-};
-
-// Lock in VIP system selection
-export const lockInSystemChoice = async (claimInfo: DraftSystemClaim) => {
-  const normalizedKey = claimInfo.access_code.toUpperCase();
-  
-  // Mark key as consumed
-  const { error: updateError } = await supabase
-    .from('draft_access_codes')
-    .update({ used: true })
-    .eq('code', normalizedKey);
-  
-  if (updateError) {
-    return { locked: false, message: updateError.message };
-  }
-  
-  // Record the claim
-  const { data: claimRecord, error: insertError } = await supabase
-    .from('draft_claims')
-    .insert([{
-      ...claimInfo,
-      claimed_at: new Date().toISOString(),
-    }])
-    .select()
-    .single();
-  
-  return insertError
-    ? { locked: false, message: insertError.message }
-    : { locked: true, claimRecord };
-};
-
-// Draft Claim types and functions
+// Draft key verification with custom business logic
 export interface DraftClaimData {
   client_name: string;
   access_code: string;

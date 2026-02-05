@@ -175,7 +175,7 @@ const AutomationDraft2025 = () => {
   const processFinalization = async () => {
     if (!selectedSystem) return;
     
-    const generatedTicketId = `SANNEX-VIP-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const generatedTicketId = `SANNEX-VIP-${Math.random().toString(36).substring(2, 11).toUpperCase()}`;
     
     const result = await finalizeSystemReservation({
       clientFullName: vipIdentity,
