@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
+import AutomationDraft from "./pages/AutomationDraft";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
@@ -46,6 +47,7 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   const location = useLocation();
   const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
+  const isDraftPage = location.pathname.startsWith('/draft') || location.pathname.includes('/draft');
   const isMagicEsimPage = location.pathname.startsWith('/esimmagic');
 
   if (isTopClientsPage) {
@@ -53,6 +55,15 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/top-clients/:year" element={<TopClients />} />
         <Route path="/:lang/top-clients/:year" element={<LanguageRouteWrapper><TopClients /></LanguageRouteWrapper>} />
+      </Routes>
+    );
+  }
+
+  if (isDraftPage) {
+    return (
+      <Routes>
+        <Route path="/draft" element={<AutomationDraft />} />
+        <Route path="/draft/2025" element={<AutomationDraft />} />
       </Routes>
     );
   }
