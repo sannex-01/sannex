@@ -150,10 +150,10 @@ const RewardsBoard = () => {
         <div className="text-center">
           <Card className="inline-block p-8 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500/50">
             <h2 className="text-2xl font-bold text-foreground mb-4">
-              Have a VIP Access Code?
+              Have your VIP Code?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Enter the draft and claim your automation system. One pick only!
+              Enter your VIP access code and claim your automation system. you have only one shot!
             </p>
             <Button
               onClick={() => navigate('/rewards')}
@@ -161,7 +161,7 @@ const RewardsBoard = () => {
               className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold px-8 py-6 text-lg"
             >
               <Lock className="mr-2 w-5 h-5" />
-              Enter VIP Rewards
+              Enter Access Code
             </Button>
           </Card>
         </div>
