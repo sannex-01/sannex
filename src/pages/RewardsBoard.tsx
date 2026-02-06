@@ -435,13 +435,6 @@ const RewardsBoard = () => {
             Back to Board
           </Button>
         </div>
-
-        <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded">
-          <p className="text-sm text-muted-foreground">
-            <AlertCircle className="inline w-4 h-4 mr-1" />
-            Your code is in the email sent to you by SANNEX.
-          </p>
-        </div>
       </Card>
     </div>
   );
