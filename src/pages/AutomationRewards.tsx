@@ -336,7 +336,7 @@ const AutomationRewards = () => {
               style={{ animationDelay: `${idx * 50}ms` }}
             >
               <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-bold text-foreground">{system.title}</h3>
+                <h3 className="text-lg font-semibold text-foreground">{system.title}</h3>
                 {system.status === 'claimed' ? (
                   <Badge variant="secondary" className="bg-red-500/20 text-red-400">Claimed</Badge>
                 ) : (
@@ -395,30 +395,10 @@ const AutomationRewards = () => {
             <h3 className="text-2xl font-bold text-yellow-400 mb-3">{selectedSystem.title}</h3>
             <p className="text-lg text-foreground mb-3">{selectedSystem.worth}</p>
             <p className="text-muted-foreground mb-4">{selectedSystem.description}</p>
-            
-            {/* Mini pipeline preview */}
-            <Card className="p-4">
-              <div className="flex items-center justify-between text-sm">
-                <div className="text-center flex-1">
-                  <div className="font-bold text-green-400">Trigger</div>
-                  <div className="text-muted-foreground mt-1">Input Event</div>
-                </div>
-                <div className="text-yellow-400 text-2xl">→</div>
-                <div className="text-center flex-1">
-                  <div className="font-bold text-blue-400">Automation</div>
-                  <div className="text-muted-foreground mt-1">Process</div>
-                </div>
-                <div className="text-yellow-400 text-2xl">→</div>
-                <div className="text-center flex-1">
-                  <div className="font-bold text-primary">Outcome</div>
-                  <div className="text-muted-foreground mt-1">Result</div>
-                </div>
-              </div>
-            </Card>
           </Card>
 
           <div className="bg-red-500/10 border border-red-500/50 rounded p-4 mb-6">
-            <p className="text-red-400 text-center font-bold">
+            <p className="text-red-400 text-center">
               ⚠️ Once you lock this in, you can't pick another.
             </p>
           </div>
@@ -444,7 +424,7 @@ const AutomationRewards = () => {
                 setSelectedSystem(null);
               }}
               variant="outline"
-              className="px-8"
+              className="px-8 py-6"
             >
               Back
             </Button>
@@ -467,8 +447,8 @@ const AutomationRewards = () => {
   );
 
   const renderTicket = () => (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6">
-      <Card className="max-w-2xl w-full p-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6 px-3">
+      <Card className="max-w-2xl w-full px-5 p-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-6">
             <CheckCircle2 className="w-12 h-12 text-white" />
@@ -477,14 +457,14 @@ const AutomationRewards = () => {
           <p className="text-yellow-400 text-xl">✅ CLAIMED</p>
         </div>
 
-        <Card className="p-8 space-y-4 mb-8">
+        <Card className="p-8 px-3 space-y-4 mb-8">
           <div className="grid grid-cols-2 gap-4 text-foreground">
             <div>
               <p className="text-muted-foreground text-sm">Ticket ID</p>
               <p className="font-mono font-bold text-yellow-400">{ticketId}</p>
             </div>
             <div>
-              <p className="text-muted-foreground text-sm">Client Name</p>
+              <p className="text-muted-foreground text-sm">Client</p>
               <p className="font-bold">{vipIdentity}</p>
             </div>
           </div>
@@ -505,7 +485,7 @@ const AutomationRewards = () => {
               <span className="text-foreground">4 weeks</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Ops sponsored by:</span>
+              <span className="text-muted-foreground">Sponsored by:</span>
               <span className="text-yellow-400 font-bold">SANNEX TECH LTD ✅</span>
             </div>
           </div>
@@ -521,7 +501,7 @@ const AutomationRewards = () => {
         </div>
 
         <p className="text-center text-muted-foreground mt-6 text-sm italic">
-          🔒 Your account is now locked. You already claimed your one pick.
+          💚💚💚
         </p>
       </Card>
     </div>
