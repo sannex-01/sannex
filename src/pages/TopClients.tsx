@@ -15,19 +15,6 @@ import { toast } from 'sonner';
 import { useCountUp } from '@/hooks/useCountUp';
 import { submitFeedback, ensureFeedbackTable } from '@/lib/supabase';
 
-// Add keyframe animation for grid
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes gridFloat {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(50px); }
-  }
-`;
-if (!document.head.querySelector('style[data-grid-animation]')) {
-  styleSheet.setAttribute('data-grid-animation', 'true');
-  document.head.appendChild(styleSheet);
-}
-
 const TopClients = () => {
   const { year } = useParams<{ year: string }>();
   const navigate = useNavigate();
@@ -72,6 +59,28 @@ const TopClients = () => {
       fetchTopClientData(year).then(setAllClients);
     }
   }, [year]);
+
+  // Add keyframe animation for grid
+  useEffect(() => {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes gridFloat {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(50px); }
+      }
+    `;
+    if (!document.head.querySelector('style[data-grid-animation]')) {
+      styleSheet.setAttribute('data-grid-animation', 'true');
+      document.head.appendChild(styleSheet);
+    }
+    
+    return () => {
+      const existingStyle = document.head.querySelector('style[data-grid-animation]');
+      if (existingStyle) {
+        document.head.removeChild(existingStyle);
+      }
+    };
+  }, []);
 
   // Initialize audio
   useEffect(() => {
