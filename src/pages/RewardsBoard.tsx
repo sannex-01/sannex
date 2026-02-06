@@ -211,7 +211,7 @@ const RewardsBoard = () => {
 
   const handleWhatsAppKickoff = () => {
     const message = encodeURIComponent(
-      `Hello SANNEX Team! 🎉\n\nI've claimed my VIP automation system:\n\nTicket ID: ${ticketId}\nSystem: ${selectedSystem?.title}\nClient: ${vipIdentity}\n\nI'd like to schedule my kickoff call to get started!`
+      `Hello SANNEX Team! \n\nI've claimed my VIP automation system:\n\nTicket ID: ${ticketId}\nSystem: ${selectedSystem?.title}\nClient: ${vipIdentity}\n\nI'd like to schedule my kickoff call to get started!`
     );
     const whatsappUrl = `https://wa.me/2347048706198?text=${message}`;
     window.open(whatsappUrl, '_blank');
