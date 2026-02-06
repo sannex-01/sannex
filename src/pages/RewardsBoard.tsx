@@ -31,6 +31,7 @@ const RewardsBoard = () => {
   const [currentViewers] = useState(Math.floor(Math.random() * 5) + 2);
   const [claimedCount, setClaimedCount] = useState(0);
   const [reservedSlot, setReservedSlot] = useState<number | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
   const countdownRef = useRef<NodeJS.Timeout | null>(null);
   const reservationRef = useRef<NodeJS.Timeout | null>(null);
   const ticketRef = useRef<HTMLDivElement>(null);
@@ -70,33 +71,44 @@ const RewardsBoard = () => {
       return;
     }
 
-    // Check if already claimed
-    const existingCheck = await scanForExistingReservation(codeInput);
-    if (existingCheck.hasReservation) {
-      toast.error('😂 Omo, one pick only. Your slot is locked.');
-      setVipIdentity(existingCheck.reservationDetails.client_name);
-      setSelectedSystem(systemsState.find(s => s.id === existingCheck.reservationDetails.system_id) || null);
-      setTicketId(existingCheck.reservationDetails.ticket_id);
-      setStage('ticket');
-      return;
-    }
+    setIsValidating(true);
 
-    // Validate code
-    const authResult = await authenticateGiftCode(codeInput);
-    if (!authResult.authenticated) {
-      toast.error(authResult.reason || 'Invalid access code');
-      return;
-    }
+    try {
+      // Check if already claimed
+      const existingCheck = await scanForExistingReservation(codeInput);
+      if (existingCheck.hasReservation) {
+        toast.error('😂 Omo, one pick only. Your slot is locked.');
+        setVipIdentity(existingCheck.reservationDetails.client_name);
+        setSelectedSystem(systemsState.find(s => s.id === existingCheck.reservationDetails.system_id) || null);
+        setTicketId(existingCheck.reservationDetails.ticket_id);
+        setStage('ticket');
+        setIsValidating(false);
+        return;
+      }
 
-    setVipIdentity(authResult.clientIdentity || '');
-    toast.success(`ACCESS GRANTED`, {
-      description: `Welcome, ${authResult.clientIdentity}`
-    });
-    
-    setTimeout(() => {
-      setStage('vault');
-      setTimeout(() => setVaultOpen(true), 500);
-    }, 1500);
+      // Validate code
+      const authResult = await authenticateGiftCode(codeInput);
+      if (!authResult.authenticated) {
+        toast.error(authResult.reason || 'Invalid access code');
+        setIsValidating(false);
+        return;
+      }
+
+      setVipIdentity(authResult.clientIdentity || '');
+      toast.success(`ACCESS GRANTED`, {
+        description: `Welcome, ${authResult.clientIdentity}`
+      });
+      
+      setTimeout(() => {
+        setStage('vault');
+        setTimeout(() => setVaultOpen(true), 500);
+        setIsValidating(false);
+      }, 1500);
+    } catch (error) {
+      console.error('Validation error:', error);
+      toast.error('An error occurred. Please try again.');
+      setIsValidating(false);
+    }
   };
 
   const handleSystemSelection = (system: AutomationSystem) => {
@@ -276,19 +288,9 @@ const RewardsBoard = () => {
                 </Badge>
                 
                 {system.status === 'claimed' ? (
-                  <div className="flex items-center gap-1">
-                    <CheckCircle2 className="w-4 h-4 text-green-400" />
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/50">
-                      Claimed
-                    </Badge>
-                  </div>
+                  <CheckCircle2 className="w-5 h-5 text-green-400" />
                 ) : (
-                  <div className="flex items-center gap-1">
-                    <Lock className="w-4 h-4 text-yellow-400" />
-                    <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/50">
-                      Available
-                    </Badge>
-                  </div>
+                  <Lock className="w-5 h-5 text-yellow-400" />
                 )}
               </div>
 
@@ -415,16 +417,17 @@ const RewardsBoard = () => {
               placeholder="SANNEX2025GIFT##"
               value={codeInput}
               onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
-              onKeyDown={(e) => e.key === 'Enter' && handleCodeSubmission()}
+              onKeyDown={(e) => e.key === 'Enter' && !isValidating && handleCodeSubmission()}
               className="text-center text-lg font-mono tracking-wider"
             />
           </div>
 
           <Button
             onClick={handleCodeSubmission}
-            className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold py-6 text-lg"
+            disabled={isValidating}
+            className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold py-6 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            VALIDATE CODE
+            {isValidating ? 'VALIDATING...' : 'VALIDATE CODE'}
           </Button>
 
           <Button
@@ -571,12 +574,18 @@ const RewardsBoard = () => {
               {/* Pipeline preview */}
               <div className="mt-6 p-4 bg-primary/10 rounded">
                 <p className="text-sm font-bold text-foreground mb-2">Pipeline Preview:</p>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded">Trigger</span>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded">
+                    {selectedSystem.pipeline?.trigger || 'Trigger'}
+                  </span>
                   <span>→</span>
-                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded">Automation</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded">
+                    {selectedSystem.pipeline?.automation || 'Automation'}
+                  </span>
                   <span>→</span>
-                  <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded">Outcome</span>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded">
+                    {selectedSystem.pipeline?.outcome || 'Outcome'}
+                  </span>
                 </div>
               </div>
             </Card>

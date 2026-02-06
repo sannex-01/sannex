@@ -9,6 +9,11 @@ export interface AutomationSystem {
   status: 'available' | 'claimed';
   claimedBy?: string;
   claimedAt?: string;
+  pipeline?: {
+    trigger: string;
+    automation: string;
+    outcome: string;
+  };
 }
 
 export interface RewardsClaim {

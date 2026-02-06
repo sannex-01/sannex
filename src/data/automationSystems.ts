@@ -1,4 +1,4 @@
-import { AutomationSystem } from '@/types/automationDraft';
+import { AutomationSystem } from '@/types/automationRewards';
 
 export const automationSystems: AutomationSystem[] = [
   {
@@ -10,6 +10,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Captures leads from website, WhatsApp, LinkedIn, Instagram → auto follow-ups → CRM sync → reminder loops → sales assignment.',
     tags: ['Revenue', 'Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Website Form',
+      automation: 'Auto Follow-up',
+      outcome: 'CRM Synced'
+    }
   },
   {
     id: 2,
@@ -20,6 +25,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Tracks prospects → detects inactivity → auto-generates smart follow-ups → escalates hot leads → weekly pipeline report.',
     tags: ['Revenue', 'Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Prospect Idle',
+      automation: 'Smart Outreach',
+      outcome: 'Lead Engaged'
+    }
   },
   {
     id: 3,
@@ -30,6 +40,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Payment received → contract sent → welcome email → onboarding checklist → internal team assignment → kickoff reminders.',
     tags: ['Ops', 'Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Payment Received',
+      automation: 'Send Contract',
+      outcome: 'Client Onboarded'
+    }
   },
   {
     id: 4,
@@ -40,6 +55,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Order received → inventory sync → vendor alert → invoice generation → shipping confirmation → accounting entry.',
     tags: ['Ops', 'Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Order Placed',
+      automation: 'Inventory Sync',
+      outcome: 'Shipped'
+    }
   },
   {
     id: 5,
@@ -50,6 +70,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Detect cart drop → auto reminder (email/WhatsApp) → discount trigger → notify sales team for high-value carts.',
     tags: ['Revenue', 'Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Cart Abandoned',
+      automation: 'Send Reminder',
+      outcome: 'Sale Recovered'
+    }
   },
   {
     id: 6,
@@ -60,6 +85,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Tracks expiring subscriptions → renewal reminders → auto invoices → churn risk alerts → payment follow-up logic.',
     tags: ['Revenue', 'Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Expiry Near',
+      automation: 'Renewal Reminder',
+      outcome: 'Subscription Renewed'
+    }
   },
   {
     id: 7,
@@ -70,6 +100,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Auto-categorizes emails → urgent escalation → ticket creation → response templates → weekly analytics summary.',
     tags: ['Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Email Received',
+      automation: 'Categorize & Route',
+      outcome: 'Ticket Created'
+    }
   },
   {
     id: 8,
@@ -80,6 +115,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Email parsing → task extraction → calendar automation → meeting summaries → weekly executive digest.',
     tags: ['Personal', 'Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Email Parsed',
+      automation: 'Extract Tasks',
+      outcome: 'Calendar Updated'
+    }
   },
   {
     id: 9,
@@ -90,6 +130,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Connect Paystack/Stripe → auto categorize revenue → detect failed payments → weekly revenue report → cashflow insights.',
     tags: ['Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Transaction Detected',
+      automation: 'Categorize Revenue',
+      outcome: 'Report Generated'
+    }
   },
   {
     id: 10,
@@ -100,6 +145,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Application intake → CV scoring → interview scheduling → ranking system → hiring manager alerts.',
     tags: ['Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Application Submitted',
+      automation: 'Score CV',
+      outcome: 'Interview Scheduled'
+    }
   },
   {
     id: 11,
@@ -110,6 +160,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Tracks referrals → calculates commission → auto notifies referrers → payout reminder automation.',
     tags: ['Revenue', 'Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Referral Made',
+      automation: 'Calculate Commission',
+      outcome: 'Payout Notified'
+    }
   },
   {
     id: 12,
@@ -120,6 +175,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Purchase order triggers → restock alerts → supplier performance tracking → payment scheduling.',
     tags: ['Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Stock Low',
+      automation: 'Alert Supplier',
+      outcome: 'PO Created'
+    }
   },
   {
     id: 13,
@@ -130,6 +190,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Booking form → invoice → checklist → visa/travel reminders → pre-trip and post-trip automation.',
     tags: ['Travel', 'Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Booking Confirmed',
+      automation: 'Send Checklist',
+      outcome: 'Trip Prepared'
+    }
   },
   {
     id: 14,
@@ -140,6 +205,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Appointment booking → auto reminders → document request → payment trigger → review follow-up.',
     tags: ['Ops', 'Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Appointment Booked',
+      automation: 'Send Reminders',
+      outcome: 'Session Completed'
+    }
   },
   {
     id: 15,
@@ -150,6 +220,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Repurpose one post → distribute across platforms → auto schedule → track engagement → weekly performance summary.',
     tags: ['Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Content Created',
+      automation: 'Repurpose & Schedule',
+      outcome: 'Multi-Platform Posted'
+    }
   },
   {
     id: 16,
@@ -160,6 +235,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Brand inquiry → contract automation → invoice generation → campaign reminders → payment tracking.',
     tags: ['Revenue', 'Marketing'],
     status: 'available',
+    pipeline: {
+      trigger: 'Deal Inquiry',
+      automation: 'Generate Contract',
+      outcome: 'Campaign Tracked'
+    }
   },
   {
     id: 17,
@@ -170,6 +250,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Ticket purchase → QR generation → reminder emails → check-in tracking → feedback collection.',
     tags: ['Ops', 'Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Ticket Purchased',
+      automation: 'Generate QR',
+      outcome: 'Event Attended'
+    }
   },
   {
     id: 18,
@@ -180,6 +265,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Tracks license renewals, contracts, certifications → sends early alerts → prevents costly lapses.',
     tags: ['Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Expiry Approaching',
+      automation: 'Send Alert',
+      outcome: 'Compliance Maintained'
+    }
   },
   {
     id: 19,
@@ -190,6 +280,11 @@ export const automationSystems: AutomationSystem[] = [
     description: 'Monitors stock levels → auto reorder alerts → supplier notification → reporting dashboard.',
     tags: ['Ops'],
     status: 'available',
+    pipeline: {
+      trigger: 'Stock Threshold',
+      automation: 'Reorder Alert',
+      outcome: 'Inventory Replenished'
+    }
   },
   {
     id: 20,
@@ -200,5 +295,10 @@ export const automationSystems: AutomationSystem[] = [
     description: 'After service → auto request review → monitor ratings → alert team on negative feedback → response suggestions.',
     tags: ['Marketing', 'Revenue'],
     status: 'available',
+    pipeline: {
+      trigger: 'Service Complete',
+      automation: 'Request Review',
+      outcome: 'Rating Received'
+    }
   },
 ];
