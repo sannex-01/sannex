@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
+import RewardsBoard from "./pages/RewardsBoard";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
@@ -46,8 +47,22 @@ const LanguageRouteWrapper = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   const location = useLocation();
   const isTopClientsPage = location.pathname.startsWith('/top-clients') || location.pathname.includes('/top-clients/');
+  const isRewardsPage = location.pathname.startsWith('/rewards');
   const isMagicEsimPage = location.pathname.startsWith('/esimmagic');
 
+  // Rewards pages - no header/footer
+  if (isRewardsPage) {
+    return (
+      <Routes>
+        <Route path="/rewards" element={<RewardsBoard />} />
+        <Route path="/rewards/2025" element={<RewardsBoard />} />
+        <Route path="/rewards/board" element={<RewardsBoard />} />
+        <Route path="*" element={<Navigate to="/rewards" replace />} />
+      </Routes>
+    );
+  }
+
+  // Top clients pages - no header/footer
   if (isTopClientsPage) {
     return (
       <Routes>
@@ -57,6 +72,7 @@ const AppRoutes = () => {
     );
   }
 
+  // Magic eSIM pages - no header/footer
   if (isMagicEsimPage) {
     return (
       <Routes>

@@ -30,9 +30,10 @@ const LanguageSelectionModal = () => {
 
   useEffect(() => {
     const initializeLanguage = async () => {
-      // Skip language detection for top-clients pages and esimmagic pages
+      // Skip language detection for special pages (top-clients, esimmagic, rewards)
       if (window.location.pathname.includes('/top-clients/') || 
-          window.location.pathname.startsWith('/esimmagic')) {
+          window.location.pathname.startsWith('/esimmagic') ||
+          window.location.pathname.startsWith('/rewards')) {
         return;
       }
 
