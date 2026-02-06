@@ -42,7 +42,7 @@ const RewardsBoard = () => {
   const progressPercentage = (claimedCount / totalSystems) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black py-12 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 py-12 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -53,23 +53,23 @@ const RewardsBoard = () => {
             </h1>
             <Sparkles className="w-12 h-12 text-yellow-400" />
           </div>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-muted-foreground mb-8">
             VIP Automation Systems - One Pick
           </p>
 
           {/* Progress tracker */}
-          <div className="max-w-2xl mx-auto bg-gray-800/80 backdrop-blur-xl p-6 rounded-lg border border-yellow-500/30">
+          <Card className="max-w-2xl mx-auto p-6">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-white font-bold">Draft Progress</span>
+              <span className="text-foreground font-bold">Draft Progress</span>
               <span className="text-yellow-400 font-bold text-lg">
                 {claimedCount} / {totalSystems} Claimed
               </span>
             </div>
-            <Progress value={progressPercentage} className="h-3 bg-gray-700" />
-            <p className="text-gray-400 text-sm mt-2">
+            <Progress value={progressPercentage} className="h-3" />
+            <p className="text-muted-foreground text-sm mt-2">
               {totalSystems - claimedCount} slots remaining
             </p>
-          </div>
+          </Card>
         </div>
 
         {/* Systems Grid */}
@@ -79,15 +79,15 @@ const RewardsBoard = () => {
               key={system.id}
               className={`p-6 transition-all duration-300 ${
                 system.status === 'claimed'
-                  ? 'bg-gray-800/70 border-green-500/30'
-                  : 'bg-gray-800/90 border-yellow-500/30 shadow-lg shadow-yellow-500/10'
+                  ? 'border-green-500/30'
+                  : 'border-yellow-500/30'
               }`}
             >
               {/* System number badge */}
               <div className="flex justify-between items-start mb-3">
                 <Badge 
                   variant="outline" 
-                  className="text-xs font-mono bg-gray-900/50"
+                  className="text-xs font-mono"
                 >
                   #{system.id.toString().padStart(2, '0')}
                 </Badge>
@@ -109,7 +109,7 @@ const RewardsBoard = () => {
                 )}
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">
+              <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2">
                 {system.title}
               </h3>
 
@@ -117,7 +117,7 @@ const RewardsBoard = () => {
                 Worth: {system.worth}
               </p>
 
-              <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+              <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                 {system.description}
               </p>
 
@@ -126,7 +126,7 @@ const RewardsBoard = () => {
                   <Badge 
                     key={tag} 
                     variant="secondary" 
-                    className="text-xs bg-emerald-500/20 text-emerald-300"
+                    className="text-xs bg-primary/20 text-primary"
                   >
                     {tag}
                   </Badge>
@@ -134,8 +134,8 @@ const RewardsBoard = () => {
               </div>
 
               {system.status === 'claimed' && system.claimedBy && (
-                <div className="pt-4 border-t border-gray-700">
-                  <p className="text-xs text-gray-500 mb-1">Claimed by</p>
+                <div className="pt-4 border-t">
+                  <p className="text-xs text-muted-foreground mb-1">Claimed by</p>
                   <p className="text-sm font-bold text-yellow-400 flex items-center gap-2">
                     <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                     {system.claimedBy}
@@ -148,11 +148,11 @@ const RewardsBoard = () => {
 
         {/* CTA Section */}
         <div className="text-center">
-          <Card className="inline-block p-8 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 backdrop-blur-xl border-2 border-yellow-500/50">
-            <h2 className="text-2xl font-bold text-white mb-4">
+          <Card className="inline-block p-8 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500/50">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
               Have a VIP Access Code?
             </h2>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Enter the draft and claim your automation system. One pick only!
             </p>
             <Button
@@ -168,11 +168,11 @@ const RewardsBoard = () => {
 
         {/* Positioning info */}
         <div className="mt-16 max-w-4xl mx-auto">
-          <Card className="p-8 bg-gray-800/80 backdrop-blur-xl border border-gray-700">
+          <Card className="p-8">
             <h3 className="text-2xl font-bold text-yellow-400 mb-6 text-center">
               🎯 What Each Top Client Gets
             </h3>
-            <div className="grid md:grid-cols-2 gap-4 text-white">
+            <div className="grid md:grid-cols-2 gap-4 text-foreground">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
                 <div>

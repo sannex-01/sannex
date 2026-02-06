@@ -202,15 +202,7 @@ const AutomationRewards = () => {
   };
 
   const renderHeroStage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-          animation: 'gridFloat 20s linear infinite'
-        }} />
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6 relative overflow-hidden">
 
       <div className="relative z-10 text-center max-w-3xl">
         {/* Glowing SANNEX emblem */}
@@ -224,7 +216,7 @@ const AutomationRewards = () => {
         </div>
 
         {/* Typewriter text */}
-        <div className="space-y-4 mb-12 text-white">
+        <div className="space-y-4 mb-12 text-foreground">
           <div className="text-3xl font-bold h-12">{heroLine1}</div>
           <div className="text-3xl font-bold h-12">{heroLine2}</div>
           <div className="text-2xl h-10">{heroLine3}</div>
@@ -232,7 +224,7 @@ const AutomationRewards = () => {
         </div>
 
         {/* Live stats */}
-        <div className="flex justify-center gap-8 mb-12 text-white">
+        <div className="flex justify-center gap-8 mb-12 text-foreground">
           <div className="flex items-center gap-2">
             <Flame className="w-6 h-6 text-orange-500" />
             <span className="text-xl">Slots left: <span className="font-bold text-yellow-400">{slotsRemaining}/20</span></span>
@@ -270,12 +262,12 @@ const AutomationRewards = () => {
   );
 
   const renderKeyEntry = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-900 to-black flex items-center justify-center p-6">
-      <Card className="max-w-md w-full p-8 bg-gray-800/80 backdrop-blur-xl border-yellow-500/30">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6">
+      <Card className="max-w-md w-full p-8">
         <div className="text-center mb-8">
           <Lock className="w-16 h-16 mx-auto text-yellow-400 mb-4" />
-          <h2 className="text-3xl font-bold text-white mb-2">Access Key Required</h2>
-          <p className="text-gray-400">Enter your VIP code to unlock the vault</p>
+          <h2 className="text-3xl font-bold text-foreground mb-2">Access Key Required</h2>
+          <p className="text-muted-foreground">Enter your VIP code to unlock the vault</p>
         </div>
 
         <div className="space-y-4">
@@ -283,7 +275,7 @@ const AutomationRewards = () => {
             value={codeInput}
             onChange={(e) => setKeyInput(e.target.value)}
             placeholder="ENTER-YOUR-CODE"
-            className="text-center text-xl tracking-widest font-mono bg-gray-900 border-yellow-500/50 text-white uppercase"
+            className="text-center text-xl tracking-widest font-mono uppercase"
             onKeyPress={(e) => e.key === 'Enter' && handleKeySubmission()}
           />
 
@@ -297,7 +289,7 @@ const AutomationRewards = () => {
           <Button
             onClick={() => setStage('hero')}
             variant="ghost"
-            className="w-full text-gray-400"
+            className="w-full"
           >
             Back
           </Button>
@@ -308,15 +300,15 @@ const AutomationRewards = () => {
 
   // More stages to be rendered...
   const renderVault = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black p-6">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h1 className="text-4xl font-bold text-foreground mb-2">
             Welcome, {vipIdentity}
           </h1>
           <p className="text-yellow-400 text-xl">Select Your One System</p>
-          <div className="mt-4 flex justify-center gap-6 text-white">
+          <div className="mt-4 flex justify-center gap-6 text-foreground">
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-orange-500" />
               <span>{slotsRemaining} Available</span>
@@ -336,15 +328,15 @@ const AutomationRewards = () => {
               onClick={() => handleSystemSelection(system)}
               className={`p-6 cursor-pointer transition-all duration-300 transform hover:scale-105 ${
                 system.status === 'claimed' 
-                  ? 'bg-gray-800/50 opacity-50 cursor-not-allowed' 
+                  ? 'opacity-50 cursor-not-allowed' 
                   : reservedSlot === system.id
-                  ? 'bg-yellow-500/20 border-yellow-500 border-2'
-                  : 'bg-gray-800/80 border-gray-700 hover:border-yellow-500'
+                  ? 'border-yellow-500 border-2'
+                  : 'hover:border-yellow-500'
               }`}
               style={{ animationDelay: `${idx * 50}ms` }}
             >
               <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-bold text-white">{system.title}</h3>
+                <h3 className="text-lg font-bold text-foreground">{system.title}</h3>
                 {system.status === 'claimed' ? (
                   <Badge variant="secondary" className="bg-red-500/20 text-red-400">Claimed</Badge>
                 ) : (
@@ -354,7 +346,7 @@ const AutomationRewards = () => {
 
               <p className="text-yellow-400 font-bold mb-3">{system.worth}</p>
               
-              <p className="text-gray-400 text-sm mb-4 line-clamp-3">{system.description}</p>
+              <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{system.description}</p>
               
               <div className="flex flex-wrap gap-2">
                 {system.tags.map(tag => (
@@ -363,8 +355,8 @@ const AutomationRewards = () => {
               </div>
 
               {system.status === 'claimed' && system.claimedBy && (
-                <div className="mt-4 pt-4 border-t border-gray-700">
-                  <p className="text-sm text-gray-500">Claimed by: <span className="text-yellow-500">{system.claimedBy}</span></p>
+                <div className="mt-4 pt-4 border-t">
+                  <p className="text-sm text-muted-foreground">Claimed by: <span className="text-yellow-500">{system.claimedBy}</span></p>
                 </div>
               )}
             </Card>
@@ -373,13 +365,13 @@ const AutomationRewards = () => {
 
         {/* Live Feed Sidebar */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-white mb-4">📢 Live Claim Feed</h3>
+          <h3 className="text-2xl font-bold text-foreground mb-4">📢 Live Claim Feed</h3>
           <div className="space-y-2 max-h-64 overflow-y-auto">
             {liveFeed.slice(0, 10).map((claim, idx) => (
-              <div key={idx} className="bg-gray-800/60 p-3 rounded flex items-center gap-3">
+              <Card key={idx} className="p-3 flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
-                <span className="text-white">{claim.client_name} claimed: <span className="text-yellow-400">{claim.system_title}</span></span>
-              </div>
+                <span className="text-foreground">{claim.client_name} claimed: <span className="text-yellow-400">{claim.system_title}</span></span>
+              </Card>
             ))}
           </div>
         </div>
@@ -391,39 +383,39 @@ const AutomationRewards = () => {
     if (!selectedSystem) return null;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-6">
-        <Card className="max-w-2xl w-full p-8 bg-gray-800/90 backdrop-blur-xl border-yellow-500">
+      <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6">
+        <Card className="max-w-2xl w-full p-8 border-yellow-500">
           <div className="text-center mb-8">
             <AlertCircle className="w-16 h-16 mx-auto text-yellow-400 mb-4 animate-pulse" />
-            <h2 className="text-3xl font-bold text-white mb-4">Lock-In Preview</h2>
-            <p className="text-xl text-gray-300">You're about to lock in your ONE pick:</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">Lock-In Preview</h2>
+            <p className="text-xl text-muted-foreground">You're about to lock in your ONE pick:</p>
           </div>
 
-          <div className="bg-gray-900 p-6 rounded-lg mb-6 border-2 border-yellow-500">
+          <Card className="p-6 mb-6 border-2 border-yellow-500">
             <h3 className="text-2xl font-bold text-yellow-400 mb-3">{selectedSystem.title}</h3>
-            <p className="text-lg text-white mb-3">{selectedSystem.worth}</p>
-            <p className="text-gray-400 mb-4">{selectedSystem.description}</p>
+            <p className="text-lg text-foreground mb-3">{selectedSystem.worth}</p>
+            <p className="text-muted-foreground mb-4">{selectedSystem.description}</p>
             
             {/* Mini pipeline preview */}
-            <div className="bg-gray-800 p-4 rounded">
+            <Card className="p-4">
               <div className="flex items-center justify-between text-sm">
                 <div className="text-center flex-1">
                   <div className="font-bold text-green-400">Trigger</div>
-                  <div className="text-gray-400 mt-1">Input Event</div>
+                  <div className="text-muted-foreground mt-1">Input Event</div>
                 </div>
                 <div className="text-yellow-400 text-2xl">→</div>
                 <div className="text-center flex-1">
                   <div className="font-bold text-blue-400">Automation</div>
-                  <div className="text-gray-400 mt-1">Process</div>
+                  <div className="text-muted-foreground mt-1">Process</div>
                 </div>
                 <div className="text-yellow-400 text-2xl">→</div>
                 <div className="text-center flex-1">
-                  <div className="font-bold text-emerald-400">Outcome</div>
-                  <div className="text-gray-400 mt-1">Result</div>
+                  <div className="font-bold text-primary">Outcome</div>
+                  <div className="text-muted-foreground mt-1">Result</div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Card>
+          </Card>
 
           <div className="bg-red-500/10 border border-red-500/50 rounded p-4 mb-6">
             <p className="text-red-400 text-center font-bold">
@@ -463,61 +455,61 @@ const AutomationRewards = () => {
   };
 
   const renderCountdown = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6">
       <div className="text-center">
         <div className="text-9xl font-bold text-yellow-400 mb-8 animate-pulse">
           {countdown}
         </div>
-        <p className="text-3xl text-white mb-4">Confirming claim...</p>
+        <p className="text-3xl text-foreground mb-4">Confirming claim...</p>
         <div className="animate-spin mx-auto w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full" />
       </div>
     </div>
   );
 
   const renderTicket = () => (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-6">
-      <Card className="max-w-2xl w-full p-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 backdrop-blur-xl border-2 border-yellow-500">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6">
+      <Card className="max-w-2xl w-full p-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-6">
             <CheckCircle2 className="w-12 h-12 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">Your SANNEX Build Ticket</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Your SANNEX Build Ticket</h1>
           <p className="text-yellow-400 text-xl">✅ CLAIMED</p>
         </div>
 
-        <div className="bg-gray-900/80 p-8 rounded-lg space-y-4 mb-8">
-          <div className="grid grid-cols-2 gap-4 text-white">
+        <Card className="p-8 space-y-4 mb-8">
+          <div className="grid grid-cols-2 gap-4 text-foreground">
             <div>
-              <p className="text-gray-400 text-sm">Ticket ID</p>
+              <p className="text-muted-foreground text-sm">Ticket ID</p>
               <p className="font-mono font-bold text-yellow-400">{ticketId}</p>
             </div>
             <div>
-              <p className="text-gray-400 text-sm">Client Name</p>
+              <p className="text-muted-foreground text-sm">Client Name</p>
               <p className="font-bold">{vipIdentity}</p>
             </div>
           </div>
           
-          <div className="pt-4 border-t border-gray-700">
-            <p className="text-gray-400 text-sm mb-2">Selected System</p>
+          <div className="pt-4 border-t">
+            <p className="text-muted-foreground text-sm mb-2">Selected System</p>
             <p className="text-xl font-bold text-yellow-400">{selectedSystem?.title}</p>
-            <p className="text-gray-400 mt-2">{selectedSystem?.description}</p>
+            <p className="text-muted-foreground mt-2">{selectedSystem?.description}</p>
           </div>
 
-          <div className="pt-4 border-t border-gray-700 space-y-2 text-sm">
+          <div className="pt-4 border-t space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-400">Build window:</span>
-              <span className="text-white">1–2 weeks</span>
+              <span className="text-muted-foreground">Build window:</span>
+              <span className="text-foreground">1–2 weeks</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Free run:</span>
-              <span className="text-white">4 weeks</span>
+              <span className="text-muted-foreground">Free run:</span>
+              <span className="text-foreground">4 weeks</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Ops sponsored by:</span>
+              <span className="text-muted-foreground">Ops sponsored by:</span>
               <span className="text-yellow-400 font-bold">SANNEX TECH LTD ✅</span>
             </div>
           </div>
-        </div>
+        </Card>
 
         <div className="flex gap-4">
           <Button className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-4">
@@ -528,7 +520,7 @@ const AutomationRewards = () => {
           </Button>
         </div>
 
-        <p className="text-center text-gray-400 mt-6 text-sm italic">
+        <p className="text-center text-muted-foreground mt-6 text-sm italic">
           🔒 Your account is now locked. You already claimed your one pick.
         </p>
       </Card>
@@ -538,13 +530,6 @@ const AutomationRewards = () => {
   // Main render
   return (
     <div>
-      <style>{`
-        @keyframes gridFloat {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(50px); }
-        }
-      `}</style>
-      
       {stage === 'hero' && renderHeroStage()}
       {stage === 'codeEntry' && renderKeyEntry()}
       {stage === 'vault' && renderVault()}
