@@ -642,7 +642,7 @@ const RewardsBoard = () => {
   // Render Ticket Stage
   const renderTicket = () => (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-primary/5 flex items-center justify-center p-6 px-3">
-      <Card className="max-w-2xl w-full px-5 p-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500">
+      <Card className="max-w-2xl w-full px-5 py-10 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-2 border-yellow-500">
         <div ref={ticketRef}>
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-6">
@@ -652,7 +652,7 @@ const RewardsBoard = () => {
             <p className="text-yellow-400 text-xl">✅ CLAIMED</p>
           </div>
 
-          <Card className="p-8 px-3 space-y-4 mb-8">
+          <Card className="p-8 px-4 space-y-4 mb-8">
             <div className="grid grid-cols-2 gap-4 text-foreground">
               <div>
                 <p className="text-muted-foreground text-sm">Ticket ID</p>
