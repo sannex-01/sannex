@@ -49,18 +49,18 @@ const RewardsBoard = () => {
           <div className="inline-flex items-center gap-3 mb-4">
             <Trophy className="w-12 h-12 text-yellow-400" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-              2025 Top Clients Rewards Board
+              2025 Top Clients Rewards Claim
             </h1>
             <Sparkles className="w-12 h-12 text-yellow-400" />
           </div>
           <p className="text-xl text-muted-foreground mb-8">
-            VIP Automation Systems - One Pick
+            VIP Automation Systems
           </p>
 
           {/* Progress tracker */}
           <Card className="max-w-2xl mx-auto p-6">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-foreground font-bold">Draft Progress</span>
+              <span className="text-foreground font-bold">Claim Progress</span>
               <span className="text-yellow-400 font-bold text-lg">
                 {claimedCount} / {totalSystems} Claimed
               </span>
@@ -109,7 +109,7 @@ const RewardsBoard = () => {
                 )}
               </div>
 
-              <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
                 {system.title}
               </h3>
 
@@ -176,7 +176,7 @@ const RewardsBoard = () => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-bold">One system (pick only one)</p>
+                  <p className="font-bold">One system</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
