@@ -16,7 +16,6 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import TopClients from "./pages/TopClients";
-import AutomationRewards from "./pages/AutomationRewards";
 import RewardsBoard from "./pages/RewardsBoard";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
@@ -55,8 +54,8 @@ const AppRoutes = () => {
   if (isRewardsPage) {
     return (
       <Routes>
-        <Route path="/rewards" element={<AutomationRewards />} />
-        <Route path="/rewards/2025" element={<AutomationRewards />} />
+        <Route path="/rewards" element={<RewardsBoard />} />
+        <Route path="/rewards/2025" element={<RewardsBoard />} />
         <Route path="/rewards/board" element={<RewardsBoard />} />
         <Route path="*" element={<Navigate to="/rewards" replace />} />
       </Routes>
