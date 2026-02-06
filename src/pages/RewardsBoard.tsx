@@ -681,27 +681,19 @@ const RewardsBoard = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Sponsored by:</span>
-                <span className="text-yellow-400 font-bold">SANNEX TECH LTD ✅</span>
+                <span className="text-yellow-400 font-bold">SANNEX TECH LTD</span>
               </div>
             </div>
           </Card>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex align-center gap-4">
           <Button 
             onClick={handleWhatsAppKickoff}
             className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-4"
           >
             <MessageCircle className="mr-2 w-5 h-5" />
             Book Kickoff Call
-          </Button>
-          <Button 
-            onClick={handleDownloadCertificate}
-            variant="outline" 
-            className="flex-1 border-yellow-500 text-yellow-400 py-4"
-          >
-            <Download className="mr-2 w-5 h-5" />
-            Download Certificate
           </Button>
         </div>
 
