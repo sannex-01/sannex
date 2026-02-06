@@ -60,28 +60,6 @@ const TopClients = () => {
     }
   }, [year]);
 
-  // Add keyframe animation for grid
-  useEffect(() => {
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = `
-      @keyframes gridFloat {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(50px); }
-      }
-    `;
-    if (!document.head.querySelector('style[data-grid-animation]')) {
-      styleSheet.setAttribute('data-grid-animation', 'true');
-      document.head.appendChild(styleSheet);
-    }
-    
-    return () => {
-      const existingStyle = document.head.querySelector('style[data-grid-animation]');
-      if (existingStyle) {
-        document.head.removeChild(existingStyle);
-      }
-    };
-  }, []);
-
   // Initialize audio
   useEffect(() => {
     audioRef.current = new Audio('https://cdn.pixabay.com/audio/2025/04/01/audio_02ca8fbc5a.mp3');
@@ -265,29 +243,20 @@ const TopClients = () => {
   // View 0: Authentication
   if (currentView === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-900 via-emerald-900 to-black relative overflow-hidden">
-        {/* Animated grid background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-            animation: 'gridFloat 20s linear infinite'
-          }} />
-        </div>
-
-        <Card className="w-full max-w-md p-8 space-y-6 shadow-xl animate-fade-in relative z-10 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
+        <Card className="w-full max-w-md p-8 space-y-6 shadow-xl animate-fade-in">
           <div className="text-center space-y-2">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent mb-2 font-cursive tracking-cursive">
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-cursive tracking-cursive">
               {year} Year Wrap
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-muted-foreground">
               Let's celebrate your journey with SANNEX
             </p>
           </div>
 
           <form onSubmit={handleSubmitIdentifier} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="identifier" className="text-lg font-handwriting text-white">
+              <Label htmlFor="identifier" className="text-lg font-handwriting">
                 Enter your Email or Phone Number
               </Label>
               <Input
@@ -297,13 +266,13 @@ const TopClients = () => {
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 required
-                className="text-lg p-6 bg-gray-900 border-emerald-500/50 text-white"
+                className="text-lg p-6"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full text-lg py-6 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold" 
+              className="w-full text-lg py-6" 
               disabled={isLoading}
             >
               {isLoading ? 'Checking...' : 'Continue'}
@@ -356,7 +325,7 @@ const TopClients = () => {
           </div>
           <button
             onClick={togglePause}
-            className="text-white hover:text-yellow-400 transition-colors"
+            className="text-white hover:text-primary transition-colors"
             aria-label={isPaused ? 'Play' : 'Pause'}
           >
             {isPaused ? (
@@ -381,27 +350,18 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <Heart className="w-24 h-24 mx-auto text-yellow-400 animate-pulse animate-slide-up-1" />
-            <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive leading-tight animate-slide-up-2 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Heart className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
+            <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Thank You," delay={80} />
-              <span className="block bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting mt-4 animate-slide-up-3">
+              <span className="block text-primary font-handwriting mt-4 animate-slide-up-3">
                 <WordByWord text={`${clientData.client_name}!`} delay={80} />
               </span>
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed animate-slide-up-4">
+            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
               <WordByWord text={`For ${actionText} this year`} delay={60} />
             </p>
           </div>
@@ -416,27 +376,18 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <Calendar className="w-24 h-24 mx-auto text-yellow-400 animate-slide-up-1" />
-            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Calendar className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
+            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Your Journey Started" delay={80} />
             </h1>
-            <p className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting animate-slide-up-3">
+            <p className="text-5xl md:text-7xl font-bold text-primary font-handwriting animate-slide-up-3">
               <WordByWord text={formatDate(clientData.join_date)} delay={100} />
             </p>
-            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed animate-slide-up-4">
+            <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed animate-slide-up-4">
               <WordByWord text="That's when you put your trust in SANNEX" delay={60} />
             </p>
           </div>
@@ -451,43 +402,34 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <TrendingUp className="w-24 h-24 mx-auto text-yellow-400 animate-slide-up-1" />
-            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-2 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <TrendingUp className="w-24 h-24 mx-auto text-primary animate-slide-up-1" />
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               <WordByWord text="Your Impact on SANNEX" delay={80} />
             </h1>
             
-            <div className="space-y-6 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30 p-8 rounded-2xl shadow-xl animate-slide-up-3">
+            <div className="space-y-6 bg-card p-8 rounded-2xl shadow-xl animate-slide-up-3">
               <div>
-                <p className="text-xl text-gray-300 mb-2">
+                <p className="text-xl text-muted-foreground mb-2">
                   <WordByWord text="Total Investment" delay={80} />
                 </p>
-                <p className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+                <p className="text-5xl md:text-6xl font-bold text-primary font-handwriting">
                   {formatCurrency(Math.round(animatedAmount))}
                 </p>
               </div>
               
               <div className="pt-6">
-                <p className="text-xl text-gray-300 mb-4">
+                <p className="text-xl text-muted-foreground mb-4">
                   <WordByWord text="You contributed" delay={80} />
                 </p>
                 <div className="space-y-4">
-                  <p className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+                  <p className="text-6xl md:text-7xl font-bold text-primary font-handwriting">
                     {animatedPercentage.toFixed(1)}%
                   </p>
-                  <p className="text-xl text-gray-300">
+                  <p className="text-xl text-muted-foreground">
                     <WordByWord text={`to SANNEX's growth in ${year}`} delay={60} />
                   </p>
                   <Progress value={animatedPercentage} className="h-4" />
@@ -506,34 +448,25 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1">
               What We Built Together
             </h1>
             
-            <div className="bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30 p-8 rounded-2xl shadow-xl text-left space-y-4 animate-slide-up-2">
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+            <div className="bg-card p-8 rounded-2xl shadow-xl text-left space-y-4 animate-slide-up-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary font-handwriting">
                 <WordByWord text={clientData.project_name} delay={80} />
               </h2>
-              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
                 <WordByWord text={clientData.project_description} delay={50} />
               </p>
               <div className="pt-4">
                 <span className={`inline-block px-6 py-3 rounded-full text-lg font-semibold ${
                   clientData.project_status === 'completed' 
-                    ? 'bg-gradient-to-r from-yellow-500 to-amber-600 text-black' 
+                    ? 'bg-primary text-primary-foreground' 
                     : 'bg-yellow-500 text-white'
                 }`}>
                   {clientData.project_status === 'completed' ? '✓ Completed' : '⏳ Ongoing'}
@@ -552,65 +485,56 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive leading-tight animate-slide-up-1">
               Looking Ahead
             </h1>
             
             {clientData.project_status === 'completed' ? (
-              <div className="bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30 p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
-                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3 text-white">
-                  We'd love to see you <span className="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting font-bold">use and grow</span> your project!
+              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
+                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3">
+                  We'd love to see you <span className="text-primary font-handwriting font-bold">use and grow</span> your project!
                 </p>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed animate-slide-up-4">
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed animate-slide-up-4">
                   Need help taking it to the next level?
                 </p>
                 <div className="space-y-4 pt-4">
-                  <p className="text-xl font-semibold text-white">We can help with:</p>
+                  <p className="text-xl font-semibold">We can help with:</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                    <div className="bg-emerald-900/30 p-4 rounded-lg border border-emerald-500/20">
-                      <p className="font-semibold text-lg text-white">📱 Digital Marketing</p>
-                      <p className="text-gray-300">Reach more customers</p>
+                    <div className="bg-primary/10 p-4 rounded-lg">
+                      <p className="font-semibold text-lg">📱 Digital Marketing</p>
+                      <p className="text-muted-foreground">Reach more customers</p>
                     </div>
-                    <div className="bg-emerald-900/30 p-4 rounded-lg border border-emerald-500/20">
-                      <p className="font-semibold text-lg text-white">🚀 Feature Expansion</p>
-                      <p className="text-gray-300">Add new capabilities</p>
+                    <div className="bg-primary/10 p-4 rounded-lg">
+                      <p className="font-semibold text-lg">🚀 Feature Expansion</p>
+                      <p className="text-muted-foreground">Add new capabilities</p>
                     </div>
-                    <div className="bg-emerald-900/30 p-4 rounded-lg border border-emerald-500/20">
-                      <p className="font-semibold text-lg text-white">📊 Analytics & Insights</p>
-                      <p className="text-gray-300">Data-driven decisions</p>
+                    <div className="bg-primary/10 p-4 rounded-lg">
+                      <p className="font-semibold text-lg">📊 Analytics & Insights</p>
+                      <p className="text-muted-foreground">Data-driven decisions</p>
                     </div>
-                    <div className="bg-emerald-900/30 p-4 rounded-lg border border-emerald-500/20">
-                      <p className="font-semibold text-lg text-white">🔧 Maintenance</p>
-                      <p className="text-gray-300">Keep it running smoothly</p>
+                    <div className="bg-primary/10 p-4 rounded-lg">
+                      <p className="font-semibold text-lg">🔧 Maintenance</p>
+                      <p className="text-muted-foreground">Keep it running smoothly</p>
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30 p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
-                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3 text-white">
-                  We're <span className="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting font-bold">excited</span> to continue building with you!
+              <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-2">
+                <p className="text-2xl md:text-3xl leading-relaxed animate-slide-up-3">
+                  We're <span className="text-primary font-handwriting font-bold">excited</span> to continue building with you!
                 </p>
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed animate-slide-up-4">
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed animate-slide-up-4">
                   Let's move to the next phase of your project by
                 </p>
-                <p className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+                <p className="text-4xl md:text-5xl font-bold text-primary font-handwriting">
                   January 2026
                 </p>
-                <p className="text-xl text-gray-300">
+                <p className="text-xl text-muted-foreground">
                   Together, we'll make it even better.
                 </p>
               </div>
@@ -627,52 +551,43 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black cursor-pointer relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5 cursor-pointer"
           onClick={handleScreenClick}
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none relative z-10">
-            <Gift className="w-24 h-24 mx-auto text-yellow-400 animate-pulse animate-slide-up-1" />
-            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2 text-white">
+          <div className="w-full max-w-2xl text-center space-y-8 pointer-events-none">
+            <Gift className="w-24 h-24 mx-auto text-primary animate-pulse animate-slide-up-1" />
+            <h1 className="text-4xl md:text-6xl font-cursive tracking-cursive leading-tight animate-slide-up-2">
               Special Announcement! 🎉
             </h1>
             
-            <div className="bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30 p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-3">
-              <p className="text-2xl md:text-3xl leading-relaxed text-white">
-                On <span className="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting font-bold">December 21st, 2025</span>
+            <div className="bg-card p-8 rounded-2xl shadow-xl space-y-6 animate-slide-up-3">
+              <p className="text-2xl md:text-3xl leading-relaxed">
+                On <span className="text-primary font-handwriting font-bold">December 21st, 2025</span>
               </p>
-              <p className="text-xl md:text-2xl leading-relaxed text-white">
+              <p className="text-xl md:text-2xl leading-relaxed">
                 We officially registered SANNEX with the
               </p>
-              <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+              <p className="text-2xl md:text-3xl font-bold text-primary font-handwriting">
                 Corporate Affairs Commission (CAC)
               </p>
-              <p className="text-xl text-gray-300">
+              <p className="text-xl text-muted-foreground">
                 This is a huge milestone for us, and you've been part of this journey!
               </p>
 
               <div className="pt-6 space-y-4">
-                <p className="text-2xl font-semibold text-white">
+                <p className="text-2xl font-semibold">
                   To celebrate, mark this date:
                 </p>
-                <p className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting">
+                <p className="text-4xl md:text-5xl font-bold text-primary font-handwriting">
                   {formatDate(clientData.surprise_date)}
                 </p>
-                <p className="text-xl text-gray-300">
+                <p className="text-xl text-muted-foreground">
                   Something special is coming your way!
                 </p>
               </div>
 
               <div className="pt-8 pointer-events-auto">
-                <p className="text-xl mb-4 font-semibold text-white">
+                <p className="text-xl mb-4 font-semibold">
                   Here's your gift code for a special bouquet:
                 </p>
                 <ScratchCard 
@@ -682,7 +597,7 @@ const TopClients = () => {
                   onComplete={() => setScratchRevealed(true)}
                 />
                 {scratchRevealed && (
-                  <p className="text-lg text-yellow-400 mt-4 animate-fade-in">
+                  <p className="text-lg text-primary mt-4 animate-fade-in">
                     🎉 Save this code! Use it on the surprise date to claim your gift.
                   </p>
                 )}
@@ -700,29 +615,20 @@ const TopClients = () => {
       <>
         <ProgressBar />
         <div 
-          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-gray-900 via-emerald-900 to-black relative overflow-hidden"
+          className="min-h-screen flex items-center justify-center p-4 pt-24 bg-gradient-to-br from-primary/10 via-background to-primary/5"
         >
-          {/* Animated grid background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '50px 50px',
-              animation: 'gridFloat 20s linear infinite'
-            }} />
-          </div>
-
-          <div className="w-full max-w-2xl space-y-8 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive text-center leading-tight animate-slide-up-1 text-white">
+          <div className="w-full max-w-2xl space-y-8">
+            <h1 className="text-4xl md:text-5xl font-cursive tracking-cursive text-center leading-tight animate-slide-up-1">
               We Value Your Feedback
             </h1>
-            <p className="text-xl md:text-2xl text-center text-gray-300 animate-slide-up-2">
+            <p className="text-xl md:text-2xl text-center text-muted-foreground animate-slide-up-2">
               Help us serve you better in 2026
             </p>
 
-            <Card className="p-8 animate-slide-up-3 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
+            <Card className="p-8 animate-slide-up-3">
               <form onSubmit={handleSubmitFeedback} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="question1" className="text-xl text-white">
+                  <Label htmlFor="question1" className="text-xl">
                     1. How satisfied are you with the project delivery?
                   </Label>
                   <select
@@ -730,7 +636,7 @@ const TopClients = () => {
                     value={feedbackForm.question1}
                     onChange={(e) => setFeedbackForm({ ...feedbackForm, question1: e.target.value })}
                     required
-                    className="w-full p-4 text-lg border rounded-md bg-gray-900 border-emerald-500/50 text-white"
+                    className="w-full p-4 text-lg border rounded-md bg-background"
                   >
                     <option value="">Select...</option>
                     <option value="very-satisfied">Very Satisfied</option>
@@ -742,7 +648,7 @@ const TopClients = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="question2" className="text-xl text-white">
+                  <Label htmlFor="question2" className="text-xl">
                     2. How likely are you to recommend SANNEX to others?
                   </Label>
                   <select
@@ -750,7 +656,7 @@ const TopClients = () => {
                     value={feedbackForm.question2}
                     onChange={(e) => setFeedbackForm({ ...feedbackForm, question2: e.target.value })}
                     required
-                    className="w-full p-4 text-lg border rounded-md bg-gray-900 border-emerald-500/50 text-white"
+                    className="w-full p-4 text-lg border rounded-md bg-background"
                   >
                     <option value="">Select...</option>
                     <option value="very-likely">Very Likely</option>
@@ -762,7 +668,7 @@ const TopClients = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="generalFeedback" className="text-xl text-white">
+                  <Label htmlFor="generalFeedback" className="text-xl">
                     3. What feedback do you have for our services in {year}? Any areas for improvement?
                   </Label>
                   <Textarea
@@ -772,12 +678,12 @@ const TopClients = () => {
                     placeholder="Share your thoughts with us..."
                     required
                     rows={6}
-                    className="text-lg p-4 bg-gray-900 border-emerald-500/50 text-white"
+                    className="text-lg p-4"
                   />
                 </div>
 
                 <div className="flex gap-4 justify-center pt-4">
-                  <Button type="submit" size="lg" className="text-xl px-8 py-6 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold">
+                  <Button type="submit" size="lg" className="text-xl px-8 py-6">
                     Submit Feedback
                     <Send className="ml-2" />
                   </Button>
@@ -793,49 +699,40 @@ const TopClients = () => {
   // View 8: Summary Overview (Stagnant - no progress bar)
   if (currentView === 8) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-900 via-emerald-900 to-black relative overflow-hidden">
-        {/* Animated grid background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-            animation: 'gridFloat 20s linear infinite'
-          }} />
-        </div>
-
-        <div className="w-full max-w-4xl space-y-8 animate-fade-in relative z-10">
-          <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive text-center leading-tight bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
+        <div className="w-full max-w-4xl space-y-8 animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-cursive tracking-cursive text-center leading-tight text-primary">
             Your 2025 Journey
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Summary Card 1: Client Info */}
-            <Card className="p-6 space-y-4 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
-              <h2 className="text-2xl font-cursive tracking-cursive bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">About You</h2>
+            <Card className="p-6 space-y-4">
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">About You</h2>
               <div className="space-y-2">
-                <p className="text-lg text-white"><span className="font-semibold">Name:</span> {clientData.client_name}</p>
-                <p className="text-lg text-white"><span className="font-semibold">Joined:</span> {formatDate(clientData.join_date)}</p>
+                <p className="text-lg"><span className="font-semibold">Name:</span> {clientData.client_name}</p>
+                <p className="text-lg"><span className="font-semibold">Joined:</span> {formatDate(clientData.join_date)}</p>
               </div>
             </Card>
 
             {/* Summary Card 2: Contribution */}
-            <Card className="p-6 space-y-4 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
-              <h2 className="text-2xl font-cursive tracking-cursive bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">Your Contribution</h2>
+            <Card className="p-6 space-y-4">
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Contribution</h2>
               <div className="space-y-2">
-                <p className="text-lg text-white"><span className="font-semibold">Investment:</span> {formatCurrency(clientData.total_amount_spent)}</p>
-                <p className="text-lg text-white"><span className="font-semibold">Impact:</span> <span className="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting text-2xl">{clientData.percentage_contribution}%</span> of our growth</p>
+                <p className="text-lg"><span className="font-semibold">Investment:</span> {formatCurrency(clientData.total_amount_spent)}</p>
+                <p className="text-lg"><span className="font-semibold">Impact:</span> <span className="text-primary font-handwriting text-2xl">{clientData.percentage_contribution}%</span> of our growth</p>
               </div>
             </Card>
 
             {/* Summary Card 3: Project */}
-            <Card className="p-6 space-y-4 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
-              <h2 className="text-2xl font-cursive tracking-cursive bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">Your Project</h2>
+            <Card className="p-6 space-y-4">
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Project</h2>
               <div className="space-y-2">
-                <p className="text-lg font-semibold text-white">{clientData.project_name}</p>
-                <p className="text-gray-300">{clientData.project_description}</p>
+                <p className="text-lg font-semibold">{clientData.project_name}</p>
+                <p className="text-muted-foreground">{clientData.project_description}</p>
                 <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
                   clientData.project_status === 'completed' 
-                    ? 'bg-gradient-to-r from-yellow-500 to-amber-600 text-black' 
+                    ? 'bg-primary text-primary-foreground' 
                     : 'bg-yellow-500 text-white'
                 }`}>
                   {clientData.project_status === 'completed' ? '✓ Completed' : '⏳ Ongoing'}
@@ -844,19 +741,19 @@ const TopClients = () => {
             </Card>
 
             {/* Summary Card 4: Special Gift */}
-            <Card className="p-6 space-y-4 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
-              <h2 className="text-2xl font-cursive tracking-cursive bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">Your Gift</h2>
+            <Card className="p-6 space-y-4">
+              <h2 className="text-2xl font-cursive tracking-cursive text-primary">Your Gift</h2>
               <div className="space-y-2">
-                <p className="text-lg text-white"><span className="font-semibold">Surprise Date:</span> {formatDate(clientData.surprise_date)}</p>
-                <p className="text-lg text-white"><span className="font-semibold">Gift Code:</span> <span className="text-yellow-400 font-handwriting text-xl">{clientData.gift_code}</span></p>
+                <p className="text-lg"><span className="font-semibold">Surprise Date:</span> {formatDate(clientData.surprise_date)}</p>
+                <p className="text-lg"><span className="font-semibold">Gift Code:</span> <span className="text-primary font-handwriting text-xl">{clientData.gift_code}</span></p>
               </div>
             </Card>
           </div>
 
-          <Card className="p-8 bg-gray-800/90 backdrop-blur-xl border border-emerald-500/30">
-            <p className="text-2xl md:text-3xl text-center leading-relaxed text-white">
+          <Card className="p-8 bg-primary/5 border-primary/20">
+            <p className="text-2xl md:text-3xl text-center leading-relaxed">
               Thank you for being part of our journey in 2025! 
-              <span className="block bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent font-handwriting text-4xl mt-4">We can't wait to build more with you in 2026! 🚀</span>
+              <span className="block text-primary font-handwriting text-4xl mt-4">We can't wait to build more with you in 2026! 🚀</span>
             </p>
           </Card>
         </div>
