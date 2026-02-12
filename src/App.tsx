@@ -20,6 +20,7 @@ import RewardsBoard from "./pages/RewardsBoard";
 import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
+import BookCall from "./pages/BookCall";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
 import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
@@ -90,6 +91,9 @@ const AppRoutes = () => {
         <Routes>
           {/* Root redirect - will be handled by LanguageSelectionModal */}
           <Route path="/" element={<Navigate to="/en" replace />} />
+          
+          {/* Book call redirect */}
+          <Route path="/book-call" element={<BookCall />} />
           
           {/* Language-prefixed routes */}
           <Route path="/:lang" element={<LanguageRouteWrapper><Home /></LanguageRouteWrapper>} />
