@@ -5,12 +5,12 @@
 
 [[redirects]]
   from = "/book-call"
-  to = "http://calendly.com/sannex/book-free-consultation"
+  to = "https://calendly.com/sannex/book-free-consultation"
   status = 301
 
 [[redirects]]
   from = "/book-call/"
-  to = "http://calendly.com/sannex/book-free-consultation"
+  to = "https://calendly.com/sannex/book-free-consultation"
   status = 301
 
 [[redirects]]

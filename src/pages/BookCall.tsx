@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const BookCall = () => {
   useEffect(() => {
     // Redirect to Calendly immediately
-    window.location.href = "http://calendly.com/sannex/book-free-consultation";
+    window.location.href = "https://calendly.com/sannex/book-free-consultation";
   }, []);
 
   return (
