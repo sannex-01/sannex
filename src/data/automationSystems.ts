@@ -153,17 +153,17 @@ export const automationSystems: AutomationSystem[] = [
   },
   {
     id: 11,
-    title: 'Referral & Ambassador Tracking System',
-    worth: '$1,500 – $3,500',
-    worthMin: 1500,
-    worthMax: 3500,
-    description: 'Tracks referrals → calculates commission → auto notifies referrers → payout reminder automation.',
-    tags: ['Revenue', 'Marketing'],
+    title: 'Client Onboarding Automation Suite',
+    worth: '$2,000 – $4,500',
+    worthMin: 2000,
+    worthMax: 4500,
+    description: 'Payment received → contract sent → welcome email → onboarding checklist → internal team assignment → kickoff reminders.',
+    tags: ['Ops', 'Revenue'],
     status: 'available',
     pipeline: {
-      trigger: 'Referral Made',
-      automation: 'Calculate Commission',
-      outcome: 'Payout Notified'
+      trigger: 'Payment Received',
+      automation: 'Send Contract',
+      outcome: 'Client Onboarded'
     }
   },
   {
