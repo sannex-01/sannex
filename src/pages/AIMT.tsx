@@ -482,7 +482,7 @@ const AIMT = () => {
     <div className="min-h-screen bg-background">
       <section className="relative flex min-h-screen items-center overflow-hidden">
         <VideoBackground fixed />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/10 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/5 to-background" />
         <div className="container relative z-10 mx-auto px-4 pb-20 pt-28 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-light px-4 py-2">
