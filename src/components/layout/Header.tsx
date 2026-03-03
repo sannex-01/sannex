@@ -27,7 +27,11 @@ const Header = () => {
   const navLinks = [
     { name: t('nav.home'), path: `/${currentLang}` },
     { name: t('nav.whoWeAre'), path: `/${currentLang}/about` },
+    { name: 'AIM-T', path: '/AIM-T' },
   ];
+
+  const isActivePath = (path: string) =>
+    location.pathname === path || location.pathname.startsWith(`${path}/`);
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
@@ -58,7 +62,7 @@ const Header = () => {
                 key={link.path}
                 to={link.path}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.path ? 'text-primary' : 'text-foreground'
+                  isActivePath(link.path) ? 'text-primary' : 'text-foreground'
                 }`}
               >
                 {link.name}
@@ -96,14 +100,14 @@ const Header = () => {
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.path ? 'text-primary' : 'text-foreground'
-                  }`}
-                >
-                  {link.name}
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActivePath(link.path) ? 'text-primary' : 'text-foreground'
+                }`}
+              >
+                {link.name}
                 </Link>
               ))}
               <div className="pt-2 border-t border-border">

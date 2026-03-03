@@ -45,14 +45,14 @@ const About = () => {
               <div className="prose prose-lg max-w-none mb-8 animate-fade-in">
                 <Card className="bg-black border-white/20">
                   <CardContent className="pt-6">
-                    <h2 className="text-2xl font-bold mb-4 text-foreground">{t('aboutPage.ourStory')}</h2>
-                    <p className="text-muted-foreground mb-4">
+                    <h2 className="text-2xl font-bold mb-4 text-white">{t('aboutPage.ourStory')}</h2>
+                    <p className="text-white mb-4">
                       {t('aboutPage.storyP1')}
                     </p>
-                    <p className="text-muted-foreground mb-4">
+                    <p className="text-white mb-4">
                       {t('aboutPage.storyP2')}
                     </p>
-                    <p className="text-muted-foreground">
+                    <p className="text-white">
                       {t('aboutPage.storyP3')}
                     </p>
                   </CardContent>

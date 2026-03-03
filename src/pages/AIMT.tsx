@@ -31,7 +31,7 @@ const snapshotItems = [
   { label: "Commitment", value: "3 days weekly", icon: Clock3 },
   { label: "Format", value: "Cohort + collaboration", icon: Sparkles },
   { label: "Tracks", value: "AI Team and Web Team", icon: Users },
-  { label: "Price", value: "₦100,000 / $100", icon: BadgeDollarSign },
+  { label: "Price", value: "\u20A6100,000 / $100", icon: BadgeDollarSign },
 ];
 
 const programFlow = [
@@ -168,12 +168,24 @@ const beforeAfterStories = [
   },
 ];
 
+const infiniteBeforeAfterStories = [
+  ...beforeAfterStories,
+  ...beforeAfterStories,
+  ...beforeAfterStories,
+];
+
+const infiniteDeliveredProjects = [
+  ...deliveredProjects,
+  ...deliveredProjects,
+  ...deliveredProjects,
+];
+
 const metrics = [
   { label: "Weeks completed", value: "12+" },
-  { label: "Projects built", value: "18+" },
-  { label: "Tasks done", value: "200+" },
-  { label: "Demo sessions", value: "10+" },
-  { label: "Active members", value: "30+" },
+  { label: "Projects built", value: "10+" },
+  { label: "Tasks done", value: "50+" },
+  { label: "Live sessions", value: "30+" },
+  { label: "Active members", value: "9+" },
 ];
 
 const testimonials = [
@@ -304,6 +316,8 @@ const AIMT = () => {
   const storyCardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const projectWallRef = useRef<HTMLDivElement | null>(null);
   const projectCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const activeStoryLoopIndexRef = useRef(beforeAfterStories.length);
+  const activeProjectLoopIndexRef = useRef(deliveredProjects.length);
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
   const [heroHoveredIndex, setHeroHoveredIndex] = useState<number | null>(null);
@@ -330,8 +344,16 @@ const AIMT = () => {
   useEffect(() => {
     const container = storyWallRef.current;
     if (!container) return;
+    if (beforeAfterStories.length === 0) return;
 
     const updateActiveStory = () => {
+      const singleSetWidth = container.scrollWidth / 3;
+      if (container.scrollLeft < singleSetWidth * 0.75) {
+        container.scrollLeft += singleSetWidth;
+      } else if (container.scrollLeft > singleSetWidth * 2.25) {
+        container.scrollLeft -= singleSetWidth;
+      }
+
       const viewportCenter = container.scrollLeft + container.clientWidth / 2;
       let nearest = 0;
       let nearestDistance = Number.POSITIVE_INFINITY;
@@ -346,23 +368,32 @@ const AIMT = () => {
         }
       });
 
-      setActiveStoryIndex(nearest);
+      activeStoryLoopIndexRef.current = nearest;
+      setActiveStoryIndex(nearest % beforeAfterStories.length);
     };
 
-    const scrollToStory = (index: number) => {
-      const card = storyCardRefs.current[index];
+    const scrollToStory = (loopIndex: number) => {
+      const card = storyCardRefs.current[loopIndex];
       if (!card) return;
       const left = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
       container.scrollTo({ left, behavior: "smooth" });
     };
 
-    updateActiveStory();
+    const initializeStoryLoop = () => {
+      const middleIndex = beforeAfterStories.length;
+      const middleCard = storyCardRefs.current[middleIndex];
+      if (!middleCard) return;
+      const left = middleCard.offsetLeft - (container.clientWidth - middleCard.clientWidth) / 2;
+      container.scrollLeft = left;
+      activeStoryLoopIndexRef.current = middleIndex;
+      updateActiveStory();
+    };
 
-    let nextIndex = 1;
+    requestAnimationFrame(initializeStoryLoop);
+
     const autoScroll = window.setInterval(() => {
       if (container.matches(":hover")) return;
-      scrollToStory(nextIndex);
-      nextIndex = (nextIndex + 1) % beforeAfterStories.length;
+      scrollToStory(activeStoryLoopIndexRef.current + 1);
     }, 2800);
 
     container.addEventListener("scroll", updateActiveStory, { passive: true });
@@ -378,22 +409,65 @@ const AIMT = () => {
   useEffect(() => {
     const container = projectWallRef.current;
     if (!container) return;
+    if (deliveredProjects.length === 0) return;
 
-    const scrollToProject = (index: number) => {
-      const card = projectCardRefs.current[index];
+    const updateActiveProject = () => {
+      const singleSetWidth = container.scrollWidth / 3;
+      if (container.scrollLeft < singleSetWidth * 0.75) {
+        container.scrollLeft += singleSetWidth;
+      } else if (container.scrollLeft > singleSetWidth * 2.25) {
+        container.scrollLeft -= singleSetWidth;
+      }
+
+      const viewportCenter = container.scrollLeft + container.clientWidth / 2;
+      let nearest = 0;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      projectCardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const cardCenter = card.offsetLeft + card.clientWidth / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = index;
+        }
+      });
+
+      activeProjectLoopIndexRef.current = nearest;
+    };
+
+    const scrollToProject = (loopIndex: number) => {
+      const card = projectCardRefs.current[loopIndex];
       if (!card) return;
       const left = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
       container.scrollTo({ left, behavior: "smooth" });
     };
 
-    let nextIndex = 1;
+    const initializeProjectLoop = () => {
+      const middleIndex = deliveredProjects.length;
+      const middleCard = projectCardRefs.current[middleIndex];
+      if (!middleCard) return;
+      const left = middleCard.offsetLeft - (container.clientWidth - middleCard.clientWidth) / 2;
+      container.scrollLeft = left;
+      activeProjectLoopIndexRef.current = middleIndex;
+      updateActiveProject();
+    };
+
+    requestAnimationFrame(initializeProjectLoop);
+
     const autoScroll = window.setInterval(() => {
       if (container.matches(":hover")) return;
-      scrollToProject(nextIndex);
-      nextIndex = (nextIndex + 1) % deliveredProjects.length;
+      scrollToProject(activeProjectLoopIndexRef.current + 1);
     }, 3400);
 
-    return () => window.clearInterval(autoScroll);
+    container.addEventListener("scroll", updateActiveProject, { passive: true });
+    window.addEventListener("resize", updateActiveProject);
+
+    return () => {
+      window.clearInterval(autoScroll);
+      container.removeEventListener("scroll", updateActiveProject);
+      window.removeEventListener("resize", updateActiveProject);
+    };
   }, []);
 
   useEffect(() => {
@@ -407,8 +481,8 @@ const AIMT = () => {
   return (
     <div className="min-h-screen bg-background">
       <section className="relative flex min-h-screen items-center overflow-hidden">
-        <VideoBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/60 to-background" />
+        <VideoBackground fixed />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/10 to-background" />
         <div className="container relative z-10 mx-auto px-4 pb-20 pt-28 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-light px-4 py-2">
@@ -457,7 +531,7 @@ const AIMT = () => {
         </div>
       </section>
 
-      <RevealSection className="mb-16 bg-zinc-950 py-16">
+      <RevealSection className="bg-zinc-950 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {snapshotItems.map((item) => (
@@ -506,7 +580,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="pb-16">
+      <RevealSection className="bg-background py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-2">
             <HapticCard>
@@ -540,7 +614,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="pb-16">
+      <RevealSection className="bg-background pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold md:text-4xl">Curriculum Timeline</h2>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
@@ -564,7 +638,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="pb-16">
+      <RevealSection className="bg-background pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold md:text-4xl">Two Teams, One Mission</h2>
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -596,7 +670,6 @@ const AIMT = () => {
       </RevealSection>
 
       <RevealSection id="current-cohort" className="relative overflow-hidden py-16">
-        <VideoBackground />
         <div className="absolute inset-0 bg-zinc-950/60" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
@@ -631,13 +704,14 @@ const AIMT = () => {
             ref={storyWallRef}
             className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-5"
           >
-            {beforeAfterStories.map((story, index) => {
-              const isActive = activeStoryIndex === index;
+            {infiniteBeforeAfterStories.map((story, loopIndex) => {
+              const dataIndex = loopIndex % beforeAfterStories.length;
+              const isActive = activeStoryIndex === dataIndex;
               return (
                 <div
-                  key={`${story.before}-${index}`}
+                  key={`${story.before}-${loopIndex}`}
                   ref={(node) => {
-                    storyCardRefs.current[index] = node;
+                    storyCardRefs.current[loopIndex] = node;
                   }}
                   className={cn(
                     "snap-center shrink-0 min-w-[290px] md:min-w-[360px] lg:min-w-[420px] transition-all duration-500 ease-out",
@@ -666,7 +740,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="mb-16 bg-zinc-950 py-16">
+      <RevealSection className="bg-zinc-950 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-3xl font-bold text-zinc-100 md:text-4xl">
             Top AIM-T25 Project Showcase So Far
@@ -679,11 +753,11 @@ const AIMT = () => {
             ref={projectWallRef}
             className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-2"
           >
-            {deliveredProjects.map((project, index) => (
+            {infiniteDeliveredProjects.map((project, loopIndex) => (
               <div
-                key={project.title}
+                key={`${project.title}-${loopIndex}`}
                 ref={(node) => {
-                  projectCardRefs.current[index] = node;
+                  projectCardRefs.current[loopIndex] = node;
                 }}
                 className="snap-center shrink-0 min-w-[300px] md:min-w-[420px]"
               >
@@ -751,7 +825,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="pb-16">
+      <RevealSection className="bg-background py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold md:text-4xl">FAQs</h2>
           <HapticCard className="mt-6">
@@ -773,7 +847,7 @@ const AIMT = () => {
         </div>
       </RevealSection>
 
-      <RevealSection className="pb-24">
+      <RevealSection className="bg-background pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <HapticCard className="border-primary/30 bg-primary/10">
             <CardContent className="py-12 text-center">
@@ -803,3 +877,4 @@ const AIMT = () => {
 };
 
 export default AIMT;
+

@@ -8,7 +8,7 @@ const Footer = () => {
   const currentLang = i18n.language || 'en';
 
   return (
-    <footer className="border-t border-zinc-800 bg-zinc-950">
+    <footer className="relative z-20 isolate border-t border-zinc-800 bg-zinc-950">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="space-y-4 md:col-span-1">
