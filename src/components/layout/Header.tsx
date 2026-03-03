@@ -51,8 +51,13 @@ const Header = () => {
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
-            Sannex
+          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-foreground hover:text-primary transition-colors">
+            <img
+              src="/logo.png"
+              alt="Sannex logo"
+              className="h-12 w-12 object-contain drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+            />
+            <span>Sannex</span>
           </Link>
 
           {/* Desktop Navigation */}

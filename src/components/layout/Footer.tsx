@@ -12,7 +12,10 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="space-y-4 md:col-span-1">
-            <h3 className="text-xl font-bold text-zinc-100">Sannex</h3>
+            <h3 className="flex items-center gap-2 text-xl font-bold text-zinc-100">
+              <img src="/logo.png" alt="Sannex logo" className="h-10 w-10 object-contain" />
+              <span>Sannex</span>
+            </h3>
             <p className="text-sm text-zinc-400">{t('footer.description')}</p>
           </div>
 
