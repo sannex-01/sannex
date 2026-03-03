@@ -56,6 +56,7 @@ const getPageMetaFromPath = (pathname: string): PageMeta => {
       title: "AIM-T Cohort Program | Sannex",
       description:
         "AIM-T is Sannex's cohort program to build real AI and Web products in 90 days with team collaboration, weekly reviews, and portfolio outcomes.",
+      image: "/AIM-T26.png",
     };
   }
 
