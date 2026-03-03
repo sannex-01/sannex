@@ -21,6 +21,7 @@ import NotFound from "./pages/NotFound";
 import MagicEsimAccountDeletion from "./pages/MagicEsimAccountDeletion";
 import MagicEsimPrivacyPolicy from "./pages/MagicEsimPrivacyPolicy";
 import BookCall from "./pages/BookCall";
+import AIMT from "./pages/AIMT";
 import LanguageSelectionModal from "./components/LanguageSelectionModal";
 import SnowEffect from "./components/SnowEffect";
 import "./i18n/config";
@@ -94,6 +95,10 @@ const AppRoutes = () => {
           
           {/* Book call redirect */}
           <Route path="/book-call" element={<BookCall />} />
+          <Route path="/AIM-T" element={<AIMT />} />
+          <Route path="/aim-t" element={<Navigate to="/AIM-T" replace />} />
+          <Route path="/AIM-T26" element={<Navigate to="/AIM-T" replace />} />
+          <Route path="/aim-t26" element={<Navigate to="/AIM-T" replace />} />
           
           {/* Language-prefixed routes */}
           <Route path="/:lang" element={<LanguageRouteWrapper><Home /></LanguageRouteWrapper>} />

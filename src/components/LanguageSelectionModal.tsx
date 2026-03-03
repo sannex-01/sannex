@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { detectLanguageFromGeolocation, getLanguageFromURL } from '@/utils/geolocation';
 
 const LANGUAGE_KEY = 'preferredLanguage';
+const SUPPORTED_LANGUAGES = ['en', 'fr', 'ig', 'ha', 'yo', 'sw'];
 
 interface LanguageOption {
   code: string;
@@ -30,10 +31,14 @@ const LanguageSelectionModal = () => {
 
   useEffect(() => {
     const initializeLanguage = async () => {
-      // Skip language detection for special pages (top-clients, esimmagic, rewards)
-      if (window.location.pathname.includes('/top-clients/') || 
-          window.location.pathname.startsWith('/esimmagic') ||
-          window.location.pathname.startsWith('/rewards')) {
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      const firstSegment = pathSegments[0];
+      const isLanguageManagedRoute =
+        pathSegments.length === 0 || (firstSegment ? SUPPORTED_LANGUAGES.includes(firstSegment) : false);
+
+      // Only auto-manage language routing for "/" and "/:lang/*" routes.
+      // This prevents fixed routes like "/AIM-T" from being redirected to "/en".
+      if (!isLanguageManagedRoute) {
         return;
       }
 
