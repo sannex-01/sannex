@@ -23,7 +23,7 @@ import {
   XCircle,
 } from "lucide-react";
 
-const SELAR_REGISTRATION_URL = "https://selar.co";
+const SELAR_REGISTRATION_URL = "https://selar.com/1671275235";
 
 const snapshotItems = [
   { label: "Start", value: "April 1", icon: CalendarDays },
@@ -877,4 +877,3 @@ const AIMT = () => {
 };
 
 export default AIMT;
-
