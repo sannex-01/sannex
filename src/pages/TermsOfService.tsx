@@ -100,7 +100,7 @@ const TermsOfService = () => {
             </p>
             <div className="mt-2">
               <p>Email: info@sannex.ng</p>
-              <p>Phone: +2347048706198</p>
+              <p>Phone: +2349071208623</p>
               <p>Location: Lagos, Nigeria</p>
             </div>
           </section>
