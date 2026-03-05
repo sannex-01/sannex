@@ -1,9 +1,11 @@
 import Papa from 'papaparse';
 import { TopClientData } from '@/types/topClient';
 
+const topClient2025CsvUrl = new URL('../assets/top-clients-2025.csv', import.meta.url).href;
+
 export async function fetchTopClient2025Data(): Promise<TopClientData[]> {
   try {
-    const response = await fetch('/top-clients-2025.csv');
+    const response = await fetch(topClient2025CsvUrl);
     if (!response.ok) {
       throw new Error('Client data not found');
     }

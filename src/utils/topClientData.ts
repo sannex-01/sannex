@@ -1,8 +1,13 @@
 import { TopClientData } from '@/types/topClient';
 
+const topClientCsvByYear: Record<string, string> = {
+  '2025': new URL('../assets/top-clients-2025.csv', import.meta.url).href,
+};
+
 export async function fetchTopClientData(year: string): Promise<TopClientData[]> {
   try {
-    const response = await fetch(`/top-clients-${year}.csv`);
+    const csvUrl = topClientCsvByYear[year] ?? `/top-clients-${year}.csv`;
+    const response = await fetch(csvUrl);
     if (!response.ok) {
       throw new Error('Client data not found');
     }
