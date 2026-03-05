@@ -30,6 +30,7 @@ import {
   XCircle,
 } from "lucide-react";
 import userAvatar from "@/assets/user.svg";
+import echannyIdaguImage from "@/assets/members/echanny-idagu.jpg";
 import ai3dStudioImage from "@/assets/projects/ai3dstudio.png";
 import bellaAiImage from "@/assets/projects/bellaAI.png";
 import nivasityAppImage from "@/assets/projects/nivasityapp.png";
@@ -215,6 +216,7 @@ const testimonials = [
     quote:
       "I am truly grateful for the opportunity to learn and grow with Sannex Tech. Their training programs delivered a solid and practical foundation in AI automation and web development, transforming theoretical concepts into real-world skills.",
     name: "Echanny Idagu",
+    image: echannyIdaguImage,
   },
   {
     quote:
@@ -864,7 +866,7 @@ const AIMT = () => {
                   >
                     <CardContent className="flex flex-col items-center pt-8">
                       <img
-                        src={userAvatar}
+                        src={item.image ?? userAvatar}
                         alt={`${item.name} testimonial portrait`}
                         className="h-20 w-20 rounded-full object-cover ring-2 ring-primary/60"
                         loading="lazy"
