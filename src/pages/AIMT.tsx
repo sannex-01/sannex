@@ -31,6 +31,12 @@ import {
 } from "lucide-react";
 import userAvatar from "@/assets/user.svg";
 import echannyIdaguImage from "@/assets/members/echanny-idagu.jpg";
+import emmanuelAdemolaImage from "@/assets/members/emmanuel-ademola.jpg";
+import mosesOoseImage from "@/assets/members/moses-oose.jpg";
+import ogunyankinImage from "@/assets/members/ogunyankin.jpg";
+import peterIdowuImage from "@/assets/members/peter-idowu.jpg";
+import severImage from "@/assets/members/sever.jpg";
+import tolulopeAdebisiImage from "@/assets/members/tolulope-adebisi.jpg";
 import ai3dStudioImage from "@/assets/projects/ai3dstudio.png";
 import bellaAiImage from "@/assets/projects/bellaAI.png";
 import nivasityAppImage from "@/assets/projects/nivasityapp.png";
@@ -222,16 +228,19 @@ const testimonials = [
     quote:
       "I sincerely appreciate the opportunity to gain additional skills with Sannex Tech. The opportunity provided me with a strong, hands-on understanding of AI automation and web development, bridging the gap between theory and practical application. Through their well-structured programs, I was able to gain real-world experience and confidence that has significantly enhanced my technical growth.",
     name: "Ogunyankin Olumuyiwa",
+    image: ogunyankinImage,
   },
   {
     quote:
       "My Honest Review!\nI've attended several online trainings before, and to be honest, many of them didn't really make sense. Sometimes after just one or two days, they would start asking for extra payments to sell a material to you.\nSo when I came across this one, I honestly thought it was going to be the same thing.\nBut I was wrong.\nFrom the moment we started, I could see this was different from what I was expecting. It wasn't about hype, it was real teaching. It was clear, practical, and very educative.\nI genuinely learned a lot. The sessions were detailed, easy to understand, and full of valuable information. I didn't feel like my time was wasted at all.",
     name: "Sever",
+    image: severImage,
   },
   {
     quote:
       "Some opportunities don't come glaring as they should look, but they hold more value than the shiny one's.\n\nI'm glad I saw this, and against all odds was able to participate actively\n\nIt's a whole new world of possibilities for me ever since.",
     name: "Tolulope Adebisi",
+    image: tolulopeAdebisiImage,
   },
   {
     quote:
@@ -242,15 +251,18 @@ const testimonials = [
     quote:
       "Sannex AI Mentorship is not just teaching AI - it's building real builders.\nWe don't just watch tutorials, we get our hands dirty with real projects. The mentorship is practical, intense, and growth-driven.\nKnowledge is sharpened. Minds are stretched. Confidence is built.",
     name: "Peter Idowu",
+    image: peterIdowuImage,
   },
   {
     quote: "I really appreciate the knowledge sannex has imparted in me\nThanks so much",
     name: "Moses Oose",
+    image: mosesOoseImage,
   },
   {
     quote:
       "I am grateful that I perceived the depth of this opportunity and, despite numerous challenges, chose to engage fully and intentionally.\nMy experience with Sannex Tech has been transformative. What initially seemed understated has unfolded into a platform of learning, growth, and innovation that continues to expand my perspective. Through active participation, I have gained not only technical exposure but also a renewed confidence in my ability to adapt, contribute, and excel in a dynamic environment.",
     name: "Emmanuel Ademola",
+    image: emmanuelAdemolaImage,
   },
 ];
 
